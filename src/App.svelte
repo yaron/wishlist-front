@@ -1,53 +1,23 @@
 <script>
 	import Item from './Item.svelte';
-	import Modal from './Modal.svelte';
+	import Login from './Login.svelte'
+	import Edit from './Edit.svelte'
+	import { token_store, item_store } from './stores.js';
 
-	let list = getList()
-	async function getList() {
-		const res = await fetch(`http://localhost:8080/list`);
-		const text = await res.text();
+	let list = ''
+	item_store.subscribe(val => {
+		list = val
+	});
 
-		if (res.ok) {
-			return JSON.parse(text);
-		} else {
-			throw new Error(res);
-		}
-	}
-
-	async function loginUser() {
-		this.disabled = true
-		const params = {
-			headers: {
-				"content-type": "application/json; charset=UTF-8"
-			},
-			body: JSON.stringify({
-				user: username,
-				password: password
-			}),
-			method: "POST"
-		}
-		password = ''
-		const res = await fetch(`http://localhost:8080/login`, params);
-		const text = await res.text();
-		if (res.ok) {
-			token=JSON.parse(text).token;
-			showLogin=false
-		} else {
-			throw new Error(res);
-		}
-	}
-
-	let showLogin = false
-	let showEdit = false
-	let editing={}
-	let username = ''
-	let password = ''
 	let token = ''
+	token_store.subscribe(val => {
+		token = val
+	});
 </script>
 
 <h1>Wishlist</h1>
 {#if token != ''}
-	<h2>Hello {username}</h2>
+	<h2>Hello</h2>
 {/if}
 {#await list}
 	<p>...waiting</p>
@@ -59,9 +29,7 @@
 
 			<span slot="edit">			
 			{#if token != ''}
-				<button on:click="{() => {showEdit=true ; editing=item}}">
-					Edit
-				</button>
+				<Edit item={item} />
 			{/if}
 			</span>
 
@@ -71,42 +39,5 @@
 	<p style="color: red">{error.message}</p>
 {/await}
 
-{#if token == ''}
-<button on:click="{() => showLogin = true}">
-	Login
-</button>
-{/if}
+<Login />
 
-{#if showLogin}
-	<Modal on:close="{() => showLogin = false}">
-		<h2 slot="header">
-			Login
-		</h2>
-		<p>
-			<label>
-				Username
-				<input bind:value={username} placeholder="enter your username">
-			</label>
-			<label>
-				Password
-				<input type="password" bind:value={password} placeholder="enter your password">
-			</label>
-			<button on:click="{loginUser}">
-				Login
-			</button>
-		</p>
-	</Modal>
-{/if}
-{#if showEdit}
-	<Modal on:close="{() => showEdit = false}">
-		<h2 slot="header">
-			Edit
-		</h2>
-		<p>
-			<label>
-				Name
-				<input bind:value={editing.name}>
-			</label>
-		</p>
-	</Modal>
-{/if}
