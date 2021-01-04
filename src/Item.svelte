@@ -6,7 +6,8 @@
 		padding: 16px;
 		box-shadow: 2px 2px 4px #dedede;
 		border: 1px solid #888;
-		margin-bottom: 16px;
+		margin: 16px;
+		float: left;
 	}
 </style>
 

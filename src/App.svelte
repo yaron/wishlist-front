@@ -1,7 +1,7 @@
 <script>
 	import Item from './Item.svelte';
+	import AddItem from './AddItem.svelte';
 	import Login from './Login.svelte'
-	import Edit from './Edit.svelte'
 	import { token_store, item_store } from './stores.js';
 
 	let list = ''
@@ -15,10 +15,18 @@
 	});
 </script>
 
+<style>
+	section {
+		width: 200px;
+		padding: 16px;
+		box-shadow: 2px 2px 4px #dedede;
+		border: 1px solid #888;
+		margin: 16px;
+		float: left;
+	}
+</style>
+
 <h1>Wishlist</h1>
-{#if token != ''}
-	<h2>Hello</h2>
-{/if}
 {#await list}
 	<p>...waiting</p>
 {:then items}
@@ -29,15 +37,21 @@
 
 			<span slot="edit">			
 			{#if token != ''}
-				<Edit item={item} />
+				<AddItem item={item} />
 			{/if}
 			</span>
 
 		</Item>
 	{/each}
+	
 {:catch error}
 	<p style="color: red">{error.message}</p>
 {/await}
+
+<section>
+	<AddItem />
+</section>
+
 
 <Login />
 
