@@ -22,7 +22,7 @@
             body: JSON.stringify({
                 name: item.name,
                 price: parseInt(item.price),
-                claimed: false,
+                claimed: item.claimed,
                 claimable: item.claimable,
                 url: item.url,
                 image: item.image,
@@ -88,6 +88,10 @@
                     <input type=checkbox bind:checked={item.claimable}>
                 </label>
                 <label>
+                    Claimed
+                    <input type=checkbox bind:checked={item.claimed}>
+                </label>
+                <label>
                     URL
                     <input bind:value={item.url}>
                 </label>
@@ -117,6 +121,6 @@
     {#if item.id != undefined}
         Edit
     {:else}
-        Add
+        Add Item
     {/if}
 </button>

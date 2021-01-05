@@ -38,6 +38,10 @@
 <button on:click="{() => showLogin = true}">
 	Login
 </button>
+{:else}
+<button on:click="{() => token_store.set('')}">
+	Log out
+</button>
 {/if}
 
 {#if showLogin}
