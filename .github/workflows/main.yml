@@ -25,6 +25,9 @@ jobs:
       - name: Setup Node.js environment
         uses: actions/setup-node@v2.1.4
         
+      - name: Get dependencies
+        run: npm install
+      
       - name: Compile
         run: npm run build
       
