@@ -1,6 +1,16 @@
 <script>
-    import { item_store } from './stores.js';
+    import { item_store, texts_store, config_store } from './stores.js';
         
+    let texts = {}
+	texts_store.subscribe(val => {
+		texts = val
+    });
+
+    let config = {}
+	config_store.subscribe(val => {
+		config = val
+    });
+
     export let item_id
     export let key
 
@@ -16,7 +26,7 @@
             }),
             method: "POST"
         }
-        let url = `http://localhost:8080/unclaim`
+        let url = config.api+'/unclaim'
         const res = await fetch(url, params);
         const text = await res.text();
         if (res.ok) {
@@ -30,5 +40,5 @@
 
 
 <button on:click={unclaimItem}>
-    UnClaim
+    {texts.unclaim}
 </button>

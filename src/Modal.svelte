@@ -1,5 +1,10 @@
 <script>
 	import { createEventDispatcher, onDestroy } from 'svelte';
+	import { texts_store } from './stores';
+	let texts = {}
+	texts_store.subscribe(val => {
+		texts = val
+    });
 
 	const dispatch = createEventDispatcher();
 	const close = () => dispatch('close');
@@ -48,7 +53,7 @@
 	<hr>
 
 	<!-- svelte-ignore a11y-autofocus -->
-	<button autofocus on:click={close}>close modal</button>
+	<button autofocus on:click={close}>{texts.closeModal}</button>
 </div>
 
 <style>

@@ -1,7 +1,17 @@
 <script>
-    import { token_store } from './stores.js';
+    import { token_store, texts_store, config_store } from './stores.js';
 	import Modal from './Modal.svelte';
     
+    let texts = {}
+	texts_store.subscribe(val => {
+		texts = val
+    });
+
+    let config = {}
+	config_store.subscribe(val => {
+		config = val
+    });
+
     async function loginUser() {
         this.disabled = true
         const params = {
@@ -15,7 +25,7 @@
             method: "POST"
         }
         password = ''
-        const res = await fetch(`http://localhost:8080/login`, params);
+        const res = await fetch(config.api+'/login', params)
         const text = await res.text();
         if (res.ok) {
             token_store.set(JSON.parse(text).token);
@@ -36,30 +46,30 @@
 
 {#if token == ''}
 <button on:click="{() => showLogin = true}">
-	Login
+	{texts.login}
 </button>
 {:else}
 <button on:click="{() => token_store.set('')}">
-	Log out
+	{texts.logout}
 </button>
 {/if}
 
 {#if showLogin}
 	<Modal on:close="{() => showLogin = false}">
 		<h2 slot="header">
-			Login
+			{texts.login}
 		</h2>
 		<p>
 			<label>
-				Username
+				{texts.username}
 				<input bind:value={username} placeholder="enter your username">
 			</label>
 			<label>
-				Password
+				{texts.password}
 				<input type="password" bind:value={password} placeholder="enter your password">
 			</label>
 			<button on:click="{loginUser}">
-				Login
+				{texts.login}
 			</button>
 		</p>
 	</Modal>

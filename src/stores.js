@@ -1,12 +1,36 @@
-import { writable } from "svelte/store";
+import { writable, readable } from "svelte/store";
+import jwt_decode from 'jwt-decode';
 
-export const token_store = writable(localStorage.getItem("token") || "");
-token_store.subscribe(val => {
-    localStorage.setItem("token", val)
+
+let token = ''
+export const token_store = writable(localStorage.getItem("token") || "", function () {
+    const interval = setInterval(() => {
+		if (token != '') {
+            checkToken(token)
+        }
+    }, 60000);
+    
+    return () => clearInterval(interval)
 });
 
+token_store.subscribe(val => {
+    localStorage.setItem("token", val)
+    if (val != '') { checkToken(val) }
+    token = val
+});
+
+async function checkToken(t) {
+    let decoded_token = await jwt_decode(t)
+    let current_time = Math.floor(Date.now() / 1000)
+
+    // Drop token if it is expired.
+    if (decoded_token.exp < current_time) {
+        token_store.set('')
+    }
+}
+
 function createListStore() {
-    const { subscribe, set, update } = writable(0);
+    const { subscribe, set } = writable(0);
     set(getList())
     return {
         subscribe,
@@ -25,3 +49,9 @@ async function getList() {
         throw new Error(res);
     }
 }
+
+import {c} from './config.js'
+export const config_store = readable(c);
+
+import * as langs from './languages/langs.js'
+export const texts_store = readable(langs[c.language]);

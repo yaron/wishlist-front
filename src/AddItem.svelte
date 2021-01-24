@@ -1,7 +1,7 @@
 <script>
     import Modal from './Modal.svelte';
-    import { token_store, item_store } from './stores.js';
-    
+    import { token_store, item_store, texts_store, config_store } from './stores.js';
+
     let showAdd = false
     export let item = {}
 
@@ -10,6 +10,16 @@
     let token = ''
 	token_store.subscribe(val => {
 		token = val
+    });
+
+    let texts = {}
+	texts_store.subscribe(val => {
+		texts = val
+    });
+
+    let config = {}
+	config_store.subscribe(val => {
+		config = val
     });
 
     async function addItem() {
@@ -29,9 +39,9 @@
             }),
             method: "POST"
         }
-        let url = `http://localhost:8080/admin/add`
+        let url = config.api+'/admin/add'
         if (item.id != undefined) {
-            url = `http://localhost:8080/admin/edit/`+item.id
+            url = config.api+'/admin/edit/'+item.id
         }
         const res = await fetch(url, params);
         const text = await res.text();
@@ -68,35 +78,35 @@
 	<Modal on:close="{() => showAdd = false}">
 		<h2 slot="header">
             {#if item.id != undefined}
-                Edit
+                {texts.edit}
             {:else}
-                Add
+                {texts.add}
             {/if}
         </h2>
         <div class="form-container">
             <p>
                 <label>
-                    Name
+                    {texts.name}
                     <input bind:value={item.name}>
                 </label>
                 <label>
-                    Price
+                    {texts.price}
                     <input type=number min=0 bind:value={item.price}>
                 </label>
                 <label>
-                    Claimable
+                    {texts.claimable}
                     <input type=checkbox bind:checked={item.claimable}>
                 </label>
                 <label>
-                    Claimed
+                    {texts.claimed}
                     <input type=checkbox bind:checked={item.claimed}>
                 </label>
                 <label>
-                    URL
+                    {texts.url}
                     <input bind:value={item.url}>
                 </label>
                 <label>
-                    Image
+                    {texts.image}
                     <input bind:value={item.image} on:select="{() => showImage=false}" on:blur="{() => showImage=true}">
                 </label>
             </p>
@@ -109,9 +119,9 @@
         <div class="clear" />
 		<button on:click="{addItem}">
             {#if item.id != undefined}
-                Edit
+                {texts.edit}
             {:else}
-                Add
+                {texts.add}
             {/if}
 		</button>
 	</Modal>
@@ -119,8 +129,8 @@
 
 <button on:click="{() => showAdd=true}">
     {#if item.id != undefined}
-        Edit
+        {texts.edit}
     {:else}
-        Add Item
+        {texts.add}
     {/if}
 </button>

@@ -1,7 +1,17 @@
 <script>
     import Modal from './Modal.svelte';
-    import { item_store } from './stores.js';
+    import { item_store, texts_store, config_store } from './stores.js';
         
+    let texts = {}
+	texts_store.subscribe(val => {
+		texts = val
+    });
+
+    let config = {}
+	config_store.subscribe(val => {
+		config = val
+    });
+
     let showClaim = false
     export let item_id
     export let item_name
@@ -19,7 +29,7 @@
             }),
             method: "POST"
         }
-        let url = `http://localhost:8080/claim`
+        let url = config.api+'/claim'
         const res = await fetch(url, params);
         const text = await res.text();
         if (res.ok) {
@@ -35,22 +45,22 @@
 {#if showClaim}
 	<Modal on:close="{() => showClaim = false}">
 		<h2 slot="header">
-            Claim {item_name}
+            {texts.claim} {item_name}
         </h2>
         <div class="form-container">
             <p>
                 <label>
-                    Your mail address
+                    {texts.yourMail}
                     <input bind:value={mail}>
                 </label>
             </p>
         </div>
 		<button on:click="{claimItem}">
-            Claim
+            {texts.claim}
 		</button>
 	</Modal>
 {/if}
 
 <button on:click="{() => showClaim=true}">
-    Claim
+    {texts.claim}
 </button>
