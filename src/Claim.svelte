@@ -1,15 +1,10 @@
 <script>
     import Modal from './Modal.svelte';
-    import { item_store, texts_store, config_store } from './stores.js';
+    import { item_store, texts_store } from './stores.js';
         
     let texts = {}
 	texts_store.subscribe(val => {
 		texts = val
-    });
-
-    let config = {}
-	config_store.subscribe(val => {
-		config = val
     });
 
     let showClaim = false

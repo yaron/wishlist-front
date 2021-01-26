@@ -1,6 +1,6 @@
 <script>
     import Modal from './Modal.svelte';
-    import { token_store, item_store, texts_store, config_store } from './stores.js';
+    import { token_store, item_store, texts_store } from './stores.js';
 
     let showAdd = false
     export let item = {}
@@ -15,11 +15,6 @@
     let texts = {}
 	texts_store.subscribe(val => {
 		texts = val
-    });
-
-    let config = {}
-	config_store.subscribe(val => {
-		config = val
     });
 
     async function addItem() {

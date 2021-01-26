@@ -1,15 +1,10 @@
 <script>
-    import { token_store, texts_store, config_store } from './stores.js';
+    import { token_store, texts_store } from './stores.js';
 	import Modal from './Modal.svelte';
     
     let texts = {}
 	texts_store.subscribe(val => {
 		texts = val
-    });
-
-    let config = {}
-	config_store.subscribe(val => {
-		config = val
     });
 
     async function loginUser() {

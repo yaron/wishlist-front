@@ -50,8 +50,5 @@ async function getList() {
     }
 }
 
-import {c} from './config.js'
-export const config_store = readable(c);
-
 import * as langs from './languages/langs.js'
-export const texts_store = readable(langs[c.language]);
+export const texts_store = readable(langs[config.language]);
