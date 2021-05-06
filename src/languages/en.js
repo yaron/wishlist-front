@@ -14,6 +14,5 @@ export const t = {
     logout: "Logout",
     username: "Username",
     password: "Password",
-    closeModal: "Close modal",
     yourMail: "Your Mail address"
 }

@@ -57,11 +57,11 @@
 		<p>
 			<label>
 				{texts.username}
-				<input bind:value={username} placeholder="enter your username">
+				<input bind:value={username} placeholder="{texts.username}">
 			</label>
 			<label>
 				{texts.password}
-				<input type="password" bind:value={password} placeholder="enter your password">
+				<input type="password" bind:value={password} placeholder="{texts.password}">
 			</label>
 			<button on:click="{loginUser}">
 				{texts.login}

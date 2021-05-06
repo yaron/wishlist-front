@@ -47,13 +47,12 @@
 <div class="modal-background" on:click={close}></div>
 
 <div class="modal" role="dialog" aria-modal="true" bind:this={modal}>
+	<!-- svelte-ignore a11y-autofocus -->
+	<button class="closeModal" autofocus on:click={close}>X</button>
+
 	<slot name="header"></slot>
 	<hr>
 	<slot></slot>
-	<hr>
-
-	<!-- svelte-ignore a11y-autofocus -->
-	<button autofocus on:click={close}>{texts.closeModal}</button>
 </div>
 
 <style>
@@ -83,4 +82,12 @@
 	button {
 		display: block;
 	}
+
+	button.closeModal {
+		float: right;
+		background: transparent;
+		border: none;
+	}
+
+
 </style>

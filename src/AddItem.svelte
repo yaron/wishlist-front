@@ -121,11 +121,12 @@
 		</button>
 	</Modal>
 {/if}
-
-<button on:click="{() => showAdd=true}">
-    {#if item.id != undefined}
-        {texts.edit}
-    {:else}
-        {texts.add}
-    {/if}
-</button>
+{#if token != ''}
+    <button on:click="{() => showAdd=true}">
+        {#if item.id != undefined}
+            {texts.edit}
+        {:else}
+            {texts.add}
+        {/if}
+    </button>
+{/if}

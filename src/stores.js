@@ -40,7 +40,7 @@ function createListStore() {
 export const item_store = createListStore()
 
 async function getList() {
-    const res = await fetch(`http://localhost:8080/list`);
+    const res = await fetch(config.api+`/list`);
     const text = await res.text();
 
     if (res.ok) {

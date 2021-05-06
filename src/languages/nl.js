@@ -14,6 +14,5 @@ export const t = {
     logout: "Log uit",
     username: "Gebruikersnaam",
     password: "Wachtwoord",
-    closeModal: "Scherm sluiten",
     yourMail: "Je mail adres"
 }

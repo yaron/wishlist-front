@@ -1,4 +1,6 @@
 var config = {
-    language: "nl",
-    api: "http://localhost:8080"
+    language: "en",
+    api: "http://localhost:8080",
+    theme: "default",
+    title: "Wishlist",
 }

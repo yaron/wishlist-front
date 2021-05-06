@@ -21,7 +21,7 @@
 	}
 </style>
 
-<h1>{texts.title}</h1>
+<h1>{config.title}</h1>
 {#await list}
 	<p>{texts.waiting}</p>
 {:then items}
