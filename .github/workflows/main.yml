@@ -39,7 +39,7 @@ jobs:
         
       - name: Tar created files
         run: |
-          tar -czf wishlist.tar.gz public/build
+          tar -czf wishlist.tar.gz public
       - name: Upload Release Asset
         id: upload-release-asset 
         uses: actions/upload-release-asset@v1
