@@ -12,6 +12,7 @@ export const t = {
     image: "Afbeelding link",
     login: "Log in",
     logout: "Log uit",
+    loginError: "Verkeerde gebruikersnaam of wachtwoord",
     username: "Gebruikersnaam",
     password: "Wachtwoord",
     yourMail: "Je mail adres"

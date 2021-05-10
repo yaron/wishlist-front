@@ -2,6 +2,7 @@
     import { token_store, texts_store } from './stores.js';
 	import Modal from './Modal.svelte';
     
+    let loginError = ''
     let texts = {}
 	texts_store.subscribe(val => {
 		texts = val
@@ -23,10 +24,17 @@
         const res = await fetch(config.api+'/login', params)
         const text = await res.text();
         if (res.ok) {
-            token_store.set(JSON.parse(text).token);
-            showLogin=false
+            token_store.set(JSON.parse(text).token)
+            showLogin = false
+            loginError = ''
         } else {
-            throw new Error(res);
+            let resp = JSON.parse(text)
+            if (resp.error) {
+                loginError = resp.error
+            } else if (resp.status && resp.status == "unauthorized") {
+                loginError = texts.loginError
+            }
+            this.disabled = false
         }
     }
 
@@ -54,6 +62,9 @@
 		<h2 slot="header">
 			{texts.login}
 		</h2>
+        {#if loginError != ''}
+        <p class="error">{loginError}</p>
+        {/if}
 		<p>
 			<label>
 				{texts.username}
