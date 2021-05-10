@@ -8,6 +8,7 @@ export const t = {
     claimable: "Afstreepbaar",
     claimed: "Afgestreept",
     claim: "Streep af",
+    unclaim: "Niet meer afstrepen",
     url: "Link",
     image: "Afbeelding link",
     login: "Log in",

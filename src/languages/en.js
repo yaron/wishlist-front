@@ -8,6 +8,7 @@ export const t = {
     claimable: "Claimable",
     claimed: "Claimed",
     claim: "Claim",
+    unclaim: "Unclaim",
     url: "URL",
     image: "Image URL",
     login: "Login",
