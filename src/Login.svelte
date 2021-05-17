@@ -48,11 +48,11 @@
 </script>
 
 {#if token == ''}
-<button on:click="{() => showLogin = true}">
+<button class="login" on:click="{() => showLogin = true}">
 	{texts.login}
 </button>
 {:else}
-<button on:click="{() => token_store.set('')}">
+<button class="logout" on:click="{() => token_store.set('')}">
 	{texts.logout}
 </button>
 {/if}

@@ -34,6 +34,6 @@
 </script>
 
 
-<button on:click={unclaimItem}>
+<button class="unclaim" on:click={unclaimItem}>
     {texts.unclaim}
 </button>

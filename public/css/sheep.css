@@ -1,0 +1,40 @@
+body {
+	color: #4E9689;
+	background: url('../img/lamb.png') center right no-repeat #F4FCE8;
+}
+
+a {
+	color: #87D69B;
+}
+
+a:visited {
+	color: #7ED0D6;
+}
+
+
+input, button, select, textarea {
+	border: 3px solid #7ED0D6;
+}
+
+input:disabled {
+	color: #7ED0D6;
+}
+
+button {
+	color: #7ED0D6;
+	background-color: #F4FCE8;
+}
+
+button:focus {
+	border-color: rgb(107, 89, 89);
+}
+
+section {
+	box-shadow: 2px 2px 4px #dedede;
+	border: 1px solid #4E9689;
+}
+
+section.claimed {
+	background-color: rgb(252, 188, 52);
+	opacity: 0.4;
+}
