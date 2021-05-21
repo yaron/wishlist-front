@@ -34,7 +34,7 @@ input, button, select, textarea {
 	font-size: inherit;
 	-webkit-padding: 0.4em 0;
 	padding: 0.4em;
-	margin: 0 0 0.5em 0;
+	margin: 0 0 1em 0;
 	box-sizing: border-box;
 	border: 1px solid #ccc;
 	border-radius: 2px;
@@ -68,14 +68,10 @@ button.login, button.logout {
 	bottom: 1%;
 }
 
-button.unclaim, button.claim {
-	float: left;
-	clear: both;
-}
-
-section {
+/* Item sections */
+section.item {
 	width: 200px;
-	height: 20%;
+	height: 17%;
 	padding: 16px;
 	box-shadow: 2px 2px 4px #dedede;
 	border: 1px solid #888;
@@ -83,30 +79,68 @@ section {
 	float: left;
 }
 
-section.claimed {
+section.item.claimed {
 	background-color: #888;
+	opacity: 0.4;
 }
 
-section div {
+section.item div.text {
+	padding: 1em 0;
+	width: 50%;
+	float: left;
+}
+
+section.item div.image {
+	height: 100%;
+	width: 50%;
+	float: right;
+}
+
+section.item div.buttons {
+	width: 100%;
 	float: left;
 	width: 50%;
 }
 
-section div.text {
-	height: 85%;
-	float: left;
-}
-
-section div.image {
-	height: 100%;
-	float: right;
-}
-
-section div span {
+section.item div span {
 	float: left;
 	width: 100%;
 }
 
-img.thumb {
+section.item img.thumb {
 	width: 100%;
+}
+
+section.item button.unclaim, 
+section.item button.claim {
+	float: left;
+	clear: both;
+}
+
+/* Add/Edit/Delete item and login Modals*/
+.modal div {
+	width: 100%;
+}
+
+.modal img.thumb {
+	width: 90%;
+	height: 90%;
+}
+
+.modal div.form-container {
+	width: 50%;
+	float: left;
+}
+
+.modal div.image-container {
+	width: 50%;
+	float: left;
+}
+
+.modal div.clear {
+	clear: both;
+}
+
+.modal button {
+	float: left;
 }

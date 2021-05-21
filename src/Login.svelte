@@ -65,18 +65,15 @@
         {#if loginError != ''}
         <p class="error">{loginError}</p>
         {/if}
-		<p>
-			<label>
-				{texts.username}
-				<input bind:value={username} placeholder="{texts.username}">
-			</label>
-			<label>
-				{texts.password}
-				<input type="password" bind:value={password} placeholder="{texts.password}">
-			</label>
-			<button on:click="{loginUser}">
-				{texts.login}
-			</button>
-		</p>
+        <label for="username">{texts.username}</label>
+        <input id="username" bind:value={username} placeholder="{texts.username}">
+        
+        <label for="password">{texts.password}</label>
+        <input id="password" type="password" bind:value={password} placeholder="{texts.password}">
+        
+        <div class="clear" />
+        <button on:click="{loginUser}">
+            {texts.login}
+        </button>
 	</Modal>
 {/if}

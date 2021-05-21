@@ -3,6 +3,8 @@ export const t = {
     waiting: "...bezig",
     edit: "Aanpassen",
     add: "Toevoegen",
+    delete: "Verwijderen",
+    confirmDelete: "Weet je zeker dat je dit item wilt verwijderen?",
     name: "Naam",
     price: "Prijs",
     claimable: "Afstreepbaar",

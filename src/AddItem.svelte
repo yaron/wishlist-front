@@ -1,8 +1,10 @@
 <script>
     import Modal from './Modal.svelte';
     import { token_store, item_store, texts_store } from './stores.js';
+    import Item from './Item.svelte';
 
     let showAdd = false
+    let showDelete = false
     export let item = {}
 
     let showImage = true
@@ -16,6 +18,26 @@
 	texts_store.subscribe(val => {
 		texts = val
     });
+
+    async function deleteItem() {
+        this.disabled = true
+        const params = {
+            headers: {
+                "content-type": "application/json; charset=UTF-8",
+                "Authorization": "Bearer " + token
+            },
+            method: "POST"
+        }
+        let url = config.api+'/admin/delete/' + item.id
+        const res = await fetch(url, params);
+        const text = await res.text();
+        if (res.ok) {
+            showDelete=false
+            item_store.updateList()
+        } else {
+            throw new Error(res);
+        }
+    }
 
     async function addItem() {
         this.disabled = true
@@ -49,26 +71,6 @@
     }
 
 </script>
-<style>
-    img.thumb {
-        width: 90%;
-        height: 90%;
-    }
-
-    div.form-container {
-        width: 50%;
-        float: left;
-    }
-    div.image-container {
-        width: 50%;
-        float: left;
-    }
-
-    div.clear {
-        clear: both;
-    }
-
-</style>
 {#if showAdd}
 	<Modal on:close="{() => showAdd = false}">
 		<h2 slot="header">
@@ -80,30 +82,24 @@
         </h2>
         <div class="form-container">
             <p>
-                <label>
-                    {texts.name}
-                    <input bind:value={item.name}>
-                </label>
-                <label>
-                    {texts.price}
-                    <input type=number min=0 bind:value={item.price}>
-                </label>
-                <label>
-                    {texts.claimable}
-                    <input type=checkbox bind:checked={item.claimable}>
-                </label>
-                <label>
-                    {texts.claimed}
-                    <input type=checkbox bind:checked={item.claimed}>
-                </label>
-                <label>
-                    {texts.url}
-                    <input bind:value={item.url}>
-                </label>
-                <label>
-                    {texts.image}
-                    <input bind:value={item.image} on:select="{() => showImage=false}" on:blur="{() => showImage=true}">
-                </label>
+                <label for="name">{texts.name}</label>
+                <input id="name" bind:value={item.name}>
+                
+                <label for="price">{texts.price}</label>
+                <input id="price" type=number min=0 bind:value={item.price}>
+                
+                <label for="claimable">{texts.claimable}</label>
+                <input id="claimable" type=checkbox bind:checked={item.claimable}>
+                
+                <label for="claimed">{texts.claimed}</label>
+                <input id="claimed" type=checkbox bind:checked={item.claimed}>
+                
+                <label for="url">{texts.url}</label>
+                <input id="url" bind:value={item.url}>
+                
+                <label for="image">{texts.image}</label>
+                <input id="image" bind:value={item.image} on:select="{() => showImage=false}" on:blur="{() => showImage=true}">
+                
             </p>
         </div>
         <div class="image-container">
@@ -121,12 +117,28 @@
 		</button>
 	</Modal>
 {/if}
+{#if showDelete}
+    <Modal on:close="{() => showDelete = false}">
+        <h2 slot="header">
+            {texts.delete}
+        </h2>
+        <div class="confirm">
+            <p>
+                {texts.confirmDelete}
+            </p>
+            <Item item={item} remove_buttons="true" />
+        </div>
+        <div class="clear" />
+        <button on:click="{deleteItem}">
+            {texts.delete}
+        </button>
+    </Modal>
+{/if}
 {#if token != ''}
-    <button on:click="{() => showAdd=true}">
-        {#if item.id != undefined}
-            {texts.edit}
-        {:else}
-            {texts.add}
-        {/if}
-    </button>
+    {#if item.id != undefined}
+        <button on:click="{() => showAdd=true}">{texts.edit}</button>
+        <button class="delete" on:click="{() => showDelete=true}">{texts.delete}</button>
+    {:else}
+        <button on:click="{() => showAdd=true}">{texts.add}</button>
+    {/if}
 {/if}

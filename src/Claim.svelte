@@ -42,12 +42,10 @@
 		<h2 slot="header">
             {texts.claim} {item_name}
         </h2>
-        <div class="form-container">
+        <div class="claim-form">
             <p>
-                <label>
-                    {texts.yourMail}
-                    <input bind:value={mail}>
-                </label>
+                <label for="mail">{texts.yourMail}</label>
+                <input id="mail" bind:value={mail}>
             </p>
         </div>
 		<button on:click="{claimItem}">

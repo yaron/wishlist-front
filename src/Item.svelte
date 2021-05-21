@@ -6,6 +6,7 @@
 	import queryString from "query-string";
 
 	export let item = {}
+	export let remove_buttons = false
 	let token = ''
 	const unsubscribe = token_store.subscribe(val => {
 		token = val
@@ -20,25 +21,25 @@
 	queryParams = queryString.parse(window.location.search);
 </script>
 
-<section class={item_class}>
+<section class="item {item_class}">
 	<div class="text">
 		<span>{item.name}</span>
 		<span>&euro;{(item.price / 100).toFixed(2)}</span>
-			
-		{#if token != ''}
-			<AddItem item={item} />
-		{/if}
 	</div>
 	<div class="image">
 		<img class="thumb" src={item.image} alt="" />
 	</div>
-	<div>
-		{#if item.claimable && !item.claimed}
-			<Claim item_id={item.id} item_name={item.name} />
-		{/if}
-		{#if queryParams.id == item.id && item.claimable && item.claimed}
-			<UnClaim item_id={item.id} key={queryParams.key} />
-		{/if}
-	</div>
-
+	{#if remove_buttons == false}
+		<div class="buttons">
+			{#if token != ''}
+				<AddItem item={item} />
+			{/if}
+			{#if item.claimable && !item.claimed}
+				<Claim item_id={item.id} item_name={item.name} />
+			{/if}
+			{#if queryParams.id == item.id && item.claimable && item.claimed}
+				<UnClaim item_id={item.id} key={queryParams.key} />
+			{/if}
+		</div>
+	{/if}
 </section>

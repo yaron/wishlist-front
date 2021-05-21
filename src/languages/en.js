@@ -3,6 +3,8 @@ export const t = {
     waiting: "...waiting",
     edit: "Edit",
     add: "Add",
+    delete: "Delete",
+    confirmDelete:"Are you sure you want to delete this item?",
     name: "Name",
     price: "Price",
     claimable: "Claimable",
