@@ -48,6 +48,7 @@ button {
 	color: #333;
 	background-color: #f4f4f4;
 	outline: none;
+	margin: 0 0 0.5em 0;
 }
 
 button:disabled {
@@ -89,7 +90,7 @@ section.item.claimed {
 }
 
 section.item div.text {
-	padding: 1em 0;
+	padding: 0.5em 0 1em 0;
 	width: 50%;
 	float: left;
 }
