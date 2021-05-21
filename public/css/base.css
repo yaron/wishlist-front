@@ -62,6 +62,10 @@ button:focus {
 	border-color: #666;
 }
 
+div.clear {
+	clear: both;
+}
+
 button.login, button.logout {
 	position: fixed;
 	left: 1%;
@@ -135,10 +139,6 @@ section.item button.claim {
 .modal div.image-container {
 	width: 50%;
 	float: left;
-}
-
-.modal div.clear {
-	clear: both;
 }
 
 .modal button {

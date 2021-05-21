@@ -71,6 +71,7 @@
     }
 
 </script>
+
 {#if showAdd}
 	<Modal on:close="{() => showAdd = false}">
 		<h2 slot="header">
@@ -117,6 +118,7 @@
 		</button>
 	</Modal>
 {/if}
+
 {#if showDelete}
     <Modal on:close="{() => showDelete = false}">
         <h2 slot="header">
@@ -126,7 +128,7 @@
             <p>
                 {texts.confirmDelete}
             </p>
-            <Item item={item} remove_buttons="true" />
+            <Item item={item} />
         </div>
         <div class="clear" />
         <button on:click="{deleteItem}">
@@ -134,6 +136,7 @@
         </button>
     </Modal>
 {/if}
+
 {#if token != ''}
     {#if item.id != undefined}
         <button on:click="{() => showAdd=true}">{texts.edit}</button>
