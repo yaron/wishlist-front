@@ -64,6 +64,9 @@
         const text = await res.text();
         if (res.ok) {
             showAdd=false
+            if (item.id == undefined) {
+                item = {}
+            }
             item_store.updateList()
         } else {
             throw new Error(res);
