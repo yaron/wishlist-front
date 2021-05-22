@@ -2,6 +2,8 @@
 body {
 	color: #745512;
 	background: url('../img/sun.png') center right no-repeat rgb(248, 248, 235);
+	background-size: 50%;
+	background-attachment: fixed;
 	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
 }
 
