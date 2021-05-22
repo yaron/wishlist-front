@@ -54,6 +54,6 @@
 	</Modal>
 {/if}
 
-<button class="claim" on:click="{() => showClaim=true}">
+<button class="claim btn" on:click="{() => showClaim=true}">
     {texts.claim}
 </button>

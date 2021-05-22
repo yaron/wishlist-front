@@ -142,9 +142,9 @@
 
 {#if token != ''}
     {#if item.id != undefined}
-        <button on:click="{() => showAdd=true}">{texts.edit}</button>
-        <button class="delete" on:click="{() => showDelete=true}">{texts.delete}</button>
+        <button class="edit" on:click="{() => showAdd=true}"><img src="img/edit.png" alt="{texts.edit}"/></button>
+        <button class="delete" on:click="{() => showDelete=true}"><img src="img/delete.png" alt="{texts.delete}"/></button>
     {:else}
-        <button on:click="{() => showAdd=true}">{texts.add}</button>
+        <button class="add" on:click="{() => showAdd=true}">{texts.add}</button>
     {/if}
 {/if}

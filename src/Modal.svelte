@@ -85,7 +85,6 @@
 
 	button.closeModal {
 		float: right;
-		background: transparent;
 		border: none;
 	}
 
