@@ -52,11 +52,17 @@ button.login, button.logout {
 
 /* Item sections */
 section.item {
-	width: 200px;
+	width: 300px;
 	height: 17%; 
 	padding: 16px;
 	margin: 16px;
 	float: left;
+}
+
+@media screen and (max-width: 400px) {
+	section.item {
+		width: 80%;
+	}
 }
 
 @media screen and (max-height: 850px) {
@@ -101,17 +107,23 @@ section.item div.title {
 	float: left;
 }
 
-
 section.item div.title h3{
 	margin: 0;
 	padding: 0;
 	font-size: 1em;
 }
 
-section.item div.price {
-	padding: 1.5em 0 0.5em 0;
+section.item div.link {
+	padding: 1em 0 0 0;
 	width: 50%;
 	float: left;
+}
+
+section.item div.price {
+	padding: 0 0 0em 0;
+	width: 50%;
+	float: left;
+	clear: left;
 }
 
 section.item div.image {
