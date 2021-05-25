@@ -18,5 +18,6 @@ export const t = {
     loginError: "Wrong username or password",
     username: "Username",
     password: "Password",
-    yourMail: "Your Mail address"
+    yourMail: "Your Mail address (optional)",
+    mailDisclaimer: "Your mail address is not manditory. It will only be used to send you a single email to undo your claim and will not be saved."
 }

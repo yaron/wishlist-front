@@ -18,5 +18,6 @@ export const t = {
     loginError: "Verkeerde gebruikersnaam of wachtwoord",
     username: "Gebruikersnaam",
     password: "Wachtwoord",
-    yourMail: "Je mail adres"
+    yourMail: "Je mail adres (optioneel)",
+    mailDisclaimer: "Je mail adres opgevenis niet verplicht. Het wordt alleen gebruikt om 1 mail te versturen met een link om het afstrepen ongedaan te maken en zal niet worden opgeslagen."
 }

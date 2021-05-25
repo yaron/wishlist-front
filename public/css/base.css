@@ -55,8 +55,6 @@ section.item {
 	width: 200px;
 	height: 17%; 
 	padding: 16px;
-	box-shadow: 2px 2px 4px #dedede;
-	border: 1px solid #888;
 	margin: 16px;
 	float: left;
 }
@@ -170,6 +168,10 @@ section.item button.edit {
 .modal div.image-container {
 	width: 50%;
 	float: left;
+}
+
+.modal p.disclaimer {
+	font-size: 0.7em;
 }
 
 .modal button {

@@ -43,10 +43,10 @@
             {texts.claim} {item_name}
         </h2>
         <div class="claim-form">
-            <p>
+            
                 <label for="mail">{texts.yourMail}</label>
                 <input id="mail" bind:value={mail}>
-            </p>
+            <p class="disclaimer">{texts.mailDisclaimer}</p>
         </div>
 		<button on:click="{claimItem}">
             {texts.claim}
