@@ -41,6 +41,29 @@
 
     async function addItem() {
         this.disabled = true
+        if (config.images.length > 0 && !item.image.startsWith(config.image)) {
+            const params = {
+                headers: {
+                    "content-type": "application/json; charset=UTF-8",
+                    "Authorization": "Bearer " + token
+                },
+                body: JSON.stringify({
+                    URI: item.image,
+                }),
+                method: "POST"
+            }
+            let url = config.images+'/add'
+            const res = await fetch(url, params);
+            const text = await res.text();
+            if (res.ok) {
+                item.image = config.images +"/images/"+ JSON.parse(text).localUri;
+
+            } else {
+                throw new Error(res);
+            }
+        }
+
+
         const params = {
             headers: {
                 "content-type": "application/json; charset=UTF-8",
