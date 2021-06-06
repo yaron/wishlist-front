@@ -41,7 +41,10 @@
 
     async function addItem() {
         this.disabled = true
-        if (config.images.length > 0 && !item.image.startsWith(config.image)) {
+        if (config.images.length > 0
+            && item.image != ""
+            && !item.image.startsWith(config.image)
+        ) {
             const params = {
                 headers: {
                     "content-type": "application/json; charset=UTF-8",
