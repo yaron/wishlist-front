@@ -12,10 +12,14 @@
 		<h3>{item.name}</h3>
 	</div>
 	<div class="image">
-		<img class="thumb" src={item.image} alt="" />
+		{#if item.image != "" }
+			<img class="thumb" src={item.image} alt="" />
+		{/if}
 	</div>
 	<div class="link">
-		<span><a target="_blank" href="{item.url}">Link</a></span>
+		{#if item.url != "" }
+			<span><a target="_blank" href="{item.url}">Link</a></span>
+		{/if}
 	</div>
 	<div class="price">
 		{#if item.price > 0 }
