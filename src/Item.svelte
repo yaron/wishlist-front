@@ -18,7 +18,9 @@
 		<span><a target="_blank" href="{item.url}">Link</a></span>
 	</div>
 	<div class="price">
-		<span>&euro;{(item.price / 100).toFixed(2)}</span>
+		{#if item.price > 0 }
+			<span>&euro;{(item.price / 100).toFixed(2)}</span>
+		{/if}
 	</div>
 	
 	<slot></slot>
