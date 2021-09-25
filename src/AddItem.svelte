@@ -42,6 +42,7 @@
     async function addItem() {
         this.disabled = true
         if (config.images.length > 0
+            && item.image != undefined
             && item.image != ""
             && !item.image.startsWith(config.image)
         ) {
