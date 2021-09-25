@@ -63,7 +63,8 @@
                 item.image = config.images +"/images/"+ JSON.parse(text).localUri;
 
             } else {
-                throw new Error(res);
+                console.log("unable to fetch image")
+                console.dir(res);
             }
         }
 
