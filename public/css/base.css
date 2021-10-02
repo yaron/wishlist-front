@@ -46,7 +46,7 @@ div.clear {
 
 button.login, button.logout {
 	position: fixed;
-	left: 1%;
+	right: 1%;
 	bottom: 1%;
 }
 
