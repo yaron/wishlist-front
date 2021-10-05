@@ -1,8 +1,11 @@
 <script>
+	import { getContext } from "svelte";
+
 	export let item = {}
 	
+	let hideClaim = getContext("hideClaim")
 	let item_class = "unclaimed"
-	if (item.claimed) {
+	if (item.claimed && !hideClaim) {
 		item_class = "claimed"
 	}
 </script>

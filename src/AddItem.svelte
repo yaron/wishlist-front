@@ -2,6 +2,7 @@
     import Modal from './Modal.svelte';
     import { token_store, item_store, texts_store } from './stores.js';
     import Item from './Item.svelte';
+    import { getContext } from "svelte";
 
     let showAdd = false
     let showDelete = false
@@ -18,6 +19,8 @@
 	texts_store.subscribe(val => {
 		texts = val
     });
+
+    let hideClaim = getContext("hideClaim");
 
     async function deleteItem() {
         this.disabled = true
@@ -122,10 +125,10 @@
                 
                 <label for="claimable">{texts.claimable}</label>
                 <input id="claimable" type=checkbox bind:checked={item.claimable}>
-                
-                <label for="claimed">{texts.claimed}</label>
-                <input id="claimed" type=checkbox bind:checked={item.claimed}>
-                
+                {#if !hideClaim}
+                    <label for="claimed">{texts.claimed}</label>
+                    <input id="claimed" type=checkbox bind:checked={item.claimed}>
+                {/if}
                 <label for="url">{texts.url}</label>
                 <input id="url" bind:value={item.url}>
                 
