@@ -149,7 +149,7 @@ section.item div span {
 	width: 100%;
 }
 
-section.item img.thumb {
+section.item input.thumb {
 	max-width: 100%;
 	max-height: 100%;
 }

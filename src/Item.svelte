@@ -18,7 +18,7 @@
 	</div>
 	<div class="image">
 		{#if item.image != "" }
-			<img class="thumb" src={item.image} on:click="{() => showImage=true}" alt="" />
+			<input type="image" class="thumb" src={item.image} on:click="{() => showImage=true}" alt="" />
 		{/if}
 	</div>
 	<div class="link">
@@ -33,10 +33,10 @@
 	</div>
 	
 	<slot></slot>
-</section>
-{#if showImage == true}
+	{#if showImage == true}
 	<Modal on:close="{() => showImage = false}">
 		<h2 slot="header">{item.name}</h2>
 		<img class="big" src={item.image} alt="" />
 	</Modal>
-{/if}
+	{/if}
+</section>
