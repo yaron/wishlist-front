@@ -152,6 +152,7 @@ section.item div span {
 section.item input.thumb {
 	max-width: 100%;
 	max-height: 100%;
+	border: none;
 }
 
 section.item button.unclaim, 
