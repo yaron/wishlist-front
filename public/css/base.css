@@ -167,7 +167,7 @@ section.item button.edit {
 	width: 100%;
 }
 
-.modal img.thumb {
+.modal img.thumb, .modal img.big {
 	width: 90%;
 	height: 90%;
 }

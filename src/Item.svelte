@@ -1,8 +1,10 @@
 <script>
 	import { getContext } from "svelte";
+	import Modal from './Modal.svelte';
 
 	export let item = {}
-	
+
+	let showImage = false
 	let hideClaim = getContext("hideClaim")
 	let item_class = "unclaimed"
 	if (item.claimed && !hideClaim) {
@@ -16,7 +18,7 @@
 	</div>
 	<div class="image">
 		{#if item.image != "" }
-			<img class="thumb" src={item.image} alt="" />
+			<img class="thumb" src={item.image} on:click="{() => showImage=true}" alt="" />
 		{/if}
 	</div>
 	<div class="link">
@@ -32,3 +34,9 @@
 	
 	<slot></slot>
 </section>
+{#if showImage == true}
+	<Modal on:close="{() => showImage = false}">
+		<h2 slot="header">{item.name}</h2>
+		<img class="big" src={item.image} alt="" />
+	</Modal>
+{/if}
