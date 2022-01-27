@@ -18,6 +18,16 @@ jobs:
       - uses: actions/checkout@v2
         with:
           submodules: true
+      - name: Create config
+        run: |
+            echo "var config = {" > public/config.js
+            echo '  language: "nl",' >> public/config.js
+            echo '  api: "https://api-lijst.ytal.nl/v1",' >> public/config.js
+            echo '  images: "https://lijst-images.ytal.nl/v1",' >> public/config.js
+            echo '  theme: "summer",' >> public/config.js
+            echo '  title: "Verlanglijst Yaron",' >> public/config.js
+            echo '}' >> public/config.js
+        shell: bash
       - name: Build And Deploy
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v1
