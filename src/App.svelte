@@ -6,7 +6,7 @@
 	import UnClaim from './UnClaim.svelte';
 	import queryString from "query-string";
 	import { setContext } from 'svelte';
-	import { token_store, item_store, texts_store} from './stores.js';
+	import { item_store, texts_store, user_store} from './stores.js';
 
 	let list = ''
 	item_store.subscribe(val => {
@@ -18,16 +18,16 @@
 		texts = val
     });
 
-	let token = ''
-	token_store.subscribe(val => {
-		token = val
-	});
+	let user = {UserId: null}
+	user_store.subscribe(val => {
+		user = val
+    });
 
 	let queryParams;
 	queryParams = queryString.parse(window.location.search);
 	let hideClaim = false;
 	// If we have context=hideClaim in the url or if the user is logged in, hide wether items have been claimed.
-	if (queryParams.context == "hideClaim" || (token != '' && queryParams.context != "showClaim")) {
+	if (queryParams.context == "hideClaim" || (user.userId != null && queryParams.context != "showClaim")) {
 		hideClaim = true;
 	}
 	setContext("hideClaim", hideClaim)
@@ -40,7 +40,7 @@
 	{#each items as item}
 		<Item item={item}>
 			<div class="buttons">
-				{#if token != ''}
+				{#if user.userId != null }
 					<AddItem item={item} />
 				{/if}
 				{#if !hideClaim && item.claimable}

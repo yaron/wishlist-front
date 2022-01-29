@@ -1,6 +1,6 @@
 <script>
     import Modal from './Modal.svelte';
-    import { token_store, item_store, texts_store } from './stores.js';
+    import { user_store, item_store, texts_store } from './stores.js';
     import Item from './Item.svelte';
     import { getContext } from "svelte";
 
@@ -10,14 +10,14 @@
 
     let showImage = true
 
-    let token = ''
-	token_store.subscribe(val => {
-		token = val
-    });
-
     let texts = {}
 	texts_store.subscribe(val => {
 		texts = val
+    });
+
+    let user = {UserId: null}
+	user_store.subscribe(val => {
+		user = val
     });
 
     let hideClaim = getContext("hideClaim");
@@ -27,7 +27,6 @@
         const params = {
             headers: {
                 "content-type": "application/json; charset=UTF-8",
-                "Authorization": "Bearer " + token
             },
             method: "POST"
         }
@@ -52,7 +51,6 @@
             const params = {
                 headers: {
                     "content-type": "application/json; charset=UTF-8",
-                    "Authorization": "Bearer " + token
                 },
                 body: JSON.stringify({
                     URI: item.image,
@@ -75,7 +73,6 @@
         const params = {
             headers: {
                 "content-type": "application/json; charset=UTF-8",
-                "Authorization": "Bearer " + token
             },
             body: JSON.stringify({
                 name: item.name,
@@ -92,7 +89,6 @@
             url = config.api+'/admin/edit/'+item.id
         }
         const res = await fetch(url, params);
-        const text = await res.text();
         if (res.ok) {
             showAdd=false
             if (item.id == undefined) {
@@ -171,7 +167,7 @@
     </Modal>
 {/if}
 
-{#if token != ''}
+{#if user.userId != null}
     {#if item.id != undefined}
         <button class="edit" on:click="{() => showAdd=true}"><img src="img/edit.png" alt="{texts.edit}"/></button>
         <button class="delete" on:click="{() => showDelete=true}"><img src="img/delete.png" alt="{texts.delete}"/></button>
