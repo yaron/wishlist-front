@@ -1,0 +1,27 @@
+{
+  "bindings": [
+    {
+      "authLevel": "function",
+      "type": "httpTrigger",
+      "direction": "in",
+      "name": "req",
+      "methods": [
+        "post"
+      ]
+    },
+    {
+      "type": "http",
+      "direction": "out",
+      "name": "res"
+    },
+    {
+      "name": "addItem",
+      "type": "cosmosDB",
+      "databaseName": "yaron",
+      "collectionName": "items",
+      "createIfNotExists": true,
+      "connectionStringSetting": "CosmosDbConnectionString",
+      "direction": "out"
+  }
+  ]
+}

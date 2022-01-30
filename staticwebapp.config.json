@@ -1,0 +1,13 @@
+{
+    "routes": [
+      {
+        "route": "/api/itemAdd",
+        "allowedRoles": ["administrator"]
+      },
+      {
+        "route": "/api/admin/add",
+        "rewrite": "/api/itemAdd",
+        "allowedRoles": ["administrator"]
+      }
+    ]
+}
