@@ -7,7 +7,8 @@
       "name": "req",
       "methods": [
         "post"
-      ]
+      ],
+      "route":"claim/{id}"
     },
     {
       "type": "http",
@@ -15,7 +16,17 @@
       "name": "res"
     },
     {
-      "name": "addItem",
+      "type": "cosmosDB",
+      "name": "claimItemIn",
+      "databaseName": "yaron",
+      "collectionName": "items",
+      "connectionStringSetting": "CosmosDbConnectionString",
+      "direction": "in",
+      "Id": "{id}",
+      "PartitionKey": "{id}"
+    },
+    {
+      "name": "claimItemOut",
       "type": "cosmosDB",
       "databaseName": "yaron",
       "collectionName": "items",
