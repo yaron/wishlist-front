@@ -24,7 +24,7 @@
             }),
             method: "POST"
         }
-        let url = config.api+'/claim'
+        let url = config.api+'/claim/'+item_id
         const res = await fetch(url, params);
         const text = await res.text();
         if (res.ok) {
