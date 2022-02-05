@@ -58,7 +58,7 @@
                 method: "POST"
             }
             let url = config.images+'/add'
-            const res = await fetch(url, params);
+            const res = await fetch(url, params).catch();
             const text = await res.text();
             if (res.ok) {
                 item.image = config.images +"/images/"+ JSON.parse(text).localUri;
@@ -84,9 +84,9 @@
             }),
             method: "POST"
         }
-        let url = config.api+'/admin/add'
+        let url = config.api+'/itemAdd'
         if (item.id != undefined) {
-            url = config.api+'/admin/edit/'+item.id
+            url = config.api+'/itemEdit/'+item.id
         }
         const res = await fetch(url, params);
         if (res.ok) {

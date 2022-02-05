@@ -5,8 +5,7 @@
         "allowedRoles": ["administrator"]
       },
       {
-        "route": "/api/admin/add",
-        "rewrite": "/api/itemAdd",
+        "route": "/api/itemEdit/{id}",
         "allowedRoles": ["administrator"]
       }
     ]
