@@ -1,0 +1,38 @@
+{
+  "bindings": [
+    {
+      "authLevel": "function",
+      "type": "httpTrigger",
+      "direction": "in",
+      "name": "req",
+      "methods": [
+        "post"
+      ],
+      "route":"itemEdit/{id}"
+    },
+    {
+      "type": "http",
+      "direction": "out",
+      "name": "res"
+    },
+    {
+      "type": "cosmosDB",
+      "name": "EditItemIn",
+      "databaseName": "yaron",
+      "collectionName": "items",
+      "connectionStringSetting": "CosmosDbConnectionString",
+      "direction": "in",
+      "Id": "{id}",
+      "PartitionKey": "{id}"
+    },
+    {
+      "name": "EditItemOut",
+      "type": "cosmosDB",
+      "databaseName": "yaron",
+      "collectionName": "items",
+      "createIfNotExists": false,
+      "connectionStringSetting": "CosmosDbConnectionString",
+      "direction": "out"
+    }
+  ]
+}
