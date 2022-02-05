@@ -30,7 +30,7 @@
             },
             method: "POST"
         }
-        let url = config.api+'/admin/delete/' + item.id
+        let url = config.api+'/itemDelete/' + item.id
         const res = await fetch(url, params);
         const text = await res.text();
         if (res.ok) {
