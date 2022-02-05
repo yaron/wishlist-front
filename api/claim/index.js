@@ -8,6 +8,15 @@ module.exports = function (context, req, claimItemIn) {
         context.done();
         return
     }
+
+    if (claimItemIn.claimable != true) {
+        context.res = {
+            status: 403,
+            body: "Unable to claim item"
+        };
+        context.done();
+        return
+    }
     
     context.bindings.claimItemOut = claimItemIn
     context.bindings.claimItemOut.claimed = true
