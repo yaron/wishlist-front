@@ -1,6 +1,6 @@
 body {
 	color: #4e202e;
-	background: url('../img/butterfly.png') top right no-repeat hsl(345, 40%, 57%);
+	background: url('../img/butterfly.png') top right no-repeat #c29696;
 	background-size: 20%;
 	background-attachment: fixed;
 	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
