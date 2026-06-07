@@ -1,13 +1,13 @@
 <script>
-	import { createEventDispatcher, onDestroy } from 'svelte';
+	import { onDestroy } from 'svelte';
 	import { texts_store } from './stores';
 	let texts = {}
 	texts_store.subscribe(val => {
 		texts = val
     });
 
-	const dispatch = createEventDispatcher();
-	const close = () => dispatch('close');
+	export let onclose = () => {};
+	const close = () => onclose();
 
 	let modal;
 

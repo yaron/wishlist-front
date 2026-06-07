@@ -11,9 +11,10 @@
     export let item_id
     export let item_name
     let mail = ''
+    let busy = false
 
     async function claimItem() {
-        this.disabled = true
+        busy = true
         const params = {
             headers: {
                 "content-type": "application/json; charset=UTF-8"
@@ -38,17 +39,17 @@
 </script>
 
 {#if showClaim}
-	<Modal on:close="{() => showClaim = false}">
+	<Modal onclose={() => showClaim = false}>
 		<h2 slot="header">
             {texts.claim} {item_name}
         </h2>
         <div class="claim-form">
-            
+
                 <label for="mail">{texts.yourMail}</label>
                 <input id="mail" bind:value={mail}>
             <p class="disclaimer">{texts.mailDisclaimer}</p>
         </div>
-		<button on:click="{claimItem}">
+		<button disabled={busy} on:click="{claimItem}">
             {texts.claim}
 		</button>
 	</Modal>

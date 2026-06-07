@@ -6,6 +6,7 @@
 
     let showAdd = false
     let showDelete = false
+    let busy = false
     export let item = {}
 
     let showImage = true
@@ -23,7 +24,7 @@
     let hideClaim = getContext("hideClaim");
 
     async function deleteItem() {
-        this.disabled = true
+        busy = true
         const params = {
             headers: {
                 "content-type": "application/json; charset=UTF-8",
@@ -43,7 +44,7 @@
     }
 
     async function addItem() {
-        this.disabled = true
+        busy = true
         if (config.images.length > 0
             && item.image != undefined
             && item.image != ""
@@ -107,7 +108,7 @@
 </script>
 
 {#if showAdd}
-	<Modal on:close="{() => showAdd = false}">
+	<Modal onclose={() => showAdd = false}>
 		<h2 slot="header">
             {#if item.id != undefined}
                 {texts.edit}
@@ -143,7 +144,7 @@
             {/if}
         </div>
         <div class="clear" />
-		<button on:click="{addItem}">
+		<button disabled={busy} on:click="{addItem}">
             {#if item.id != undefined}
                 {texts.edit}
             {:else}
@@ -154,7 +155,7 @@
 {/if}
 
 {#if showDelete}
-    <Modal on:close="{() => showDelete = false}">
+    <Modal onclose={() => showDelete = false}>
         <h2 slot="header">
             {texts.delete}
         </h2>
@@ -165,7 +166,7 @@
             <Item item={item} />
         </div>
         <div class="clear" />
-        <button on:click="{deleteItem}">
+        <button disabled={busy} on:click="{deleteItem}">
             {texts.delete}
         </button>
     </Modal>
