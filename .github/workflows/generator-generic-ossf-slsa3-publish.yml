@@ -3,7 +3,7 @@ name: Artifact creator
 on:
   push:
     branches:
-      - "master"
+      - "main"
 
 jobs:
   build:
