@@ -1,5 +1,5 @@
 import { writable, readable } from "svelte/store";
-import jwt_decode from 'jwt-decode';
+import { jwtDecode } from 'jwt-decode';
 
 
 let token = ''
@@ -20,7 +20,7 @@ token_store.subscribe(val => {
 });
 
 async function checkToken(t) {
-    let decoded_token = await jwt_decode(t)
+    let decoded_token = jwtDecode(t)
     let current_time = Math.floor(Date.now() / 1000)
 
     // Drop token if it is expired.
