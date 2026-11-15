@@ -45,33 +45,6 @@
 
     async function addItem() {
         busy = true
-        if (config.images.length > 0
-            && item.image != undefined
-            && item.image != ""
-            && !item.image.startsWith(config.image)
-        ) {
-            const params = {
-                headers: {
-                    "content-type": "application/json; charset=UTF-8",
-                },
-                body: JSON.stringify({
-                    URI: item.image,
-                }),
-                method: "POST"
-            }
-            let url = config.images+'/add'
-            const res = await fetch(url, params).catch();
-            const text = await res.text();
-            if (res.ok) {
-                item.image = config.images +"/images/"+ JSON.parse(text).localUri;
-
-            } else {
-                console.log("unable to fetch image")
-                console.dir(res);
-            }
-        }
-
-
         const params = {
             headers: {
                 "content-type": "application/json; charset=UTF-8",

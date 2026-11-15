@@ -23,7 +23,6 @@ jobs:
             echo "var config = {" > public/config.js
             echo '  language: "nl",' >> public/config.js
             echo '  api: "/api",' >> public/config.js
-            echo '  images: "https://lijst-images.ytal.nl/v1",' >> public/config.js
             echo '  theme: "summer",' >> public/config.js
             echo '  title: "Verlanglijst Yaron",' >> public/config.js
             echo '}' >> public/config.js
