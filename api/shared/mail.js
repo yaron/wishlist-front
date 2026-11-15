@@ -1,5 +1,3 @@
-const { EmailClient } = require('@azure/communication-email');
-
 // Same variables as the wishlist-go templates, plus UnclaimUrl.
 const DEFAULT_SUBJECT = 'Je hebt {{.ItemName}} afgestreept';
 const DEFAULT_BODY = [
@@ -35,10 +33,16 @@ function render(template, data) {
 }
 
 function isConfigured() {
-    return Boolean(process.env.ACS_CONNECTION_STRING && process.env.WISH_MAIL_FROM);
+    return Boolean(process.env.WISH_MAILGUN_DOMAIN && process.env.WISH_MAILGUN_KEY && process.env.WISH_MAIL_FROM);
 }
 
-// Queues the mail with the undo link. Resolves once Azure Communication Services accepted it.
+// Same settings as wishlist-go: WISH_MAILGUN_EU=1 uses the EU region of Mailgun.
+function mailgunUrl() {
+    const base = process.env.WISH_MAILGUN_EU === '1' ? 'https://api.eu.mailgun.net' : 'https://api.mailgun.net';
+    return `${base}/v3/${encodeURIComponent(process.env.WISH_MAILGUN_DOMAIN)}/messages`;
+}
+
+// Sends the mail with the undo link. Resolves once Mailgun accepted it.
 async function sendClaimMail(mail, item, key) {
     const data = {
         ItemName: item.name,
@@ -47,15 +51,21 @@ async function sendClaimMail(mail, item, key) {
         Mail: mail,
         UnclaimUrl: unclaimUrl(item.id, key),
     };
-    const client = new EmailClient(process.env.ACS_CONNECTION_STRING);
-    await client.beginSend({
-        senderAddress: process.env.WISH_MAIL_FROM,
-        content: {
+    const auth = Buffer.from(`api:${process.env.WISH_MAILGUN_KEY}`).toString('base64');
+    const res = await fetch(mailgunUrl(), {
+        method: 'POST',
+        headers: { Authorization: `Basic ${auth}` },
+        body: new URLSearchParams({
+            from: process.env.WISH_MAIL_FROM,
+            to: mail,
             subject: render(process.env.WISH_MAIL_SUBJECT || DEFAULT_SUBJECT, data),
-            plainText: render(process.env.WISH_MAIL_BODY || DEFAULT_BODY, data),
-        },
-        recipients: { to: [{ address: mail }] },
+            text: render(process.env.WISH_MAIL_BODY || DEFAULT_BODY, data),
+        }),
+        signal: AbortSignal.timeout(10000),
     });
+    if (!res.ok) {
+        throw new Error(`Mailgun responded with ${res.status}: ${await res.text()}`);
+    }
 }
 
 module.exports = { isConfigured, isValidMail, sendClaimMail, render };
