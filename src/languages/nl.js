@@ -17,6 +17,7 @@ export const t = {
     claimedMailSent: "We hebben je een mail gestuurd met een link om het afstrepen ongedaan te maken.",
     claimedMailFailed: "Het versturen van de mail is helaas mislukt.",
     saveError: "Opslaan is mislukt",
+    loadError: "Er ging iets mis met het laden van de lijst. Probeer het later opnieuw of laat het Yaron even weten als het vaker mis gaat.",
     unclaim: "Niet meer afstrepen",
     url: "Link",
     image: "Afbeelding link",

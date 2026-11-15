@@ -64,7 +64,7 @@
 			{/each}
 		</div>
 	{:catch error}
-		<p class="error" role="alert">{error.message}</p>
+		<p class="error" role="alert">{texts.loadError}</p>
 	{/await}
 </main>
 
