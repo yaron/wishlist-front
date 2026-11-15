@@ -4,7 +4,7 @@ const defaults = {
     name: 'lijst',
     siteUrl: '',
     database: 'wishlists',
-    container: 'items-lijst',
+    container: 'items-yarontal',
 };
 
 let instance = {};

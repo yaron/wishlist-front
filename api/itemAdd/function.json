@@ -18,7 +18,7 @@
       "name": "addItem",
       "type": "cosmosDB",
       "databaseName": "wishlists",
-      "collectionName": "items-lijst",
+      "collectionName": "items-yarontal",
       "createIfNotExists": true,
       "connectionStringSetting": "CosmosDbConnectionString",
       "direction": "out"

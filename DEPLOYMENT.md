@@ -34,7 +34,7 @@ To build one site locally: `node scripts/configure-instance.mjs <name> && npm ru
    # Once: the database with 400 RU/s shared by all its containers
    az cosmosdb sql database create -g <resource-group> -a <cosmos-account> -n wishlists --throughput 400
 
-   # Per site (items-lijst, items-yaeltal, ...): a container without --throughput uses the shared throughput
+   # Per site (items-yarontal, items-yaeltal, ...): a container without --throughput uses the shared throughput
    az cosmosdb sql container create -g <resource-group> -a <cosmos-account> -d wishlists \
      -n items-<site> --partition-key-path /id
    ```

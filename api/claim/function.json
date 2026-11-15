@@ -19,7 +19,7 @@
       "type": "cosmosDB",
       "name": "claimItemIn",
       "databaseName": "wishlists",
-      "collectionName": "items-lijst",
+      "collectionName": "items-yarontal",
       "connectionStringSetting": "CosmosDbConnectionString",
       "direction": "in",
       "Id": "{id}",
@@ -29,7 +29,7 @@
       "name": "claimItemOut",
       "type": "cosmosDB",
       "databaseName": "wishlists",
-      "collectionName": "items-lijst",
+      "collectionName": "items-yarontal",
       "createIfNotExists": true,
       "connectionStringSetting": "CosmosDbConnectionString",
       "direction": "out"
