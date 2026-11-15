@@ -1,6 +1,7 @@
 /*
  * Layout and components on top of Pico CSS (https://picocss.com).
- * Every theme in this folder only sets the --wl-* variables below.
+ * Every theme in this folder sets the --wl-* variables below; a theme may add its own
+ * decorations on top (see butterfly.css).
  */
 :root {
 	/* Defaults; the theme stylesheet overrides these with a more specific selector. */

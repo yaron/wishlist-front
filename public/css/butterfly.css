@@ -1,12 +1,192 @@
-/* butterfly theme: only sets the variables used by base.css. */
+/*
+ * butterfly theme: modern and warm, with hints of African and South American textiles.
+ * - Colours: terracotta, ochre and Morpho-butterfly blue on sand, with deep aubergine ink.
+ * - A faint mudcloth (bogolan) pattern on the page, a woven band in the kente / Andean
+ *   step tradition under the header, on every card and on dialogs.
+ * - Fraunces (headings) and DM Sans (text), served from our own domain (OFL, see /fonts).
+ * The theme stylesheet is loaded before base.css, so rules here use selectors that are
+ * more specific than the ones in base.css.
+ */
+
+@font-face {
+	font-family: "Fraunces";
+	font-style: normal;
+	font-display: swap;
+	font-weight: 100 900;
+	src: url("../fonts/fraunces.woff2") format("woff2");
+}
+
+@font-face {
+	font-family: "DM Sans";
+	font-style: normal;
+	font-display: swap;
+	font-weight: 100 1000;
+	src: url("../fonts/dm-sans.woff2") format("woff2");
+}
+
 :root[data-theme="light"] {
-	--wl-bg: #f4e4e7;
-	--wl-ink: #4e202e;
-	--wl-accent: #9d3a57;
-	--wl-accent-hover: #7f2c45;
-	--wl-accent-soft: rgba(157, 58, 87, 0.18);
-	--wl-surface: rgba(255, 255, 255, 0.82);
-	--wl-image-bg: #ffffff;
-	--wl-illustration: url("../img/butterfly.png");
-	--wl-illustration-width: min(30vw, 26rem);
+	--wl-bg: #f5ece1;
+	--wl-ink: #2e1f3a;
+	--wl-accent: #b4492b;
+	--wl-accent-hover: #8e3420;
+	--wl-accent-soft: rgba(180, 73, 43, 0.18);
+	--wl-surface: rgba(255, 251, 246, 0.9);
+	--wl-image-bg: #fffaf4;
+	--wl-illustration: url("../img/butterfly.svg");
+	--wl-illustration-width: min(38vw, 32rem);
+
+	--bf-ochre: #e0a43a;
+	--bf-morpho: #1f6f8b;
+	--bf-sand-deep: #ead9c6;
+	/* Woven band: terracotta block, ochre steps on aubergine, Morpho-blue block with dots. */
+	--bf-band: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='12'%3E%3Crect width='60' height='12' fill='%232e1f3a'/%3E%3Crect width='16' height='12' fill='%23b4492b'/%3E%3Cpath d='M18 12V8h3V4h3V0h4v4h3v4h3v4z' fill='%23e0a43a'/%3E%3Crect x='38' width='18' height='12' fill='%231f6f8b'/%3E%3Ccircle cx='43' cy='6' r='1.6' fill='%23f5ece1'/%3E%3Ccircle cx='51' cy='6' r='1.6' fill='%23f5ece1'/%3E%3Crect x='56' width='4' height='12' fill='%23f5ece1' fill-opacity='.85'/%3E%3C/svg%3E");
+	/* Mudcloth: crosses, dot rows and dashes in aubergine, barely visible. */
+	--bf-mudcloth: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cg fill='none' stroke='%232e1f3a' stroke-opacity='.06' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='M14 20h14M21 13v14M74 80h14M81 73v14M50 104h10M66 104h10M82 104h10M8 60l8 8M16 60l-8 8M98 18l8 8M106 18l-8 8'/%3E%3C/g%3E%3Cg fill='%232e1f3a' fill-opacity='.06'%3E%3Ccircle cx='52' cy='20' r='2'/%3E%3Ccircle cx='60' cy='20' r='2'/%3E%3Ccircle cx='68' cy='20' r='2'/%3E%3Ccircle cx='30' cy='86' r='2'/%3E%3Ccircle cx='38' cy='86' r='2'/%3E%3Ccircle cx='46' cy='56' r='2.5'/%3E%3Ccircle cx='100' cy='54' r='2.5'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+html[data-theme="light"]:root {
+	--pico-font-family-sans-serif: "DM Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+	--pico-font-family: var(--pico-font-family-sans-serif);
+	--pico-border-radius: 1rem;
+	--pico-modal-overlay-background-color: rgba(46, 31, 58, 0.5);
+}
+
+/* Page: sand with a soft ochre and Morpho-blue glow and the mudcloth pattern. */
+html[data-theme="light"] body {
+	background:
+		radial-gradient(60rem 40rem at -10% -10%, rgba(224, 164, 58, 0.22), transparent 60%),
+		radial-gradient(50rem 36rem at 110% 105%, rgba(31, 111, 139, 0.14), transparent 60%),
+		var(--bf-mudcloth),
+		var(--wl-bg);
+	background-attachment: fixed;
+}
+
+html[data-theme="light"] :is(h1, h2, h3) {
+	font-family: "Fraunces", Georgia, serif;
+	font-optical-sizing: auto;
+}
+
+/* Header: serif title with a woven band beneath it. */
+html[data-theme="light"] .site-header {
+	padding-block: 2.5rem 2rem;
+}
+
+html[data-theme="light"] .site-header h1 {
+	font-weight: 600;
+	font-size: clamp(2rem, 5vw, 3.25rem);
+	letter-spacing: -0.03em;
+	line-height: 1.05;
+}
+
+html[data-theme="light"] .site-header::after {
+	content: "";
+	flex-basis: 100%;
+	height: 12px;
+	margin-top: 0.5rem;
+	border-radius: 2px;
+	background: var(--bf-band) left center / auto 12px repeat-x;
+}
+
+/* Buttons: pill shaped. */
+html[data-theme="light"] :is(button, [role="button"], input[type="submit"]):not(.icon, .image-button, [rel="prev"]) {
+	border-radius: 999px;
+	padding-inline: 1.25rem;
+	font-weight: 600;
+	letter-spacing: 0.01em;
+}
+
+html[data-theme="light"] button.icon {
+	border-radius: 50%;
+}
+
+/* Cards */
+html[data-theme="light"] article.item {
+	border: 1px solid rgba(46, 31, 58, 0.08);
+	box-shadow: 0 1px 2px rgba(46, 31, 58, 0.06), 0 12px 28px -16px rgba(46, 31, 58, 0.35);
+}
+
+html[data-theme="light"] article.item:hover {
+	box-shadow: 0 1px 2px rgba(46, 31, 58, 0.06), 0 20px 36px -16px rgba(46, 31, 58, 0.42);
+}
+
+html[data-theme="light"] .item-image {
+	border-bottom: 0;
+}
+
+html[data-theme="light"] .item-image::after {
+	content: "";
+	position: absolute;
+	inset: auto 0 0 0;
+	height: 6px;
+	background: var(--bf-band) left center / auto 6px repeat-x;
+	pointer-events: none;
+}
+
+html[data-theme="light"] .item-image .badge {
+	background: var(--bf-morpho);
+	letter-spacing: 0.06em;
+	text-transform: uppercase;
+	font-size: 0.7rem;
+}
+
+html[data-theme="light"] .item-body h3 {
+	font-weight: 600;
+	letter-spacing: -0.01em;
+}
+
+html[data-theme="light"] .item-body .price {
+	font-family: "Fraunces", Georgia, serif;
+	font-weight: 600;
+	font-size: 1.2rem;
+}
+
+html[data-theme="light"] .item-actions .link {
+	color: var(--wl-ink);
+	text-decoration: underline;
+	text-decoration-color: var(--bf-ochre);
+	text-decoration-thickness: 2px;
+	text-underline-offset: 0.3em;
+}
+
+html[data-theme="light"] .item-actions .link:hover {
+	color: var(--wl-accent);
+}
+
+/* Dialogs: warm white with the woven band on top. */
+html[data-theme="light"] dialog article {
+	--pico-card-background-color: #fffaf4;
+	position: relative;
+	overflow: hidden;
+	padding-top: calc(var(--pico-block-spacing-vertical) + 8px);
+}
+
+html[data-theme="light"] dialog article::before {
+	content: "";
+	position: absolute;
+	inset: 0 0 auto 0;
+	height: 8px;
+	background: var(--bf-band) left center / auto 8px repeat-x;
+}
+
+html[data-theme="light"] dialog article > header {
+	background: transparent;
+	border-bottom: 1px solid var(--bf-sand-deep);
+}
+
+html[data-theme="light"] .site-footer a:hover {
+	color: var(--wl-accent);
+}
+
+@media (max-width: 576px) {
+	html[data-theme="light"] .site-header {
+		padding-block: 1.5rem 1.25rem;
+	}
+
+	html[data-theme="light"] .item-body .price {
+		font-size: 1.05rem;
+	}
+
+	html[data-theme="light"] :is(button, [role="button"]):not(.icon, .image-button, [rel="prev"]) {
+		padding-inline: 0.9rem;
+	}
 }
