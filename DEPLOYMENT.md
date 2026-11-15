@@ -49,7 +49,11 @@ To build one site locally: `node scripts/configure-instance.mjs <name> && npm ru
    - `WISH_SITE_URL` is not needed; the link is built from `domain`.
 6. **Administrators**: *Settings → Role management → Invite*, with role `administrator`.
    Roles are per Static Web App, so an admin of one site is not an admin of the others.
-7. **Custom domain**: *Settings → Custom domains → Add*, and create the DNS records Azure asks for.
-   A root domain such as `example.nl` needs TXT validation plus an ALIAS/ANAME or A record at your
-   DNS provider; follow the steps Azure shows.
+7. **Custom domain**: add `domain` from `instances.json` (*Settings → Custom domains → Add*) and
+   validate it with a CNAME record to the Static Web App's default hostname. Azure's CNAME validation
+   does not work on a root domain behind Cloudflare (CNAME flattening), so root domains use `www.`
+   in `instances.json` and the root redirects to it. In Cloudflare:
+   - `www`: CNAME to `<app>.azurestaticapps.net`, *DNS only*.
+   - root (`@`): CNAME to `www.<domain>` (Cloudflare flattens it), proxied, with a Redirect Rule to
+     `https://www.<domain>` (301, **Preserve query string** on, so undo links keep their `?id=…&key=…`).
 8. **Deploy**: run the workflow for this site, or push to `azure`.
