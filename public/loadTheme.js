@@ -1,7 +1,5 @@
-var link = document.createElement( "link" );
-link.href = 'css/'+config.theme+".css";
-link.type = "text/css";
+var link = document.createElement("link");
+link.href = "/css/" + config.theme + ".css";
 link.rel = "stylesheet";
-link.media = "screen,print";
 
-document.getElementsByTagName("head")[0].appendChild( link );
+document.getElementsByTagName("head")[0].appendChild(link);

@@ -61,39 +61,35 @@
 
 {#if showClaim}
 	<Modal onclose={close}>
-		<h2 slot="header">
-            {texts.claim} {item_name}
-        </h2>
-        {#if undoLink}
-        <div class="claim-form">
-            {#if mailSent}
-            <p>{texts.claimedMailSent}</p>
-            {:else if mailFailed}
-            <p>{texts.claimedMailFailed}</p>
-            {/if}
-            <p>{texts.claimedUndoInfo}</p>
-            <input class="undo-link" readonly value={undoLink} on:focus={(e) => e.target.select()}>
-        </div>
-        {:else}
-        <div class="claim-form">
-
-                <label for="mail">{texts.yourMail}</label>
-                <input id="mail" bind:value={mail}>
-            <p class="disclaimer">{texts.mailDisclaimer}</p>
-        </div>
-		<button disabled={busy} on:click="{claimItem}">
-            {texts.claim}
-		</button>
-        {/if}
+		<h2 slot="header">{texts.claim}: {item_name}</h2>
+		{#if undoLink}
+			{#if mailSent}
+				<p>{texts.claimedMailSent}</p>
+			{:else if mailFailed}
+				<p class="error" role="alert">{texts.claimedMailFailed}</p>
+			{/if}
+			<label>
+				{texts.claimedUndoInfo}
+				<input readonly value={undoLink} on:focus={(e) => e.target.select()}>
+			</label>
+		{:else}
+			<label>
+				{texts.yourMail}
+				<input type="email" autocomplete="email" bind:value={mail} aria-describedby="mail-disclaimer-{item_id}">
+				<small id="mail-disclaimer-{item_id}">{texts.mailDisclaimer}</small>
+			</label>
+		{/if}
+		<svelte:fragment slot="footer">
+			{#if undoLink}
+				<button on:click={close}>{texts.close}</button>
+			{:else}
+				<button class="secondary outline" on:click={close}>{texts.cancel}</button>
+				<button disabled={busy} aria-busy={busy} on:click={claimItem}>{texts.claim}</button>
+			{/if}
+		</svelte:fragment>
 	</Modal>
 {/if}
 
-<button class="claim btn" on:click="{() => showClaim=true}">
-    {texts.claim}
+<button class="claim" on:click={() => showClaim = true}>
+	{texts.claim}
 </button>
-<style>
-    .undo-link {
-        width: 100%;
-        box-sizing: border-box;
-    }
-</style>

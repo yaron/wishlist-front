@@ -1,92 +1,60 @@
 <script>
-	import { onDestroy } from 'svelte';
+	import { onMount } from 'svelte';
 	import { texts_store } from './stores';
 	let texts = {}
 	texts_store.subscribe(val => {
 		texts = val
-    });
+	});
 
 	export let onclose = () => {};
 	const close = () => onclose();
 
-	let modal;
+	let dialog;
 
-	const handle_keydown = e => {
-		if (e.key === 'Escape') {
-			close();
-			return;
-		}
+	// A native modal dialog traps focus, makes the page behind it inert
+	// and gives focus back to the previous element when it closes.
+	onMount(() => {
+		dialog.showModal();
+		return () => {
+			if (dialog.open) dialog.close();
+		};
+	});
 
-		if (e.key === 'Tab') {
-			// trap focus
-			const nodes = modal.querySelectorAll('*');
-			const tabbable = Array.from(nodes).filter(n => n.tabIndex >= 0);
+	// Escape: let the parent decide, so it can reset its own state.
+	function handleCancel(e) {
+		e.preventDefault();
+		close();
+	}
 
-			let index = tabbable.indexOf(document.activeElement);
-			if (index === -1 && e.shiftKey) index = 0;
-
-			index += tabbable.length + (e.shiftKey ? -1 : 1);
-			index %= tabbable.length;
-
-			tabbable[index].focus();
-			e.preventDefault();
-		}
-	};
-
-	const previously_focused = typeof document !== 'undefined' && document.activeElement;
-
-	if (previously_focused) {
-		onDestroy(() => {
-			previously_focused.focus();
-		});
+	// Clicks on the dialog itself (outside the article) are clicks on the backdrop.
+	function handleClick(e) {
+		if (e.target === dialog) close();
 	}
 </script>
 
-<svelte:window on:keydown={handle_keydown}/>
-
-<div class="modal-background" on:click={close}></div>
-
-<div class="modal" role="dialog" aria-modal="true" bind:this={modal}>
-	<!-- svelte-ignore a11y-autofocus -->
-	<button class="closeModal" autofocus on:click={close}>X</button>
-
-	<slot name="header"></slot>
-	<hr>
-	<slot></slot>
-</div>
+<!-- svelte-ignore a11y_click_events_have_key_events, a11y_no_noninteractive_element_interactions -->
+<dialog bind:this={dialog} on:cancel={handleCancel} on:click={handleClick}>
+	<article>
+		<header>
+			<button rel="prev" aria-label={texts.close} on:click={close}></button>
+			<slot name="header"></slot>
+		</header>
+		<slot></slot>
+		{#if $$slots.footer}
+			<footer>
+				<slot name="footer"></slot>
+			</footer>
+		{/if}
+	</article>
+</dialog>
 
 <style>
-	.modal-background {
-		position: fixed;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
-		background: rgba(0,0,0,0.3);
+	article {
+		width: min(36rem, 100%);
 	}
 
-	.modal {
-		position: absolute;
-		left: 50%;
-		top: 50%;
-		width: calc(100vw - 4em);
-		max-width: 32em;
-		max-height: calc(100vh - 4em);
-		overflow: auto;
-		transform: translate(-50%,-50%);
-		padding: 1em;
-		border-radius: 0.2em;
-		background: white;
+	header :global(h2) {
+		margin: 0;
+		font-size: 1.25rem;
 	}
-
-	button {
-		display: block;
-	}
-
-	button.closeModal {
-		float: right;
-		border: none;
-	}
-
-
 </style>

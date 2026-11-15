@@ -1,44 +1,12 @@
-
-body {
-	color: #c46a25;
-	background: url('../img/sun.png') center right no-repeat rgb(248, 248, 235);
-	background-size: 50%;
-	background-attachment: fixed;
-	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
-}
-
-a {
-	color: rgb(0,100,200);
-}
-
-a:visited {
-	color: rgb(0,80,160);
-}
-
-input, button, select, textarea {
-	border: 1px solid rgb(49, 45, 3);
-}
-
-input:disabled {
-	color: #ccc;
-}
-
-button {
-	color: rgb(65, 65, 65);
-	box-shadow: 0px 4px rgba(252, 189, 52, 0.89);
-	background: rgb(252, 188, 52);
-}
-
-
-button:focus {
-	border-color: rgb(107, 89, 89);
-}
-
-section {
-	box-shadow: 2px 2px 4px #ef832f;
-	border: 1px solid #ef832f;
-}
-
-section.claimed {
-	background-color: rgb(252, 188, 52);
+/* summer theme: only sets the variables used by base.css. */
+:root[data-theme="light"] {
+	--wl-bg: #fbf5e6;
+	--wl-ink: #8a3f0a;
+	--wl-accent: #c2410c;
+	--wl-accent-hover: #9a3412;
+	--wl-accent-soft: rgba(234, 88, 12, 0.18);
+	--wl-surface: rgba(255, 255, 255, 0.82);
+	--wl-image-bg: #ffffff;
+	--wl-illustration: url("../img/sun.png");
+	--wl-illustration-width: min(42vw, 36rem);
 }

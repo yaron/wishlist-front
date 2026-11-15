@@ -34,35 +34,39 @@
 	setContext("hideClaim", hideClaim)
 </script>
 
-<h1>{config.title}</h1>
-{#await list}
-	<p>{texts.waiting}</p>
-{:then items}
-	{#each items as item}
-		<Item item={item}>
-			<div class="buttons">
-				{#if user.userId != null }
-					<AddItem item={item} />
-				{/if}
-				{#if !hideClaim && item.claimable}
-					{#if  !item.claimed}
-						<Claim item_id={item.id} item_name={item.name} />
+<header class="container site-header">
+	<h1>{config.title}</h1>
+	<nav>
+		<AddItem />
+		<Login />
+	</nav>
+</header>
+
+<main class="container">
+	{#await list}
+		<p aria-busy="true">{texts.waiting}</p>
+	{:then items}
+		<div class="items">
+			{#each items as item (item.id)}
+				<Item item={item}>
+					{#if user.userId != null }
+						<AddItem item={item} />
 					{/if}
-					{#if item.claimed}
-						{#if queryParams.id == item.id && queryParams.key}
+					{#if !hideClaim && item.claimable}
+						{#if !item.claimed}
+							<Claim item_id={item.id} item_name={item.name} />
+						{:else if queryParams.id == item.id && queryParams.key}
 							<UnClaim item_id={item.id} key={queryParams.key} />
 						{:else if getClaimKey(item.id)}
 							<UnClaim item_id={item.id} key={getClaimKey(item.id)} />
 						{/if}
 					{/if}
-				{/if}
-			</div>
-		</Item>
-	{/each}
-	
-{:catch error}
-	<p style="color: red">{error.message}</p>
-{/await}
-<div class="clear" />
-<AddItem />
-<Login />
+				</Item>
+			{/each}
+		</div>
+	{:catch error}
+		<p class="error" role="alert">{error.message}</p>
+	{/await}
+</main>
+
+<div class="illustration" aria-hidden="true"></div>

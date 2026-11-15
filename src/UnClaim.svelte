@@ -36,7 +36,6 @@
 
 </script>
 
-
-<button class="unclaim" disabled={busy} on:click={unclaimItem}>
+<button class="unclaim secondary outline" disabled={busy} aria-busy={busy} on:click={unclaimItem}>
     {texts.unclaim}
 </button>

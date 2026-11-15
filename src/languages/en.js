@@ -1,6 +1,9 @@
 export const t = {
     title: "Wishlist",
     waiting: "...waiting",
+    close: "Close",
+    cancel: "Cancel",
+    save: "Save",
     edit: "Edit",
     add: "Add",
     delete: "Delete",

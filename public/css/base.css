@@ -1,192 +1,357 @@
-html, body {
-	position: relative;
-	width: 100%;
-	height: 100%;
+/*
+ * Layout and components on top of Pico CSS (https://picocss.com).
+ * Every theme in this folder only sets the --wl-* variables below.
+ */
+:root {
+	/* Defaults; the theme stylesheet overrides these with a more specific selector. */
+	--wl-bg: #f7f7f5;
+	--wl-ink: #2b2b2b;
+	--wl-accent: #3d5afe;
+	--wl-accent-hover: #2a3fd1;
+	--wl-accent-soft: rgba(61, 90, 254, 0.15);
+	--wl-surface: rgba(255, 255, 255, 0.86);
+	--wl-image-bg: #ffffff;
+	--wl-illustration: none;
+	--wl-illustration-width: min(40vw, 34rem);
+}
+
+:root[data-theme="light"] {
+	--pico-font-family-sans-serif: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+	--pico-border-radius: 0.75rem;
+	--pico-background-color: var(--wl-bg);
+	--pico-color: color-mix(in srgb, var(--wl-ink) 85%, black);
+	--pico-muted-color: color-mix(in srgb, var(--wl-ink) 65%, white);
+	--pico-h1-color: var(--wl-ink);
+	--pico-h2-color: var(--wl-ink);
+	--pico-h3-color: var(--wl-ink);
+	--pico-primary: var(--wl-accent);
+	--pico-primary-background: var(--wl-accent);
+	--pico-primary-border: var(--wl-accent);
+	--pico-primary-underline: color-mix(in srgb, var(--wl-accent) 50%, transparent);
+	--pico-primary-hover: var(--wl-accent-hover);
+	--pico-primary-hover-background: var(--wl-accent-hover);
+	--pico-primary-hover-border: var(--wl-accent-hover);
+	--pico-primary-hover-underline: var(--wl-accent-hover);
+	--pico-primary-focus: var(--wl-accent-soft);
+	--pico-primary-inverse: #ffffff;
+	--pico-secondary: var(--wl-ink);
+	--pico-secondary-background: var(--wl-ink);
+	--pico-secondary-border: color-mix(in srgb, var(--wl-ink) 40%, transparent);
+	--pico-secondary-hover: var(--wl-accent-hover);
+	--pico-secondary-hover-background: color-mix(in srgb, var(--wl-ink) 85%, black);
+	--pico-secondary-hover-border: var(--wl-accent-hover);
+	--pico-secondary-focus: var(--wl-accent-soft);
+	--pico-secondary-inverse: #ffffff;
+	--pico-card-background-color: var(--wl-surface);
+	--pico-card-sectioning-background-color: transparent;
+	--pico-form-element-focus-color: var(--wl-accent);
+	--pico-switch-checked-background-color: var(--wl-accent);
+	--pico-modal-overlay-background-color: rgba(30, 20, 30, 0.45);
 }
 
 body {
-	margin: 0;
-	padding: 8px;
-	box-sizing: border-box;
+	min-height: 100vh;
+	background-color: var(--wl-bg);
 }
 
-a {
-	text-decoration: none;
-}
-
-a:hover {
-	text-decoration: underline;
-}
-
-label {
-	display: block;
-}
-
-input, button, select, textarea {
-	font-family: inherit;
-	font-size: inherit;
-	-webkit-padding: 0.4em 0;
-	padding: 0.4em;
-	margin: 0 0 1em 0;
-	box-sizing: border-box;
-	border-radius: 2px;
-}
-
-button {
-	outline: none;
-	margin: 0 0 0.5em 0;
-	border: 0;
-	display: inline-block;
-	text-align: center;
-}
-
-div.clear {
-	clear: both;
-}
-
-button.login, button.logout {
+/* Decorative theme illustration, behind the content. */
+.illustration {
 	position: fixed;
-	right: 1%;
-	bottom: 1%;
+	right: -2rem;
+	bottom: -2rem;
+	z-index: 0;
+	width: var(--wl-illustration-width);
+	aspect-ratio: 1;
+	background: var(--wl-illustration) bottom right / contain no-repeat;
+	pointer-events: none;
 }
 
-/* Item sections */
-section.item {
-	width: 300px;
-	height: 17%; 
-	padding: 16px;
-	margin: 16px;
-	float: left;
+.site-header,
+main {
+	position: relative;
+	z-index: 1;
 }
 
-@media screen and (max-width: 400px) {
-	section.item {
-		width: 80%;
-	}
+/* Header */
+.site-header {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: space-between;
+	gap: 1rem;
+	padding-block: 2rem 1.5rem;
 }
 
-@media screen and (max-height: 850px) {
-	section.item {
-		height: 20%;
-	}
-}
-@media screen and (max-height: 750px) {
-	section.item {
-		height: 25%;
-	}
-}
-@media screen and (max-height: 590px) {
-	section.item {
-		height: 30%;
-	}
-}
-@media screen and (max-height: 500px) {
-	section.item {
-		height: 35%;
-	}
-}
-@media screen and (max-height: 430px) {
-	section.item {
-		height: 45%;
-	}
-}
-@media screen and (max-height: 350px) {
-	section.item {
-		height: 60%;
-	}
+.site-header h1 {
+	margin: 0;
+	font-size: clamp(1.75rem, 4vw, 2.5rem);
+	letter-spacing: -0.02em;
 }
 
-section.item.claimed {
-	background-color: #888;
-	opacity: 0.4;
+.site-header nav {
+	display: flex;
+	gap: 0.5rem;
+	align-items: center;
 }
 
-section.item div.title {
-	width: 100%;
-	height: 30%;
-	float: left;
+.site-header nav :is(button, [role="button"]) {
+	margin: 0;
 }
 
-section.item div.title h3{
+main {
+	padding-bottom: 4rem;
+}
+
+/* Item grid */
+.items {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(13.5rem, 1fr));
+	gap: 1.5rem;
+}
+
+article.item {
+	display: flex;
+	flex-direction: column;
 	margin: 0;
 	padding: 0;
-	font-size: 1em;
+	overflow: hidden;
+	-webkit-backdrop-filter: blur(8px);
+	backdrop-filter: blur(8px);
+	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06), 0 8px 24px -12px rgba(0, 0, 0, 0.18);
+	transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 
-section.item div.link {
-	padding: 1em 0 0 0;
-	width: 50%;
-	float: left;
+article.item:hover {
+	transform: translateY(-2px);
+	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06), 0 14px 32px -12px rgba(0, 0, 0, 0.25);
 }
 
-section.item div.price {
-	padding: 0 0 0em 0;
-	width: 50%;
-	float: left;
-	clear: left;
+.item-image {
+	position: relative;
+	display: grid;
+	place-items: center;
+	aspect-ratio: 4 / 3;
+	overflow: hidden;
+	background: var(--wl-image-bg);
+	border-bottom: 1px solid var(--wl-accent-soft);
 }
 
-section.item div.image {
-	height: 70%;
-	width: 50%;
-	float: right;
+.item-image .image-button {
+	all: unset;
+	position: absolute;
+	inset: 0;
+	cursor: zoom-in;
 }
 
-section.item div.buttons {
+.item-image .image-button:focus-visible {
+	outline: 3px solid var(--wl-accent);
+	outline-offset: -3px;
+}
+
+.item-image img {
+	position: absolute;
+	inset: 0;
 	width: 100%;
-	float: left;
-	width: 50%;
+	height: 100%;
+	object-fit: contain;
+	padding: 0.75rem;
 }
 
-section.item button.delete img,
-section.item button.edit img {
-	width: 10px;
+.item-image .placeholder {
+	width: 3.5rem;
+	height: 3.5rem;
+	fill: none;
+	stroke: var(--wl-accent);
+	stroke-width: 1.5;
+	stroke-linecap: round;
+	stroke-linejoin: round;
+	opacity: 0.45;
 }
 
+.item-image .badge {
+	position: absolute;
+	top: 0.75rem;
+	left: 0.75rem;
+	padding: 0.2rem 0.6rem;
+	border-radius: 999px;
+	background: var(--wl-ink);
+	color: #ffffff;
+	font-size: 0.75rem;
+	font-weight: 600;
+	letter-spacing: 0.02em;
+	z-index: 1;
+}
 
-section.item div span {
-	float: left;
+.item-body {
+	flex: 1;
+	padding: 1rem 1.25rem 0.5rem;
+}
+
+.item-body h3 {
+	margin: 0 0 0.35rem;
+	font-size: 1.05rem;
+	line-height: 1.35;
+}
+
+.item-body .price {
+	margin: 0;
+	color: var(--wl-accent);
+	font-weight: 700;
+	font-size: 1.1rem;
+}
+
+.item-actions {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 0.5rem;
+	margin: 0;
+	padding: 0.5rem 1.25rem 1.25rem;
+	background: transparent;
+	border: 0;
+}
+
+.item-actions button,
+.item-actions [role="button"] {
+	margin: 0;
+	padding: 0.45rem 0.9rem;
+	font-size: 0.9rem;
+}
+
+.item-actions .link {
+	font-weight: 600;
+}
+
+/* Admin tools go to the end of the row. */
+.item-actions .edit {
+	order: 2;
+	margin-left: auto;
+}
+
+.item-actions .delete {
+	order: 3;
+}
+
+/* Claimed items step back. */
+article.item.claimed :is(.item-image img, .item-image .placeholder, .item-body, .item-actions .link) {
+	opacity: 0.55;
+}
+
+article.item.claimed .item-image img {
+	filter: grayscale(1);
+}
+
+/* Small square buttons with an icon (edit, delete). */
+button.icon {
+	display: inline-grid;
+	place-items: center;
+	width: 2.25rem;
+	height: 2.25rem;
+	padding: 0 !important;
+}
+
+button.icon svg {
+	width: 1.1rem;
+	height: 1.1rem;
+	fill: none;
+	stroke: currentColor;
+	stroke-width: 2;
+	stroke-linecap: round;
+	stroke-linejoin: round;
+}
+
+button.danger {
+	--pico-background-color: #c62828;
+	--pico-border-color: #c62828;
+	--pico-color: #ffffff;
+}
+
+button.danger:is(:hover, :focus) {
+	--pico-background-color: #a11f1f;
+	--pico-border-color: #a11f1f;
+}
+
+/* Dialogs */
+dialog article {
+	--pico-card-background-color: #ffffff;
+	box-shadow: 0 24px 48px -12px rgba(0, 0, 0, 0.35);
+}
+
+dialog article > footer {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: flex-end;
+	gap: 0.5rem;
+}
+
+dialog article > footer button {
+	margin: 0;
+	width: auto;
+}
+
+dialog img.big {
+	display: block;
 	width: 100%;
+	max-height: 70vh;
+	object-fit: contain;
+	border-radius: var(--pico-border-radius);
+	background: var(--wl-image-bg);
 }
 
-section.item input.thumb {
-	max-width: 100%;
-	max-height: 100%;
-	border: none;
+.error {
+	color: #b3261e;
 }
 
-section.item button.unclaim, 
-section.item button.claim,
-section.item button.delete,
-section.item button.edit {
-	float: left;
-	margin: 3px;
+@media (max-width: 576px) {
+	.site-header {
+		padding-block: 1.25rem 1rem;
+	}
+
+	.items {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: 0.75rem;
+	}
+
+	.item-body {
+		padding: 0.75rem 0.75rem 0.25rem;
+	}
+
+	.item-body h3 {
+		font-size: 0.95rem;
+	}
+
+	.item-body .price {
+		font-size: 1rem;
+	}
+
+	.item-image img {
+		padding: 0.4rem;
+	}
+
+	.item-actions {
+		padding: 0.25rem 0.75rem 0.75rem;
+	}
+
+	.item-actions .link {
+		width: 100%;
+	}
+
+	.item-actions button {
+		flex: 1;
+	}
+
+	.illustration {
+		width: 70vw;
+		opacity: 0.35;
+	}
 }
 
-/* Add/Edit/Delete item and login Modals*/
-.modal div {
-	width: 100%;
-}
+@media (prefers-reduced-motion: reduce) {
+	article.item {
+		transition: none;
+	}
 
-.modal img.thumb, .modal img.big {
-	width: 90%;
-	height: 90%;
-}
-
-.modal div.form-container {
-	width: 50%;
-	float: left;
-}
-
-.modal div.image-container {
-	width: 50%;
-	float: left;
-}
-
-.modal p.disclaimer {
-	font-size: 0.7em;
-}
-
-.modal button {
-	float: left;
+	article.item:hover {
+		transform: none;
+	}
 }
