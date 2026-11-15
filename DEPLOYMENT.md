@@ -22,11 +22,12 @@ To build one site locally: `node scripts/configure-instance.mjs <name> && npm ru
 ## Adding a site
 
 1. **instances.json**: add an entry (or check the existing one).
-2. **Cosmos DB**: in the existing account, create the container from `container` in database
-   `database`, with partition key `/id`.
-   Mind the throughput: the free tier gives 1000 RU/s per account. If the database has
-   *shared* throughput, new containers use it at no extra cost; containers with their own
-   (dedicated) throughput need at least 400 RU/s each, so five of them go over the free amount.
+2. **Cosmos DB**: create the container from `container` in database `database`, with partition
+   key `/id` and **without** dedicated throughput.
+   The free tier gives 1000 RU/s per account, and a container with its own throughput needs at least
+   400 RU/s (manual) or 1000 RU/s (autoscale). The new sites therefore share the database
+   `wishlists`, created once with **shared** (database-level) throughput of 400 RU/s manual;
+   it holds up to 25 containers. `lijst` keeps its existing `yaron/items` container.
 3. **Static Web App**: create one (Free plan is fine). Choose **Other** as deployment source, so
    Azure does not add its own workflow to the repository.
 4. **Deployment token**: in the new Static Web App, *Overview → Manage deployment token*. Add it as a
