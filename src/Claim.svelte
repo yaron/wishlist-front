@@ -1,6 +1,7 @@
 <script>
     import Modal from './Modal.svelte';
     import { item_store, texts_store } from './stores.js';
+    import { saveClaimKey, unclaimUrl } from './claimKeys.js';
         
     let texts = {}
 	texts_store.subscribe(val => {
@@ -11,9 +12,21 @@
     export let item_id
     export let item_name
     let mail = ''
+    let busy = false
+    let undoLink = ''
+    let mailSent = false
+    let mailFailed = false
+
+    function close() {
+        showClaim = false
+        undoLink = ''
+        mailSent = false
+        mailFailed = false
+        item_store.updateList()
+    }
 
     async function claimItem() {
-        this.disabled = true
+        busy = true
         const params = {
             headers: {
                 "content-type": "application/json; charset=UTF-8"
@@ -26,34 +39,61 @@
         }
         let url = config.api+'/claim/'+item_id
         const res = await fetch(url, params);
-        const text = await res.text();
+        busy = false
         if (res.ok) {
-            showClaim=false
-            item_store.updateList()
+            const result = await res.json();
+            if (result.key) {
+                // Keep the modal open to show the undo link; the list is
+                // refreshed when it closes, since that removes this component.
+                saveClaimKey(item_id, result.key)
+                mailSent = result.mailSent === true
+                mailFailed = mail.trim().length > 0 && !mailSent
+                undoLink = unclaimUrl(item_id, result.key)
+            } else {
+                close()
+            }
         } else {
-            throw new Error(res);
+            throw new Error(await res.text());
         }
     }
 
 </script>
 
 {#if showClaim}
-	<Modal on:close="{() => showClaim = false}">
+	<Modal onclose={close}>
 		<h2 slot="header">
             {texts.claim} {item_name}
         </h2>
+        {#if undoLink}
         <div class="claim-form">
-            
+            {#if mailSent}
+            <p>{texts.claimedMailSent}</p>
+            {:else if mailFailed}
+            <p>{texts.claimedMailFailed}</p>
+            {/if}
+            <p>{texts.claimedUndoInfo}</p>
+            <input class="undo-link" readonly value={undoLink} on:focus={(e) => e.target.select()}>
+        </div>
+        {:else}
+        <div class="claim-form">
+
                 <label for="mail">{texts.yourMail}</label>
                 <input id="mail" bind:value={mail}>
             <p class="disclaimer">{texts.mailDisclaimer}</p>
         </div>
-		<button on:click="{claimItem}">
+		<button disabled={busy} on:click="{claimItem}">
             {texts.claim}
 		</button>
+        {/if}
 	</Modal>
 {/if}
 
 <button class="claim btn" on:click="{() => showClaim=true}">
     {texts.claim}
 </button>
+<style>
+    .undo-link {
+        width: 100%;
+        box-sizing: border-box;
+    }
+</style>

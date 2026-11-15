@@ -1,5 +1,6 @@
 <script>
     import { item_store, texts_store } from './stores.js';
+    import { removeClaimKey } from './claimKeys.js';
         
     let texts = {}
 	texts_store.subscribe(val => {
@@ -8,9 +9,10 @@
 
     export let item_id
     export let key
+    let busy = false
 
     async function unclaimItem() {
-        this.disabled = true
+        busy = true
         const params = {
             headers: {
                 "content-type": "application/json; charset=UTF-8"
@@ -21,10 +23,11 @@
             }),
             method: "POST"
         }
-        let url = config.api+'/unclaim'
+        let url = config.api+'/unclaim/'+item_id
         const res = await fetch(url, params);
-        const text = await res.text();
+        busy = false
         if (res.ok) {
+            removeClaimKey(item_id)
             item_store.updateList()
         } else {
             throw new Error(res);
@@ -34,6 +37,6 @@
 </script>
 
 
-<button class="unclaim" on:click={unclaimItem}>
+<button class="unclaim" disabled={busy} on:click={unclaimItem}>
     {texts.unclaim}
 </button>

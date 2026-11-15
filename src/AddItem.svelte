@@ -6,9 +6,11 @@
 
     let showAdd = false
     let showDelete = false
+    let busy = false
     export let item = {}
 
     let showImage = true
+    let error = ''
 
     let texts = {}
 	texts_store.subscribe(val => {
@@ -23,7 +25,7 @@
     let hideClaim = getContext("hideClaim");
 
     async function deleteItem() {
-        this.disabled = true
+        busy = true
         const params = {
             headers: {
                 "content-type": "application/json; charset=UTF-8",
@@ -42,34 +44,7 @@
     }
 
     async function addItem() {
-        this.disabled = true
-        if (config.images.length > 0
-            && item.image != undefined
-            && item.image != ""
-            && !item.image.startsWith(config.image)
-        ) {
-            const params = {
-                headers: {
-                    "content-type": "application/json; charset=UTF-8",
-                },
-                body: JSON.stringify({
-                    URI: item.image,
-                }),
-                method: "POST"
-            }
-            let url = config.images+'/add'
-            const res = await fetch(url, params).catch();
-            const text = await res.text();
-            if (res.ok) {
-                item.image = config.images +"/images/"+ JSON.parse(text).localUri;
-
-            } else {
-                console.log("unable to fetch image")
-                console.dir(res);
-            }
-        }
-
-
+        busy = true
         const params = {
             headers: {
                 "content-type": "application/json; charset=UTF-8",
@@ -89,21 +64,28 @@
             url = config.api+'/itemEdit/'+item.id
         }
         const res = await fetch(url, params);
+        busy = false
         if (res.ok) {
+            error = ''
             showAdd=false
             if (item.id == undefined) {
                 item = {}
             }
             item_store.updateList()
         } else {
-            throw new Error(res);
+            const text = await res.text();
+            try {
+                error = JSON.parse(text).error || text
+            } catch (e) {
+                error = text || res.statusText
+            }
         }
     }
 
 </script>
 
 {#if showAdd}
-	<Modal on:close="{() => showAdd = false}">
+	<Modal onclose={() => { showAdd = false; error = '' }}>
 		<h2 slot="header">
             {#if item.id != undefined}
                 {texts.edit}
@@ -139,7 +121,10 @@
             {/if}
         </div>
         <div class="clear" />
-		<button on:click="{addItem}">
+        {#if error}
+            <p class="error">{texts.saveError}: {error}</p>
+        {/if}
+		<button disabled={busy} on:click="{addItem}">
             {#if item.id != undefined}
                 {texts.edit}
             {:else}
@@ -150,7 +135,7 @@
 {/if}
 
 {#if showDelete}
-    <Modal on:close="{() => showDelete = false}">
+    <Modal onclose={() => showDelete = false}>
         <h2 slot="header">
             {texts.delete}
         </h2>
@@ -161,7 +146,7 @@
             <Item item={item} />
         </div>
         <div class="clear" />
-        <button on:click="{deleteItem}">
+        <button disabled={busy} on:click="{deleteItem}">
             {texts.delete}
         </button>
     </Modal>
@@ -175,3 +160,8 @@
         <button class="add" on:click="{() => showAdd=true}">{texts.add}</button>
     {/if}
 {/if}
+<style>
+    .error {
+        color: red;
+    }
+</style>
