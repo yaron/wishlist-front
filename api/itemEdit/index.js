@@ -1,3 +1,5 @@
+const { validateItem, badRequest } = require('../shared/item');
+
 module.exports = function (context, req, EditItemIn) {
     if (EditItemIn == undefined) {
         context.res = {
@@ -8,12 +10,15 @@ module.exports = function (context, req, EditItemIn) {
         return
     }
 
-    const item = EditItemIn
-    for (const [key, value] of Object.entries(req.body)) {
-        // The claim key hash is managed by claim/unclaim only.
-        if (key === 'claimKeyHash') continue
-        item[key] = value
+    const { item: changes, errors } = validateItem(req.body);
+    if (errors) {
+        context.res = badRequest(errors);
+        context.done();
+        return
     }
+
+    // Only the validated fields are copied, so id and claimKeyHash cannot be changed here.
+    const item = Object.assign(EditItemIn, changes)
     // An item that is no longer claimed has no claim to undo.
     if (item.claimed != true) {
         delete item.claimKeyHash

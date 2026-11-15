@@ -1,5 +1,16 @@
+const { validateItem, badRequest } = require('../shared/item');
+
 module.exports = function (context, req) {
-    context.bindings.addItem = JSON.stringify(req.body);
-      
+    const { item, errors } = validateItem(req.body);
+    if (errors) {
+        context.res = badRequest(errors);
+        context.done();
+        return
+    }
+
+    context.bindings.addItem = JSON.stringify(item);
+    context.res = {
+        body: "Item added"
+    };
     context.done();
 };

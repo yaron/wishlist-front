@@ -10,6 +10,7 @@
     export let item = {}
 
     let showImage = true
+    let error = ''
 
     let texts = {}
 	texts_store.subscribe(val => {
@@ -90,21 +91,28 @@
             url = config.api+'/itemEdit/'+item.id
         }
         const res = await fetch(url, params);
+        busy = false
         if (res.ok) {
+            error = ''
             showAdd=false
             if (item.id == undefined) {
                 item = {}
             }
             item_store.updateList()
         } else {
-            throw new Error(res);
+            const text = await res.text();
+            try {
+                error = JSON.parse(text).error || text
+            } catch (e) {
+                error = text || res.statusText
+            }
         }
     }
 
 </script>
 
 {#if showAdd}
-	<Modal onclose={() => showAdd = false}>
+	<Modal onclose={() => { showAdd = false; error = '' }}>
 		<h2 slot="header">
             {#if item.id != undefined}
                 {texts.edit}
@@ -140,6 +148,9 @@
             {/if}
         </div>
         <div class="clear" />
+        {#if error}
+            <p class="error">{texts.saveError}: {error}</p>
+        {/if}
 		<button disabled={busy} on:click="{addItem}">
             {#if item.id != undefined}
                 {texts.edit}
@@ -176,3 +187,8 @@
         <button class="add" on:click="{() => showAdd=true}">{texts.add}</button>
     {/if}
 {/if}
+<style>
+    .error {
+        color: red;
+    }
+</style>

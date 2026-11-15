@@ -13,6 +13,7 @@ export const t = {
     claimedUndoInfo: "Claimed! Keep this link if you want to undo your claim later:",
     claimedMailSent: "We sent you an email with a link to undo your claim.",
     claimedMailFailed: "Unfortunately we could not send the email.",
+    saveError: "Saving failed",
     unclaim: "Unclaim",
     url: "URL",
     image: "Image URL",
