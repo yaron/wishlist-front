@@ -13,11 +13,11 @@
 </script>
 
 {#if user.userId == null}
-<a href="/.auth/login/aad" class="login secondary" role="button">
+<a href="/.auth/login/aad" class="login">
 	{texts.login}
 </a>
 {:else}
-<a href="/.auth/logout" class="logout secondary outline" role="button">
+<a href="/.auth/logout" class="logout">
 	{texts.logout}
 </a>
 {/if}

@@ -67,7 +67,8 @@ body {
 }
 
 .site-header,
-main {
+main,
+.site-footer {
 	position: relative;
 	z-index: 1;
 }
@@ -99,7 +100,25 @@ main {
 }
 
 main {
-	padding-bottom: 4rem;
+	padding-bottom: 2rem;
+}
+
+/* Footer with the (rarely needed) login link. */
+.site-footer {
+	padding-block: 1rem 2rem;
+	text-align: center;
+	font-size: 0.85rem;
+}
+
+.site-footer a {
+	color: var(--pico-muted-color);
+	text-decoration: underline;
+	text-decoration-color: color-mix(in srgb, currentColor 40%, transparent);
+	text-underline-offset: 0.2em;
+}
+
+.site-footer a:hover {
+	color: var(--wl-ink);
 }
 
 /* Item grid */
