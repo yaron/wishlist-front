@@ -1,16 +1,25 @@
 {
+    "platform": {
+        "apiRuntime": "node:22"
+    },
     "routes": [
-      {
-        "route": "/api/itemAdd",
-        "allowedRoles": ["administrator"]
-      },
-      {
-        "route": "/api/itemEdit/*",
-        "allowedRoles": ["administrator"]
-      },
-      {
-        "route": "/api/itemDelete/*",
-        "allowedRoles": ["administrator"]
-      }
+        {
+            "route": "/api/itemAdd",
+            "allowedRoles": [
+                "administrator"
+            ]
+        },
+        {
+            "route": "/api/itemEdit/*",
+            "allowedRoles": [
+                "administrator"
+            ]
+        },
+        {
+            "route": "/api/itemDelete/*",
+            "allowedRoles": [
+                "administrator"
+            ]
+        }
     ]
 }
