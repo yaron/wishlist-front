@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1000 1000">
+	<!--
+		Butterfly theme illustration: geometric butterflies with a Morpho-blue
+		forewing (South America), mudcloth dots and Andean step motifs.
+		Colours come from custom properties so every <use> can carry its own palette.
+	-->
+	<defs>
+		<path id="fore" d="M4 -8 C30 -95 110 -175 168 -162 C200 -150 192 -82 160 -42 C128 -8 60 2 6 4 Z" />
+		<path id="hind" d="M6 6 C72 -2 142 22 146 72 C150 122 110 152 70 142 C40 134 15 92 4 30 Z" />
+		<clipPath id="clip-fore"><use href="#fore" /></clipPath>
+		<clipPath id="clip-hind"><use href="#hind" /></clipPath>
+
+		<g id="wings">
+			<!-- forewing -->
+			<use href="#fore" style="fill: var(--edge, #2e1f3a)" />
+			<g clip-path="url(#clip-fore)">
+				<use href="#fore" transform="scale(.8)" style="fill: var(--fore, #1f6f8b)" />
+				<use href="#fore" transform="scale(.5)" style="fill: var(--fore-deep, #164e66)" />
+				<!-- woven step band -->
+				<polyline points="12,-142 44,-142 44,-110 77,-109 77,-77 109,-77 110,-44 142,-44 142,-12" fill="none" style="stroke: var(--band, #e0a43a)" stroke-width="7" />
+				<polyline points="12,-142 44,-142 44,-110 77,-109 77,-77 109,-77 110,-44 142,-44 142,-12" transform="translate(14 -14)" fill="none" style="stroke: var(--band, #e0a43a)" stroke-width="2.5" opacity=".8" />
+				<!-- mudcloth dots along the edge -->
+				<use href="#fore" transform="scale(.9)" fill="none" style="stroke: var(--dots, #f5ece1)" stroke-width="5.5" stroke-linecap="round" stroke-dasharray="0 13" />
+			</g>
+			<!-- hindwing -->
+			<use href="#hind" style="fill: var(--edge, #2e1f3a)" />
+			<g clip-path="url(#clip-hind)">
+				<use href="#hind" transform="scale(.82)" style="fill: var(--hind, #b4492b)" />
+				<!-- Andean stepped diamond -->
+				<path d="M70 30 h14 v14 h14 v14 h14 v14 h-14 v14 h-14 v14 h-14 v-14 h-14 v-14 h-14 v-14 h14 v-14 h14 z" transform="translate(-6 0)" style="fill: var(--band, #e0a43a)" />
+				<rect x="70" y="72" width="16" height="16" transform="rotate(45 78 80) translate(-6 0)" style="fill: var(--edge, #2e1f3a)" />
+				<use href="#hind" transform="scale(.92)" fill="none" style="stroke: var(--dots, #f5ece1)" stroke-width="5" stroke-linecap="round" stroke-dasharray="0 12" />
+			</g>
+		</g>
+
+		<g id="butterfly">
+			<use href="#wings" />
+			<use href="#wings" transform="scale(-1 1)" />
+			<!-- body and antennae -->
+			<path d="M-3 -78 C-26 -112 -40 -128 -52 -132 M3 -78 C26 -112 40 -128 52 -132" fill="none" style="stroke: var(--edge, #2e1f3a)" stroke-width="3" stroke-linecap="round" />
+			<circle cx="-52" cy="-132" r="5" style="fill: var(--edge, #2e1f3a)" />
+			<circle cx="52" cy="-132" r="5" style="fill: var(--edge, #2e1f3a)" />
+			<ellipse cx="0" cy="-70" rx="9" ry="10" style="fill: var(--edge, #2e1f3a)" />
+			<ellipse cx="0" cy="10" rx="8" ry="74" style="fill: var(--edge, #2e1f3a)" />
+			<path d="M-7 -20 h14 M-7 0 h14 M-7 20 h14 M-6 40 h12" style="stroke: var(--band, #e0a43a)" stroke-width="3" />
+		</g>
+	</defs>
+
+	<!-- dotted flight path -->
+	<path d="M120 930 C260 820 220 650 400 600 C560 556 600 420 520 330 C470 270 560 190 660 210" fill="none" stroke="#2e1f3a" stroke-opacity=".35" stroke-width="4" stroke-linecap="round" stroke-dasharray="0 16" />
+
+	<!-- small butterfly, ochre and teal -->
+	<use href="#butterfly" transform="translate(690 190) rotate(28) scale(.48)"
+		style="--fore: #e0a43a; --fore-deep: #c7811f; --hind: #1f6f8b; --band: #b4492b" />
+
+	<!-- medium butterfly, terracotta and rose -->
+	<use href="#butterfly" transform="translate(330 520) rotate(-22) scale(.62)"
+		style="--fore: #b4492b; --fore-deep: #8e3420; --hind: #d98c7a; --band: #f5ece1; --dots: #f5ece1" />
+
+	<!-- large Morpho-blue butterfly -->
+	<use href="#butterfly" transform="translate(660 700) rotate(10) scale(1.3)" />
+
+	<!-- woven sparkles -->
+	<g fill="#e0a43a">
+		<path d="M200 330 l10 -22 l10 22 l-10 22 z" />
+		<path d="M880 420 l8 -18 l8 18 l-8 18 z" />
+		<path d="M290 880 l7 -15 l7 15 l-7 15 z" fill="#b4492b" />
+	</g>
+</svg>
