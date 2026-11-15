@@ -1,0 +1,113 @@
+name: Azure Static Web Apps CI/CD
+
+# Deploys every site in instances.json to its own Azure Static Web App.
+# Pull requests get a preview environment on the first instance only.
+
+on:
+  push:
+    branches:
+      - azure
+  pull_request:
+    types: [opened, synchronize, reopened, closed]
+    branches:
+      - azure
+  workflow_dispatch:
+    inputs:
+      instance:
+        description: "Only deploy this instance (name from instances.json); leave empty for all"
+        required: false
+        default: ""
+
+jobs:
+  instances:
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    name: Read instances
+    outputs:
+      matrix: ${{ steps.read.outputs.matrix }}
+    steps:
+      - uses: actions/checkout@v6.0.3
+      - name: Read instances.json
+        id: read
+        env:
+          ONLY: ${{ github.event.inputs.instance }}
+        run: |
+          matrix=$(jq -c --arg only "$ONLY" '[.[] | select($only == "" or .name == $only)]' instances.json)
+          if [ "$matrix" = "[]" ]; then
+            echo "::error::No instance named '$ONLY' in instances.json"
+            exit 1
+          fi
+          echo "matrix=$matrix" >> "$GITHUB_OUTPUT"
+
+  deploy:
+    needs: instances
+    runs-on: ubuntu-latest
+    name: Deploy ${{ matrix.instance.domain }}
+    strategy:
+      fail-fast: false
+      matrix:
+        instance: ${{ fromJSON(needs.instances.outputs.matrix) }}
+    concurrency:
+      group: deploy-${{ matrix.instance.name }}
+      cancel-in-progress: false
+    env:
+      DEPLOY_TOKEN: ${{ secrets[matrix.instance.tokenSecret] }}
+    steps:
+      - name: Check deployment token
+        id: token
+        run: |
+          if [ -z "$DEPLOY_TOKEN" ]; then
+            echo "::warning::Skipping ${{ matrix.instance.domain }}: secret ${{ matrix.instance.tokenSecret }} is not set."
+            echo "available=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "available=true" >> "$GITHUB_OUTPUT"
+          fi
+      - uses: actions/checkout@v6.0.3
+        if: steps.token.outputs.available == 'true'
+        with:
+          submodules: true
+      - name: Configure ${{ matrix.instance.name }}
+        if: steps.token.outputs.available == 'true'
+        run: node scripts/configure-instance.mjs "${{ matrix.instance.name }}"
+      - name: Build And Deploy
+        if: steps.token.outputs.available == 'true'
+        uses: Azure/static-web-apps-deploy@v1
+        with:
+          azure_static_web_apps_api_token: ${{ env.DEPLOY_TOKEN }}
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          action: "upload"
+          app_location: "/"
+          api_location: "api"
+          output_location: "public"
+
+  preview:
+    if: github.event_name == 'pull_request' && github.event.action != 'closed'
+    runs-on: ubuntu-latest
+    name: Build And Deploy preview
+    steps:
+      - uses: actions/checkout@v6.0.3
+        with:
+          submodules: true
+      - name: Configure lijst
+        run: node scripts/configure-instance.mjs lijst
+      - name: Build And Deploy
+        uses: Azure/static-web-apps-deploy@v1
+        with:
+          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_AMBITIOUS_SMOKE_04C92EA03 }}
+          repo_token: ${{ secrets.GITHUB_TOKEN }} # Used for Github integrations (i.e. PR comments)
+          action: "upload"
+          app_location: "/"
+          api_location: "api"
+          output_location: "public"
+
+  close_pull_request_job:
+    if: github.event_name == 'pull_request' && github.event.action == 'closed'
+    runs-on: ubuntu-latest
+    name: Close Pull Request Job
+    steps:
+      - name: Close Pull Request
+        id: closepullrequest
+        uses: Azure/static-web-apps-deploy@v1
+        with:
+          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_AMBITIOUS_SMOKE_04C92EA03 }}
+          action: "close"

@@ -1,0 +1,52 @@
+[
+    {
+        "name": "lijst",
+        "domain": "lijst.ytal.nl",
+        "title": "Verlanglijst Yaron",
+        "theme": "summer",
+        "language": "nl",
+        "database": "yaron",
+        "container": "items",
+        "tokenSecret": "AZURE_STATIC_WEB_APPS_API_TOKEN_AMBITIOUS_SMOKE_04C92EA03"
+    },
+    {
+        "name": "yaeltal",
+        "domain": "yaeltal.nl",
+        "title": "Verlanglijst Yael",
+        "theme": "unicorn",
+        "language": "nl",
+        "database": "yaron",
+        "container": "items-yaeltal",
+        "tokenSecret": "AZURE_STATIC_WEB_APPS_API_TOKEN_YAELTAL"
+    },
+    {
+        "name": "jolandatal",
+        "domain": "jolandatal.nl",
+        "title": "Verlanglijst Jolanda",
+        "theme": "butterfly",
+        "language": "nl",
+        "database": "yaron",
+        "container": "items-jolandatal",
+        "tokenSecret": "AZURE_STATIC_WEB_APPS_API_TOKEN_JOLANDATAL"
+    },
+    {
+        "name": "rivkatal",
+        "domain": "rivkatal.nl",
+        "title": "Verlanglijst Rivka",
+        "theme": "flamingo",
+        "language": "nl",
+        "database": "yaron",
+        "container": "items-rivkatal",
+        "tokenSecret": "AZURE_STATIC_WEB_APPS_API_TOKEN_RIVKATAL"
+    },
+    {
+        "name": "naomital",
+        "domain": "naomital.nl",
+        "title": "Verlanglijst Naomi",
+        "theme": "sheep",
+        "language": "nl",
+        "database": "yaron",
+        "container": "items-naomital",
+        "tokenSecret": "AZURE_STATIC_WEB_APPS_API_TOKEN_NAOMITAL"
+    }
+]
