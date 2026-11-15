@@ -14,10 +14,14 @@
     let mail = ''
     let busy = false
     let undoLink = ''
+    let mailSent = false
+    let mailFailed = false
 
     function close() {
         showClaim = false
         undoLink = ''
+        mailSent = false
+        mailFailed = false
         item_store.updateList()
     }
 
@@ -42,6 +46,8 @@
                 // Keep the modal open to show the undo link; the list is
                 // refreshed when it closes, since that removes this component.
                 saveClaimKey(item_id, result.key)
+                mailSent = result.mailSent === true
+                mailFailed = mail.trim().length > 0 && !mailSent
                 undoLink = unclaimUrl(item_id, result.key)
             } else {
                 close()
@@ -60,6 +66,11 @@
         </h2>
         {#if undoLink}
         <div class="claim-form">
+            {#if mailSent}
+            <p>{texts.claimedMailSent}</p>
+            {:else if mailFailed}
+            <p>{texts.claimedMailFailed}</p>
+            {/if}
             <p>{texts.claimedUndoInfo}</p>
             <input class="undo-link" readonly value={undoLink} on:focus={(e) => e.target.select()}>
         </div>
