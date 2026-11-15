@@ -1,4 +1,6 @@
 import { spawn } from 'child_process';
+import { readFileSync } from 'fs';
+import { createRequire } from 'module';
 import svelte from 'rollup-plugin-svelte';
 import commonjs from '@rollup/plugin-commonjs';
 import resolve from '@rollup/plugin-node-resolve';
@@ -7,6 +9,21 @@ import terser from '@rollup/plugin-terser';
 import css from 'rollup-plugin-css-only';
 
 const production = !process.env.ROLLUP_WATCH;
+const require = createRequire(import.meta.url);
+
+// Copy the Pico CSS framework next to the bundle, so it is served from our own domain.
+function pico() {
+	return {
+		name: 'pico',
+		generateBundle() {
+			this.emitFile({
+				type: 'asset',
+				fileName: 'pico.min.css',
+				source: readFileSync(require.resolve('@picocss/pico/css/pico.min.css'))
+			});
+		}
+	};
+}
 
 function serve() {
 	let server;
@@ -47,6 +64,7 @@ export default {
 		// we'll extract any component CSS out into
 		// a separate file - better for performance
 		css({ output: 'bundle.css' }),
+		pico(),
 
 		// If you have external dependencies installed from
 		// npm, you'll most likely need these plugins. In

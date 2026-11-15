@@ -1,6 +1,9 @@
 export const t = {
     title: "Verlanglijst",
     waiting: "...bezig",
+    close: "Sluiten",
+    cancel: "Annuleren",
+    save: "Opslaan",
     edit: "Aanpassen",
     add: "Toevoegen",
     delete: "Verwijderen",
