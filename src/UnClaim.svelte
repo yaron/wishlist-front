@@ -1,5 +1,6 @@
 <script>
     import { item_store, texts_store } from './stores.js';
+    import { removeClaimKey } from './claimKeys.js';
         
     let texts = {}
 	texts_store.subscribe(val => {
@@ -22,10 +23,11 @@
             }),
             method: "POST"
         }
-        let url = config.api+'/unclaim'
+        let url = config.api+'/unclaim/'+item_id
         const res = await fetch(url, params);
-        const text = await res.text();
+        busy = false
         if (res.ok) {
+            removeClaimKey(item_id)
             item_store.updateList()
         } else {
             throw new Error(res);

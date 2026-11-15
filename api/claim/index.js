@@ -1,5 +1,6 @@
+const { newClaimKey, hashClaimKey } = require('../shared/claimKey');
+
 module.exports = function (context, req, claimItemIn) {
-    body = JSON.stringify(req.body)
     if (claimItemIn == undefined) {
         context.res = {
             status: 404,
@@ -9,7 +10,7 @@ module.exports = function (context, req, claimItemIn) {
         return
     }
 
-    if (claimItemIn.claimable != true) {
+    if (claimItemIn.claimable != true || claimItemIn.claimed == true) {
         context.res = {
             status: 403,
             body: "Unable to claim item"
@@ -17,13 +18,15 @@ module.exports = function (context, req, claimItemIn) {
         context.done();
         return
     }
-    
+
+    const key = newClaimKey()
     context.bindings.claimItemOut = claimItemIn
     context.bindings.claimItemOut.claimed = true
+    context.bindings.claimItemOut.claimKeyHash = hashClaimKey(key)
 
     context.res = {
-        // status: 200, /* Defaults to 200 */
-        body: "Updated"
+        headers: { "content-type": "application/json" },
+        body: { status: "Item claimed", key: key }
     };
     context.done();
 }

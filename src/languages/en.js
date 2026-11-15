@@ -10,6 +10,7 @@ export const t = {
     claimable: "Claimable",
     claimed: "Claimed",
     claim: "Claim",
+    claimedUndoInfo: "Claimed! Keep this link if you want to undo your claim later:",
     unclaim: "Unclaim",
     url: "URL",
     image: "Image URL",

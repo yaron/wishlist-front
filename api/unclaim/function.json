@@ -1,0 +1,38 @@
+{
+  "bindings": [
+    {
+      "authLevel": "function",
+      "type": "httpTrigger",
+      "direction": "in",
+      "name": "req",
+      "methods": [
+        "post"
+      ],
+      "route":"unclaim/{id}"
+    },
+    {
+      "type": "http",
+      "direction": "out",
+      "name": "res"
+    },
+    {
+      "type": "cosmosDB",
+      "name": "unclaimItemIn",
+      "databaseName": "yaron",
+      "collectionName": "items",
+      "connectionStringSetting": "CosmosDbConnectionString",
+      "direction": "in",
+      "Id": "{id}",
+      "PartitionKey": "{id}"
+    },
+    {
+      "name": "unclaimItemOut",
+      "type": "cosmosDB",
+      "databaseName": "yaron",
+      "collectionName": "items",
+      "createIfNotExists": true,
+      "connectionStringSetting": "CosmosDbConnectionString",
+      "direction": "out"
+    }
+  ]
+}

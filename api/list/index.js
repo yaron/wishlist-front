@@ -1,8 +1,9 @@
 module.exports = function(context, req) {
-    var items = context.bindings.items;
+    // Never expose the hash of the claim key to the client.
+    const items = (context.bindings.items || []).map(({ claimKeyHash, ...item }) => item);
 
     context.res = {
-        body: context.bindings.items
+        body: items
     };
     context.done();
   };

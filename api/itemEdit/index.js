@@ -8,9 +8,15 @@ module.exports = function (context, req, EditItemIn) {
         return
     }
 
-    item = EditItemIn
-    for (const [key, value] of Object.entries(req.body)) { 
-       item[key] = value
+    const item = EditItemIn
+    for (const [key, value] of Object.entries(req.body)) {
+        // The claim key hash is managed by claim/unclaim only.
+        if (key === 'claimKeyHash') continue
+        item[key] = value
+    }
+    // An item that is no longer claimed has no claim to undo.
+    if (item.claimed != true) {
+        delete item.claimKeyHash
     }
     context.bindings.EditItemOut = item
 

@@ -7,6 +7,7 @@
 	import queryString from "query-string";
 	import { setContext } from 'svelte';
 	import { item_store, texts_store, user_store} from './stores.js';
+	import { getClaimKey } from './claimKeys.js';
 
 	let list = ''
 	item_store.subscribe(val => {
@@ -47,8 +48,12 @@
 					{#if  !item.claimed}
 						<Claim item_id={item.id} item_name={item.name} />
 					{/if}
-					{#if queryParams.id == item.id && item.claimed}
-						<UnClaim item_id={item.id} key={queryParams.key} />
+					{#if item.claimed}
+						{#if queryParams.id == item.id && queryParams.key}
+							<UnClaim item_id={item.id} key={queryParams.key} />
+						{:else if getClaimKey(item.id)}
+							<UnClaim item_id={item.id} key={getClaimKey(item.id)} />
+						{/if}
 					{/if}
 				{/if}
 			</div>

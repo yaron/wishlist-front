@@ -10,6 +10,7 @@ export const t = {
     claimable: "Afstreepbaar",
     claimed: "Afgestreept",
     claim: "Streep af",
+    claimedUndoInfo: "Afgestreept! Bewaar deze link als je het afstrepen later ongedaan wilt maken:",
     unclaim: "Niet meer afstrepen",
     url: "Link",
     image: "Afbeelding link",
