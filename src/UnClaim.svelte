@@ -8,9 +8,10 @@
 
     export let item_id
     export let key
+    let busy = false
 
     async function unclaimItem() {
-        this.disabled = true
+        busy = true
         const params = {
             headers: {
                 "content-type": "application/json; charset=UTF-8"
@@ -34,6 +35,6 @@
 </script>
 
 
-<button class="unclaim" on:click={unclaimItem}>
+<button class="unclaim" disabled={busy} on:click={unclaimItem}>
     {texts.unclaim}
 </button>
