@@ -38,7 +38,6 @@
 	<h1>{config.title}</h1>
 	<nav>
 		<AddItem />
-		<Login />
 	</nav>
 </header>
 
@@ -68,5 +67,9 @@
 		<p class="error" role="alert">{error.message}</p>
 	{/await}
 </main>
+
+<footer class="container site-footer">
+	<Login />
+</footer>
 
 <div class="illustration" aria-hidden="true"></div>
