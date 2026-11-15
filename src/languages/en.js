@@ -17,6 +17,7 @@ export const t = {
     claimedMailSent: "We sent you an email with a link to undo your claim.",
     claimedMailFailed: "Unfortunately we could not send the email.",
     saveError: "Saving failed",
+    loadError: "Something went wrong while loading the list. Please try again later, or let Yaron know if it keeps happening.",
     unclaim: "Unclaim",
     url: "URL",
     image: "Image URL",

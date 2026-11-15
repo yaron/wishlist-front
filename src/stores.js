@@ -25,9 +25,17 @@ function createListStore() {
 export const item_store = createListStore()
 
 async function getList() {
-    const res = await fetch(config.api+`/list`);
-    const text = await res.json();
-    return text;
+    try {
+        const res = await fetch(config.api+`/list`);
+        if (!res.ok) {
+            throw new Error(`Loading the list failed with status ${res.status}`);
+        }
+        return await res.json();
+    } catch (err) {
+        // The visitor gets a friendly message (texts.loadError); keep the details for debugging.
+        console.error(err);
+        throw err;
+    }
 }
 
 import * as langs from './languages/langs.js'
