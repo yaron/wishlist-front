@@ -5,7 +5,11 @@
         "allowedRoles": ["administrator"]
       },
       {
-        "route": "/api/itemEdit/{id}",
+        "route": "/api/itemEdit/*",
+        "allowedRoles": ["administrator"]
+      },
+      {
+        "route": "/api/itemDelete/*",
         "allowedRoles": ["administrator"]
       }
     ]
