@@ -18,8 +18,8 @@
       "name": "items",
       "type": "cosmosDB",
       "direction": "in",
-      "databaseName": "yaron",
-      "collectionName": "items",
+      "databaseName": "wishlists",
+      "collectionName": "items-lijst",
       "sqlQuery": "SELECT * from c",
       "connectionStringSetting": "CosmosDbConnectionString"
     }

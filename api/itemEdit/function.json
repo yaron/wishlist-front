@@ -18,8 +18,8 @@
     {
       "type": "cosmosDB",
       "name": "EditItemIn",
-      "databaseName": "yaron",
-      "collectionName": "items",
+      "databaseName": "wishlists",
+      "collectionName": "items-lijst",
       "connectionStringSetting": "CosmosDbConnectionString",
       "direction": "in",
       "Id": "{id}",
@@ -28,8 +28,8 @@
     {
       "name": "EditItemOut",
       "type": "cosmosDB",
-      "databaseName": "yaron",
-      "collectionName": "items",
+      "databaseName": "wishlists",
+      "collectionName": "items-lijst",
       "createIfNotExists": false,
       "connectionStringSetting": "CosmosDbConnectionString",
       "direction": "out"

@@ -25,9 +25,8 @@ To build one site locally: `node scripts/configure-instance.mjs <name> && npm ru
 2. **Cosmos DB**: create the container from `container` in database `database`, with partition
    key `/id` and **without** throughput of its own.
    The free tier gives 1000 RU/s per account, and a container with its own throughput needs at least
-   400 RU/s (manual) or 1000 RU/s (autoscale). The new sites therefore share the database
+   400 RU/s (manual) or 1000 RU/s (autoscale). All sites therefore share the database
    `wishlists`, which has **shared** (database-level) throughput of 400 RU/s for up to 25 containers.
-   `lijst` keeps its existing `yaron/items` container.
    The portal no longer offers shared throughput, so use the Azure CLI (for example in Cloud Shell)
    with your resource group and Cosmos account name:
 
@@ -35,7 +34,7 @@ To build one site locally: `node scripts/configure-instance.mjs <name> && npm ru
    # Once: the database with 400 RU/s shared by all its containers
    az cosmosdb sql database create -g <resource-group> -a <cosmos-account> -n wishlists --throughput 400
 
-   # Per site: a container without --throughput uses the database's shared throughput
+   # Per site (items-lijst, items-yaeltal, ...): a container without --throughput uses the shared throughput
    az cosmosdb sql container create -g <resource-group> -a <cosmos-account> -d wishlists \
      -n items-<site> --partition-key-path /id
    ```
@@ -54,3 +53,27 @@ To build one site locally: `node scripts/configure-instance.mjs <name> && npm ru
    A root domain such as `example.nl` needs TXT validation plus an ALIAS/ANAME or A record at your
    DNS provider; follow the steps Azure shows.
 8. **Deploy**: run the workflow for this site, or push to `azure`.
+
+## Moving lijst.ytal.nl to the shared database
+
+`lijst` used to read `yaron/items`; it now uses `wishlists/items-lijst`. Copy the items **before**
+deploying, otherwise the site shows an empty list:
+
+1. Create the `wishlists` database and the `items-lijst` container (see step 2 above).
+2. Copy the items. The ids and claim keys are kept, so existing undo links keep working. Before the deploy
+   the script can be run again safely, and it checks that every item arrived. Endpoint and key are under
+   *Keys* of the Cosmos account (Cloud Shell has Node.js):
+
+   ```sh
+   # Before PR #31 is merged the script is only on its branch; afterwards use -b azure
+   git clone -b claude/azure-branch-deps-update-6l4y0w https://github.com/yaron/wishlist-front && cd wishlist-front
+   (cd api && npm install)
+   export COSMOS_ENDPOINT=https://<cosmos-account>.documents.azure.com:443/ COSMOS_KEY=<primary-key>
+   node scripts/copy-container.mjs yaron/items wishlists/items-lijst --dry-run   # shows the count
+   node scripts/copy-container.mjs yaron/items wishlists/items-lijst
+   ```
+3. Right after the copy, deploy (merge to `azure`) and check lijst.ytal.nl. Changes made on the old
+   site between copy and deploy are lost, so do this when nobody is using the list, or run the copy
+   once more just before merging. Do **not** run it after the deploy: it would overwrite newer
+   changes in the new container with the old state.
+4. When everything works, delete the `yaron` database to free its throughput.

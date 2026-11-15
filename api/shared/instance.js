@@ -3,8 +3,8 @@
 const defaults = {
     name: 'lijst',
     siteUrl: '',
-    database: 'yaron',
-    container: 'items',
+    database: 'wishlists',
+    container: 'items-lijst',
 };
 
 let instance = {};
