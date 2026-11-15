@@ -1,3 +1,5 @@
+const instance = require('./instance');
+
 // Same variables as the wishlist-go templates, plus UnclaimUrl.
 const DEFAULT_SUBJECT = 'Je hebt {{.ItemName}} afgestreept';
 const DEFAULT_BODY = [
@@ -17,7 +19,7 @@ function isValidMail(mail) {
 }
 
 function unclaimUrl(itemId, key) {
-    const site = process.env.WISH_SITE_URL;
+    const site = process.env.WISH_SITE_URL || instance.siteUrl;
     if (!site) {
         return '';
     }

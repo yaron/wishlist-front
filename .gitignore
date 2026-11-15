@@ -2,3 +2,4 @@
 /public/build/
 /public/config.js
 .DS_Store
+/api/shared/instance.json

@@ -8,7 +8,7 @@
       "methods": [
         "post"
       ],
-      "route":"claim/{id}"
+      "route": "claim/{id}"
     },
     {
       "type": "http",
@@ -18,8 +18,8 @@
     {
       "type": "cosmosDB",
       "name": "claimItemIn",
-      "databaseName": "yaron",
-      "collectionName": "items",
+      "databaseName": "wishlists",
+      "collectionName": "items-yarontal",
       "connectionStringSetting": "CosmosDbConnectionString",
       "direction": "in",
       "Id": "{id}",
@@ -28,8 +28,8 @@
     {
       "name": "claimItemOut",
       "type": "cosmosDB",
-      "databaseName": "yaron",
-      "collectionName": "items",
+      "databaseName": "wishlists",
+      "collectionName": "items-yarontal",
       "createIfNotExists": true,
       "connectionStringSetting": "CosmosDbConnectionString",
       "direction": "out"
