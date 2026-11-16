@@ -7,7 +7,7 @@ The sites are listed in [`instances.json`](instances.json):
 | --- | --- |
 | `name` | Short name, used by the workflow and `scripts/configure-instance.mjs` |
 | `domain` | Public domain, also used for the undo link in the claim mail |
-| `title`, `theme`, `language` | Written to `public/config.js` (themes: `summer`, `unicorn`, `butterfly`, `flamingo`, `sheep`) |
+| `title`, `theme`, `language` | Written to `public/config.js` (themes: `unicorn`, `butterfly`, `flamingo`, `violin`, `moto`) |
 | `database`, `container` | Cosmos DB database and container with the items of this site |
 | `tokenSecret` | Name of the GitHub secret with the deployment token of the Static Web App |
 

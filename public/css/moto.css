@@ -1,0 +1,224 @@
+/*
+ * moto theme: sleek and modern, for a motorcyclist who works in IT security.
+ * - Light grey with navy text and blue accents, a faint grid, and tools and motorcycle
+ *   parts laid out on a work mat, with circuit traces and a shield.
+ * - A rev-counter tick bar under the title, a blinking terminal cursor after it,
+ *   monospace prices and a status-style "claimed" badge.
+ * - Space Grotesk (headings), Inter (text) and JetBrains Mono (numbers and labels),
+ *   served from our own domain (OFL, see /fonts).
+ * The theme stylesheet is loaded before base.css, so rules here use selectors that are
+ * more specific than the ones in base.css.
+ */
+
+@font-face {
+	font-family: "Space Grotesk";
+	font-style: normal;
+	font-display: swap;
+	font-weight: 300 700;
+	src: url("../fonts/space-grotesk.woff2") format("woff2");
+}
+
+@font-face {
+	font-family: "Inter";
+	font-style: normal;
+	font-display: swap;
+	font-weight: 100 900;
+	src: url("../fonts/inter.woff2") format("woff2");
+}
+
+@font-face {
+	font-family: "JetBrains Mono";
+	font-style: normal;
+	font-display: swap;
+	font-weight: 100 800;
+	src: url("../fonts/jetbrains-mono.woff2") format("woff2");
+}
+
+:root[data-theme="light"] {
+	--wl-bg: #f4f6f9;
+	--wl-ink: #0f1b2d;
+	--wl-accent: #1d4ed8;
+	--wl-accent-hover: #1e40af;
+	--wl-accent-soft: rgba(29, 78, 216, 0.18);
+	--wl-surface: #ffffff;
+	--wl-image-bg: #ffffff;
+	--wl-illustration: url("../img/moto.svg");
+	--wl-illustration-width: min(44vw, 38rem);
+
+	--mt-line: #e2e7ef;
+	--mt-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+html[data-theme="light"]:root {
+	--pico-font-family-sans-serif: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+	--pico-font-family: var(--pico-font-family-sans-serif);
+	--pico-border-radius: 0.6rem;
+	--pico-modal-overlay-background-color: rgba(15, 27, 45, 0.45);
+}
+
+/* Light grey with a faint blue grid. */
+html[data-theme="light"] body {
+	background:
+		radial-gradient(40rem 24rem at 0% 0%, rgba(29, 78, 216, 0.07), transparent 70%),
+		linear-gradient(rgba(29, 78, 216, 0.045) 1px, transparent 1px) 0 0 / 40px 40px,
+		linear-gradient(90deg, rgba(29, 78, 216, 0.045) 1px, transparent 1px) 0 0 / 40px 40px,
+		var(--wl-bg);
+	background-attachment: fixed;
+}
+
+html[data-theme="light"] :is(h1, h2, h3) {
+	font-family: "Space Grotesk", "Inter", sans-serif;
+}
+
+/* Header: title with a blinking cursor, and a rev counter underneath. */
+html[data-theme="light"] .site-header h1 {
+	font-weight: 700;
+	font-size: clamp(2rem, 5vw, 3.2rem);
+	letter-spacing: -0.03em;
+	line-height: 1.05;
+}
+
+html[data-theme="light"] .site-header h1::after {
+	content: "";
+	display: inline-block;
+	width: 0.5em;
+	height: 0.12em;
+	margin-left: 0.12em;
+	background: var(--wl-accent);
+	animation: mt-blink 1.1s steps(1) infinite;
+}
+
+@keyframes mt-blink {
+	50% { opacity: 0; }
+}
+
+html[data-theme="light"] .site-header::after {
+	content: "";
+	flex-basis: 100%;
+	height: 16px;
+	background: linear-gradient(90deg, #b8c2d1 0%, #8b98ad 50%, var(--wl-accent) 78%, #ef4444 100%);
+	-webkit-mask:
+		repeating-linear-gradient(90deg, #000 0 2px, transparent 2px 12px),
+		linear-gradient(#000, #000) left bottom / 100% 2px no-repeat;
+	mask:
+		repeating-linear-gradient(90deg, #000 0 2px, transparent 2px 12px),
+		linear-gradient(#000, #000) left bottom / 100% 2px no-repeat;
+}
+
+/* Buttons */
+html[data-theme="light"] :is(button, [role="button"], input[type="submit"]):not(.icon, .image-button, [rel="prev"]) {
+	padding-inline: 1.15rem;
+	font-family: "Space Grotesk", "Inter", sans-serif;
+	font-weight: 600;
+	letter-spacing: 0.01em;
+}
+
+/* Cards */
+html[data-theme="light"] article.item {
+	border: 1px solid var(--mt-line);
+	-webkit-backdrop-filter: none;
+	backdrop-filter: none;
+	box-shadow: 0 1px 2px rgba(15, 27, 45, 0.05), 0 12px 28px -18px rgba(15, 27, 45, 0.3);
+	transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+html[data-theme="light"] article.item:hover {
+	border-color: color-mix(in srgb, var(--wl-accent) 45%, var(--mt-line));
+	box-shadow: 0 1px 2px rgba(15, 27, 45, 0.05), 0 16px 32px -18px rgba(29, 78, 216, 0.35);
+}
+
+html[data-theme="light"] .item-image {
+	border-bottom: 1px solid var(--mt-line);
+}
+
+html[data-theme="light"] .item-image .placeholder {
+	stroke: #8b98ad;
+	opacity: 0.8;
+}
+
+/* "Claimed" as a status indicator. */
+html[data-theme="light"] .item-image .badge {
+	padding: 0.25rem 0.6rem;
+	border: 1px solid rgba(21, 128, 61, 0.3);
+	border-radius: 0.4rem;
+	background: #ecfdf3;
+	color: #15803d;
+	font-family: var(--mt-mono);
+	font-size: 0.72rem;
+	font-weight: 600;
+	letter-spacing: 0.04em;
+	text-transform: uppercase;
+}
+
+html[data-theme="light"] .item-image .badge::before {
+	content: "● ";
+}
+
+html[data-theme="light"] .item-body h3 {
+	font-weight: 600;
+	letter-spacing: -0.01em;
+	-webkit-hyphens: auto;
+	hyphens: auto;
+}
+
+html[data-theme="light"] .item-body .price {
+	font-family: var(--mt-mono);
+	font-weight: 600;
+	font-size: 1.05rem;
+}
+
+html[data-theme="light"] .item-actions .link {
+	color: var(--wl-ink);
+	text-decoration: underline;
+	text-decoration-color: var(--wl-accent);
+	text-decoration-thickness: 2px;
+	text-underline-offset: 0.3em;
+}
+
+html[data-theme="light"] .item-actions .link:hover {
+	color: var(--wl-accent);
+}
+
+/* Dialogs */
+html[data-theme="light"] dialog article {
+	position: relative;
+	overflow: hidden;
+	border: 1px solid var(--mt-line);
+}
+
+html[data-theme="light"] dialog article::before {
+	content: "";
+	position: absolute;
+	inset: 0 0 auto 0;
+	height: 3px;
+	background: var(--wl-accent);
+}
+
+html[data-theme="light"] dialog article > header {
+	background: #f7f9fc;
+	border-bottom: 1px solid var(--mt-line);
+}
+
+html[data-theme="light"] .site-footer a:hover {
+	color: var(--wl-accent);
+}
+
+@media (max-width: 576px) {
+	html[data-theme="light"] .item-body h3 {
+		font-size: 0.9rem;
+	}
+
+	html[data-theme="light"] :is(button, [role="button"]):not(.icon, .image-button, [rel="prev"]) {
+		padding-inline: 0.8rem;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	html[data-theme="light"] .site-header h1::after {
+		animation: none;
+	}
+
+	html[data-theme="light"] article.item {
+		transition: none;
+	}
+}

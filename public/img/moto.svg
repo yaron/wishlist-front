@@ -1,0 +1,140 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
+	<!--
+		Moto theme illustration: tools and motorcycle parts laid out neatly on a workbench
+		(screwdriver, combination wrenches, ratchet and sockets, oil filter, spark plug,
+		nuts and a chain sprocket), plus circuit traces and a shield.
+	-->
+	<defs>
+		<linearGradient id="chrome" x1="0" y1="0" x2="1" y2="0">
+			<stop offset="0" stop-color="#8a94a3" />
+			<stop offset=".35" stop-color="#eef1f6" />
+			<stop offset=".6" stop-color="#c3c9d2" />
+			<stop offset="1" stop-color="#7f8895" />
+		</linearGradient>
+		<radialGradient id="chrome-round" cx=".4" cy=".35" r=".7">
+			<stop offset="0" stop-color="#f4f6f9" />
+			<stop offset=".6" stop-color="#c3c9d2" />
+			<stop offset="1" stop-color="#7f8895" />
+		</radialGradient>
+		<linearGradient id="blue" x1="0" y1="0" x2="1" y2="0">
+			<stop offset="0" stop-color="#1c3580" />
+			<stop offset=".4" stop-color="#3b6ff0" />
+			<stop offset="1" stop-color="#1d4ed8" />
+		</linearGradient>
+		<linearGradient id="filter" x1="0" y1="0" x2="1" y2="0">
+			<stop offset="0" stop-color="#0f1b2d" />
+			<stop offset=".4" stop-color="#2a3550" />
+			<stop offset="1" stop-color="#0f1b2d" />
+		</linearGradient>
+
+		<!-- combination wrench: open end on top, ring end at the bottom -->
+		<mask id="wrench-cut" maskUnits="userSpaceOnUse" x="-80" y="-220" width="160" height="440">
+			<rect x="-80" y="-220" width="160" height="440" fill="#ffffff" />
+			<rect x="-14" y="-215" width="28" height="70" transform="rotate(15 0 -150)" fill="#000000" />
+			<path d="M14.7 8.5 L0.0 17.0 L-14.7 8.5 L-14.7 -8.5 L-0.0 -17.0 L14.7 -8.5 Z" transform="translate(0 150)" fill="#000000" />
+		</mask>
+		<g id="wrench">
+			<g mask="url(#wrench-cut)" fill="url(#chrome)">
+				<rect x="-13" y="-140" width="26" height="290" rx="8" />
+				<circle cy="-150" r="36" />
+				<circle cy="150" r="31" />
+			</g>
+			<path d="M-4 -100 V100" stroke="#8a94a3" stroke-width="3" stroke-linecap="round" />
+		</g>
+
+		<g id="screwdriver">
+			<path d="M-6 -200 L6 -200 L6 0 L-6 0 Z" fill="url(#chrome)" />
+			<path d="M-6 -200 L-3 -216 L3 -216 L6 -200 Z" fill="#8a94a3" />
+			<rect x="-14" y="-10" width="28" height="18" rx="4" fill="#0f1b2d" />
+			<rect x="-24" y="4" width="48" height="160" rx="20" fill="url(#blue)" />
+			<path d="M-10 30 V140 M0 30 V140 M10 30 V140" stroke="#9cc0ff" stroke-width="3" stroke-linecap="round" opacity=".7" />
+		</g>
+
+		<g id="ratchet">
+			<rect x="-11" y="-20" width="22" height="220" rx="10" fill="url(#chrome)" />
+			<rect x="-14" y="100" width="28" height="104" rx="13" fill="url(#blue)" />
+			<circle cy="-46" r="36" fill="url(#chrome-round)" />
+			<circle cy="-46" r="15" fill="#3a404d" />
+			<rect x="-6" y="-52" width="12" height="12" fill="#c3c9d2" />
+			<rect x="-26" y="-14" width="20" height="8" rx="4" fill="#3a404d" />
+		</g>
+
+		<g id="socket">
+			<circle r="30" fill="url(#chrome-round)" />
+			<circle r="24" fill="none" stroke="#8a94a3" stroke-width="2" />
+			<path d="M12.1 7.0 L0.0 14.0 L-12.1 7.0 L-12.1 -7.0 L-0.0 -14.0 L12.1 -7.0 Z" fill="#3a404d" />
+		</g>
+
+		<g id="nut">
+			<path d="M19.1 11.0 L0.0 22.0 L-19.1 11.0 L-19.1 -11.0 L-0.0 -22.0 L19.1 -11.0 Z" fill="url(#chrome-round)" stroke="#8a94a3" stroke-width="2" />
+			<circle r="10" fill="#3a404d" />
+		</g>
+
+		<g id="oil-filter">
+			<rect x="-58" y="-84" width="116" height="168" rx="16" fill="url(#filter)" />
+			<path d="M-46 -84 V-66 M-34 -84 V-66 M-22 -84 V-66 M-10 -84 V-66 M2 -84 V-66 M14 -84 V-66 M26 -84 V-66 M38 -84 V-66" stroke="#4a5568" stroke-width="3" />
+			<rect x="-58" y="-24" width="116" height="48" fill="#1d4ed8" />
+			<path d="M-58 -16 H58 M-58 16 H58" stroke="#ffffff" stroke-width="2" opacity=".7" />
+			<rect x="-46" y="84" width="92" height="12" rx="3" fill="#8a94a3" />
+		</g>
+
+		<g id="spark-plug">
+			<rect x="-6" y="-120" width="12" height="18" rx="3" fill="url(#chrome)" />
+			<path d="M-12 -102 H12 L14 -30 H-14 Z" fill="#f7f8fa" stroke="#c9d1dc" stroke-width="2" />
+			<path d="M-12 -90 H12 M-12 -78 H12 M-13 -66 H13" stroke="#c9d1dc" stroke-width="2" />
+			<rect x="-22" y="-30" width="44" height="34" rx="3" fill="url(#chrome)" />
+			<path d="M-7 -30 V4 M7 -30 V4" stroke="#8a94a3" stroke-width="2" />
+			<rect x="-12" y="4" width="24" height="52" fill="url(#chrome)" />
+			<path d="M-12 12 L12 6 M-12 22 L12 16 M-12 32 L12 26 M-12 42 L12 36 M-12 52 L12 46" stroke="#8a94a3" stroke-width="2" />
+			<path d="M-2 56 V66 M6 56 V72 H-4" fill="none" stroke="#5b6678" stroke-width="3" />
+		</g>
+
+		<g id="sprocket">
+			<path d="M58.0 0.0 L67.9 4.3 L67.3 9.7 L56.8 11.8 L55.7 16.3 L63.9 23.2 L61.9 28.2 L51.1 27.4 L48.8 31.4 L54.8 40.3 L51.4 44.5 L41.4 40.7 L38.0 43.8 L41.2 54.1 L36.8 57.2 L28.2 50.7 L24.1 52.8 L24.3 63.5 L19.2 65.2 L12.8 56.6 L8.3 57.4 L5.4 67.8 L0.0 68.0 L-3.6 57.9 L-8.3 57.4 L-13.9 66.6 L-19.2 65.2 L-19.8 54.5 L-24.1 52.8 L-32.1 60.0 L-36.8 57.2 L-34.4 46.7 L-38.0 43.8 L-47.7 48.5 L-51.4 44.5 L-46.1 35.2 L-48.8 31.4 L-59.4 33.1 L-61.9 28.2 L-54.2 20.7 L-55.7 16.3 L-66.3 15.0 L-67.3 9.7 L-57.8 4.6 L-58.0 0.0 L-67.9 -4.3 L-67.3 -9.7 L-56.8 -11.8 L-55.7 -16.3 L-63.9 -23.2 L-61.9 -28.2 L-51.1 -27.4 L-48.8 -31.4 L-54.8 -40.3 L-51.4 -44.5 L-41.4 -40.7 L-38.0 -43.8 L-41.2 -54.1 L-36.8 -57.2 L-28.2 -50.7 L-24.1 -52.8 L-24.3 -63.5 L-19.2 -65.2 L-12.8 -56.6 L-8.3 -57.4 L-5.4 -67.8 L-0.0 -68.0 L3.6 -57.9 L8.3 -57.4 L13.9 -66.6 L19.2 -65.2 L19.8 -54.5 L24.1 -52.8 L32.1 -60.0 L36.8 -57.2 L34.4 -46.7 L38.0 -43.8 L47.7 -48.5 L51.4 -44.5 L46.1 -35.2 L48.8 -31.4 L59.4 -33.1 L61.9 -28.2 L54.2 -20.7 L55.7 -16.3 L66.3 -15.0 L67.3 -9.7 L57.8 -4.6 Z" fill="#2c323d" />
+			<g fill="#e6ebf2"><circle cx="38.0" cy="0.0" r="11" /><circle cx="11.7" cy="36.1" r="11" /><circle cx="-30.7" cy="22.3" r="11" /><circle cx="-30.7" cy="-22.3" r="11" /><circle cx="11.7" cy="-36.1" r="11" /></g>
+			<circle r="16" fill="#e6ebf2" />
+			<circle r="24" fill="none" stroke="#4a5568" stroke-width="3" />
+		</g>
+	</defs>
+
+	<!-- circuit traces -->
+	<g fill="none" stroke="#c7d3e6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+		<path d="M1000 300 H880 L840 340 V380" />
+		<path d="M1000 360 H920 L890 390 V430" />
+		<path d="M560 140 V210 L600 250 H680 L720 290" />
+		<path d="M400 250 H480 L520 290 V340" />
+	</g>
+	<g fill="#ffffff" stroke="#a9bad3" stroke-width="3">
+		<circle cx="840" cy="380" r="7" />
+		<circle cx="890" cy="430" r="7" />
+		<circle cx="720" cy="290" r="7" />
+		<circle cx="520" cy="340" r="7" />
+		<circle cx="400" cy="250" r="7" />
+	</g>
+	<circle cx="560" cy="140" r="7" fill="#1d4ed8" />
+
+	<!-- shield with a keyhole -->
+	<g transform="translate(860 170)">
+		<path d="M0 -70 L58 -48 V2 C58 42 30 66 0 80 C-30 66 -58 42 -58 2 V-48 Z" fill="#ffffff" stroke="#1d4ed8" stroke-width="5" stroke-linejoin="round" />
+		<circle cy="-4" r="13" fill="#1d4ed8" />
+		<path d="M-6 4 L-10 34 H10 L6 4 Z" fill="#1d4ed8" />
+	</g>
+
+	<!-- the tools, laid out side by side and turned at an angle -->
+	<g transform="translate(620 690) rotate(-28) scale(.92)">
+		<!-- work mat -->
+		<rect x="-300" y="-230" width="640" height="440" rx="24" fill="#e6ebf2" stroke="#d3dae5" stroke-width="3" />
+		<rect x="-284" y="-214" width="608" height="408" rx="16" fill="none" stroke="#d3dae5" stroke-width="2" stroke-dasharray="10 8" />
+		<use href="#screwdriver" x="-250" y="10" />
+		<use href="#wrench" x="-170" y="0" />
+		<use href="#wrench" transform="translate(-100 30) scale(.78)" />
+		<use href="#ratchet" x="-25" y="-20" />
+		<use href="#oil-filter" x="90" y="-80" />
+		<use href="#socket" x="62" y="80" />
+		<use href="#socket" transform="translate(124 84) scale(.75)" />
+		<use href="#nut" x="70" y="150" />
+		<use href="#nut" transform="translate(120 150) scale(.75)" />
+		<use href="#spark-plug" x="200" y="-60" />
+		<use href="#sprocket" x="250" y="110" />
+	</g>
+</svg>
