@@ -92,16 +92,52 @@
 		<!-- arms -->
 		<g stroke="#f6c9a8" stroke-width="13" stroke-linecap="round" fill="none">
 			<path d="M-30 775 C-55 795 -62 820 -58 840" />
-			<path d="M30 775 C55 790 70 770 78 748" />
+			<path d="M34 778 C62 792 90 774 98 742" />
 		</g>
-		<!-- pigtails -->
-		<circle cx="-56" cy="690" r="22" fill="#8a5235" />
-		<circle cx="56" cy="690" r="22" fill="#8a5235" />
-		<circle cx="-46" cy="680" r="7" fill="#ffc93c" />
-		<circle cx="46" cy="680" r="7" fill="#ffc93c" />
+		<!-- curly hair down to the shoulders -->
+		<g fill="#8a5235">
+			<circle cx="-30" cy="652" r="22" />
+			<circle cx="0" cy="644" r="24" />
+			<circle cx="30" cy="652" r="22" />
+			<circle cx="-50" cy="668" r="22" />
+			<circle cx="50" cy="668" r="22" />
+			<circle cx="-60" cy="698" r="22" />
+			<circle cx="60" cy="698" r="22" />
+			<circle cx="-64" cy="728" r="21" />
+			<circle cx="64" cy="728" r="21" />
+			<circle cx="-60" cy="756" r="20" />
+			<circle cx="60" cy="756" r="20" />
+			<circle cx="-46" cy="778" r="17" />
+			<circle cx="46" cy="778" r="17" />
+		</g>
+		<g fill="none" stroke="#6e3f27" stroke-width="3" stroke-linecap="round">
+			<path d="M-58 670 q8 -10 14 0" />
+			<path d="M42 670 q8 -10 14 0" />
+			<path d="M-68 700 q8 -10 14 0" />
+			<path d="M52 700 q8 -10 14 0" />
+			<path d="M-72 730 q8 -10 14 0" />
+			<path d="M56 730 q8 -10 14 0" />
+			<path d="M-68 758 q8 -10 14 0" />
+			<path d="M52 758 q8 -10 14 0" />
+			<path d="M-54 780 q8 -10 14 0" />
+			<path d="M38 780 q8 -10 14 0" />
+		</g>
 		<!-- head -->
 		<circle cx="0" cy="710" r="50" fill="#f6c9a8" />
-		<path d="M-50 708 C-52 660 -20 652 0 652 C20 652 52 660 50 708 C40 690 20 682 0 690 C-20 682 -40 690 -50 708 Z" fill="#8a5235" />
+		<!-- curly fringe and a hair clip -->
+		<g fill="#8a5235">
+			<circle cx="-38" cy="680" r="14" />
+			<circle cx="-18" cy="668" r="15" />
+			<circle cx="4" cy="664" r="15" />
+			<circle cx="26" cy="670" r="15" />
+			<circle cx="42" cy="684" r="13" />
+		</g>
+		<g fill="none" stroke="#6e3f27" stroke-width="3" stroke-linecap="round">
+			<path d="M-24 670 q7 -9 13 0" />
+			<path d="M-2 666 q7 -9 13 0" />
+			<path d="M20 672 q7 -9 13 0" />
+		</g>
+		<circle cx="44" cy="674" r="8" fill="#ffc93c" />
 		<circle cx="-17" cy="716" r="6" fill="#3b2340" />
 		<circle cx="17" cy="716" r="6" fill="#3b2340" />
 		<path d="M-12 736 Q0 746 12 736" fill="none" stroke="#3b2340" stroke-width="4" stroke-linecap="round" />
