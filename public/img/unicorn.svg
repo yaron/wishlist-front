@@ -1,0 +1,129 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
+	<!-- Unicorn theme illustration: a unicorn in a moonlit forest, a longbow and a quiver against a pine. -->
+	<defs>
+		<linearGradient id="mane" x1="0" y1="0" x2="1" y2="1">
+			<stop offset="0" stop-color="#c9b6ff" />
+			<stop offset=".5" stop-color="#8fe3e0" />
+			<stop offset="1" stop-color="#ffb3d1" />
+		</linearGradient>
+		<linearGradient id="coat" x1="0" y1="0" x2="0" y2="1">
+			<stop offset="0" stop-color="#ffffff" />
+			<stop offset="1" stop-color="#dfe3f2" />
+		</linearGradient>
+		<linearGradient id="horn" x1="0" y1="0" x2="0" y2="1">
+			<stop offset="0" stop-color="#fff6d6" />
+			<stop offset="1" stop-color="#e2b65a" />
+		</linearGradient>
+		<radialGradient id="glow">
+			<stop offset="0" stop-color="#fff8dc" stop-opacity=".55" />
+			<stop offset="1" stop-color="#fff8dc" stop-opacity="0" />
+		</radialGradient>
+		<path id="pine" d="M0 -260 L46 -170 L24 -170 L70 -80 L40 -80 L92 20 L-92 20 L-40 -80 L-70 -80 L-24 -170 L-46 -170 Z" />
+		<path id="spark" d="M0 -14 C1.5 -4 4 -1.5 14 0 C4 1.5 1.5 4 0 14 C-1.5 4 -4 1.5 -14 0 C-4 -1.5 -1.5 -4 0 -14 Z" />
+	</defs>
+
+	<!-- moon -->
+	<circle cx="800" cy="260" r="190" fill="url(#glow)" />
+	<path d="M800 170 A90 90 0 1 0 870 320 A72 72 0 1 1 800 170 Z" fill="#f6efd2" />
+
+	<!-- stars -->
+	<g fill="#f6efd2">
+		<use href="#spark" transform="translate(600 160)" />
+		<use href="#spark" transform="translate(940 420) scale(.7)" />
+		<use href="#spark" transform="translate(380 300) scale(.8)" />
+		<circle cx="690" cy="90" r="3" />
+		<circle cx="520" cy="230" r="2.5" />
+		<circle cx="930" cy="140" r="3" />
+		<circle cx="300" cy="420" r="2.5" />
+		<circle cx="980" cy="600" r="2" />
+	</g>
+
+	<!-- far hills and pines -->
+	<path d="M0 1000 C120 900 260 770 560 770 C700 770 840 740 1000 700 L1000 1000 Z" fill="#1f4a3c" />
+	<g fill="#173a30">
+		<use href="#pine" transform="translate(930 760) scale(.9)" />
+		<use href="#pine" transform="translate(860 790) scale(.65)" />
+	</g>
+
+	<!-- near hill -->
+	<path d="M0 1000 C80 930 240 850 520 840 C700 836 900 870 1000 890 L1000 1000 Z" fill="#12302a" />
+
+	<!-- pine with the longbow and quiver -->
+	<g fill="#0d241f">
+		<use href="#pine" transform="translate(210 880) scale(1.25)" />
+		<rect x="198" y="880" width="24" height="40" />
+	</g>
+	<!-- longbow -->
+	<path d="M300 560 C345 660 345 800 300 900" fill="none" stroke="#8a5a2b" stroke-width="9" stroke-linecap="round" />
+	<path d="M300 560 L300 900" stroke="#e9e2cf" stroke-width="2" />
+	<rect x="324" y="715" width="16" height="30" rx="4" fill="#4a2f17" />
+	<!-- quiver with arrows -->
+	<g transform="translate(375 860) rotate(12)">
+		<g stroke="#cdb48a" stroke-width="4">
+			<path d="M-10 -120 L-14 -190" />
+			<path d="M4 -120 L4 -200" />
+			<path d="M18 -120 L22 -186" />
+		</g>
+		<g fill="#5f8f6b">
+			<path d="M-14 -190 l-7 -4 l-1 -24 l8 6 z M-14 -190 l7 -4 l-1 -24 l-6 6 z" />
+			<path d="M4 -200 l-7 -4 l0 -24 l7 6 z M4 -200 l7 -4 l0 -24 l-7 6 z" />
+			<path d="M22 -186 l-7 -4 l1 -24 l6 6 z M22 -186 l7 -4 l1 -24 l-8 6 z" />
+		</g>
+		<path d="M-28 -130 L32 -130 L26 40 Q2 52 -22 40 Z" fill="#6b4423" />
+		<path d="M-28 -130 L32 -130 L31 -110 L-27 -110 Z" fill="#4a2f17" />
+		<path d="M-24 -60 L28 -60" stroke="#4a2f17" stroke-width="5" />
+	</g>
+
+	<!-- unicorn -->
+	<g>
+		<!-- tail -->
+		<path d="M760 665 C830 640 880 700 860 790 C850 830 830 850 805 860 C828 820 830 770 800 730 C785 710 770 700 755 692 Z" fill="url(#mane)" />
+		<!-- far legs -->
+		<g stroke="#cfd4e6" stroke-width="20" stroke-linecap="round">
+			<path d="M585 720 L578 840" />
+			<path d="M720 725 L735 840" />
+		</g>
+		<!-- body -->
+		<ellipse cx="660" cy="690" rx="125" ry="66" fill="url(#coat)" />
+		<!-- near legs -->
+		<g stroke="#f4f5fb" stroke-width="22" stroke-linecap="round">
+			<path d="M560 715 C556 760 552 800 548 842" />
+			<path d="M755 712 C762 760 768 800 772 842" />
+		</g>
+		<g fill="#e2b65a">
+			<rect x="533" y="842" width="30" height="14" rx="4" />
+			<rect x="563" y="840" width="28" height="13" rx="4" />
+			<rect x="720" y="840" width="28" height="13" rx="4" />
+			<rect x="757" y="842" width="30" height="14" rx="4" />
+		</g>
+		<!-- neck -->
+		<path d="M545 705 C525 650 505 590 478 528 L540 500 C556 560 590 618 640 650 Z" fill="url(#coat)" />
+		<!-- head -->
+		<path d="M480 470 C455 470 425 492 405 526 C396 541 402 556 418 557 C440 558 462 550 482 544 C510 536 530 516 532 494 C534 474 505 466 480 470 Z" fill="#ffffff" />
+		<ellipse cx="418" cy="540" rx="5" ry="3.5" fill="#b9bfd6" />
+		<!-- ear -->
+		<path d="M503 476 L516 434 L528 482 Z" fill="#ffffff" />
+		<path d="M509 474 L516 450 L522 476 Z" fill="#ffc6dc" />
+		<!-- horn -->
+		<path d="M474 476 L446 376 L494 466 Z" fill="url(#horn)" />
+		<g stroke="#d3a547" stroke-width="2.5" stroke-linecap="round">
+			<path d="M466 450 L484 444" />
+			<path d="M461 428 L476 422" />
+			<path d="M455 406 L467 401" />
+		</g>
+		<!-- mane -->
+		<path d="M498 462 C560 464 566 536 604 576 C626 600 652 624 628 652 C606 616 576 604 556 568 C536 532 516 500 498 462 Z" fill="url(#mane)" />
+		<path d="M488 468 C470 440 486 418 512 426 C496 436 494 452 506 466 Z" fill="url(#mane)" />
+		<path d="M526 486 C560 520 548 560 576 600" fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round" opacity=".6" />
+		<!-- eye -->
+		<path d="M460 500 Q470 492 480 500 Q470 506 460 500 Z" fill="#2a2140" />
+		<path d="M478 497 l7 -5 M474 495 l4 -7" stroke="#2a2140" stroke-width="2" stroke-linecap="round" />
+	</g>
+
+	<!-- sparkles around the horn -->
+	<g fill="#fff6d6">
+		<use href="#spark" transform="translate(420 360) scale(.9)" />
+		<use href="#spark" transform="translate(480 330) scale(.55)" />
+		<use href="#spark" transform="translate(400 420) scale(.5)" />
+	</g>
+</svg>

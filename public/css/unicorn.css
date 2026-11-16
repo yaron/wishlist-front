@@ -1,12 +1,200 @@
-/* unicorn theme: only sets the variables used by base.css. */
+/*
+ * unicorn theme: for a girl on her way to secondary school who loves unicorns and
+ * fantasy adventure books about rangers and archers.
+ * - A moonlit night sky over the forest, with parchment cards that have an
+ *   iridescent (unicorn) edge.
+ * - An arrow under the title, forest green buttons, bronze prices, a starry badge.
+ * - Cinzel (headings) and Lora (text), served from our own domain (OFL, see /fonts).
+ * The theme stylesheet is loaded before base.css, so rules here use selectors that are
+ * more specific than the ones in base.css.
+ */
+
+@font-face {
+	font-family: "Cinzel";
+	font-style: normal;
+	font-display: swap;
+	font-weight: 400 900;
+	src: url("../fonts/cinzel.woff2") format("woff2");
+}
+
+@font-face {
+	font-family: "Lora";
+	font-style: normal;
+	font-display: swap;
+	font-weight: 400 700;
+	src: url("../fonts/lora.woff2") format("woff2");
+}
+
 :root[data-theme="light"] {
-	--wl-bg: #ffe3ec;
-	--wl-ink: #6b0f63;
-	--wl-accent: #a21caf;
-	--wl-accent-hover: #86198f;
-	--wl-accent-soft: rgba(192, 38, 211, 0.18);
-	--wl-surface: rgba(255, 255, 255, 0.82);
-	--wl-image-bg: #ffffff;
-	--wl-illustration: url("../img/unicorn.png");
+	--wl-bg: #14213a;
+	--wl-ink: #1f2a3a;
+	--wl-accent: #2f6b4f;
+	--wl-accent-hover: #24543e;
+	--wl-accent-soft: rgba(47, 107, 79, 0.22);
+	--wl-surface: #f8f3e6;
+	--wl-image-bg: #fffdf7;
+	--wl-illustration: url("../img/unicorn.svg");
 	--wl-illustration-width: min(44vw, 38rem);
+
+	--un-moon: #f6efd2;
+	--un-bronze: #7a4e12;
+	--un-shimmer: linear-gradient(135deg, #c9b6ff, #8fe3e0 50%, #ffb3d1);
+	--un-fletching: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='24'%3E%3Cpath d='M4 12 L50 12' stroke='%23cdb48a' stroke-width='3'/%3E%3Cpath d='M10 12 L22 2 L46 2 L36 12 Z' fill='%235f8f6b'/%3E%3Cpath d='M10 12 L22 22 L46 22 L36 12 Z' fill='%23497a57'/%3E%3Cpath d='M2 8 L8 12 L2 16' fill='none' stroke='%23cdb48a' stroke-width='3' stroke-linejoin='round'/%3E%3C/svg%3E");
+	--un-arrowhead: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='36' height='24'%3E%3Cpath d='M0 12 L10 12' stroke='%23cdb48a' stroke-width='3'/%3E%3Cpath d='M8 4 L34 12 L8 20 L13 12 Z' fill='%23d9dde8'/%3E%3C/svg%3E");
+	--un-stars: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cg fill='%23f6efd2'%3E%3Ccircle cx='20' cy='30' r='1.2' opacity='.7'/%3E%3Ccircle cx='90' cy='14' r='.9' opacity='.5'/%3E%3Ccircle cx='150' cy='60' r='1.4' opacity='.6'/%3E%3Ccircle cx='60' cy='100' r='.8' opacity='.5'/%3E%3Ccircle cx='120' cy='140' r='1.1' opacity='.6'/%3E%3Ccircle cx='30' cy='160' r='.9' opacity='.4'/%3E%3Cpath d='M110 80 c.6 4 1.6 5 5 5.6 c-3.4 .6 -4.4 1.6 -5 5.6 c-.6 -4 -1.6 -5 -5 -5.6 c3.4 -.6 4.4 -1.6 5 -5.6z' opacity='.55'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+html[data-theme="light"]:root {
+	--pico-font-family-sans-serif: "Lora", Georgia, serif;
+	--pico-font-family: var(--pico-font-family-sans-serif);
+	--pico-border-radius: 0.9rem;
+	--pico-modal-overlay-background-color: rgba(8, 12, 26, 0.65);
+}
+
+/* Night sky with a faint aurora and stars. */
+html[data-theme="light"] body {
+	background:
+		radial-gradient(40rem 22rem at 15% 0%, rgba(201, 182, 255, 0.18), transparent 70%),
+		radial-gradient(36rem 20rem at 70% 8%, rgba(143, 227, 224, 0.1), transparent 70%),
+		var(--un-stars),
+		linear-gradient(180deg, #121c33 0%, #172a45 50%, #1a3a3a 100%);
+	background-attachment: fixed;
+}
+
+html[data-theme="light"] :is(h1, h2, h3) {
+	font-family: "Cinzel", Georgia, serif;
+}
+
+/* Header: moonlit title with an arrow beneath it. */
+html[data-theme="light"] .site-header h1 {
+	color: var(--un-moon);
+	font-weight: 700;
+	font-size: clamp(1.9rem, 5vw, 3.1rem);
+	letter-spacing: 0.04em;
+	line-height: 1.15;
+	text-shadow: 0 0 24px rgba(246, 239, 210, 0.35);
+}
+
+html[data-theme="light"] .site-header::after {
+	content: "";
+	flex-basis: 100%;
+	height: 24px;
+	background:
+		var(--un-fletching) left center / 56px 24px no-repeat,
+		var(--un-arrowhead) right center / 36px 24px no-repeat,
+		linear-gradient(#cdb48a, #cdb48a) center / calc(100% - 80px) 3px no-repeat;
+}
+
+html[data-theme="light"] main > p,
+html[data-theme="light"] main > .error {
+	color: var(--un-moon);
+}
+
+/* Buttons */
+html[data-theme="light"] :is(button, [role="button"], input[type="submit"]):not(.icon, .image-button, [rel="prev"]) {
+	border-radius: 0.6rem;
+	padding-inline: 1.2rem;
+	font-weight: 600;
+	letter-spacing: 0.02em;
+}
+
+html[data-theme="light"] .site-header nav button:not(.outline) {
+	background-color: var(--un-moon);
+	border-color: var(--un-moon);
+	color: var(--wl-ink);
+}
+
+/* Parchment cards with an iridescent edge. */
+html[data-theme="light"] article.item {
+	border: 2px solid transparent;
+	background:
+		linear-gradient(var(--wl-surface), var(--wl-surface)) padding-box,
+		var(--un-shimmer) border-box;
+	-webkit-backdrop-filter: none;
+	backdrop-filter: none;
+	box-shadow: 0 14px 30px -14px rgba(0, 0, 0, 0.6);
+}
+
+html[data-theme="light"] article.item:hover {
+	box-shadow: 0 0 0 1px rgba(201, 182, 255, 0.3), 0 18px 36px -12px rgba(143, 227, 224, 0.35);
+}
+
+html[data-theme="light"] .item-image {
+	border-bottom: 1px solid rgba(122, 78, 18, 0.18);
+}
+
+html[data-theme="light"] .item-image .badge {
+	padding: 0.25rem 0.7rem;
+	background: #3f3277;
+	color: var(--un-moon);
+	font-family: "Cinzel", serif;
+	font-size: 0.72rem;
+	letter-spacing: 0.06em;
+}
+
+html[data-theme="light"] .item-image .badge::before {
+	content: "✦ ";
+	color: #8fe3e0;
+}
+
+html[data-theme="light"] .item-body h3 {
+	font-weight: 700;
+	font-size: 1rem;
+	letter-spacing: 0.02em;
+}
+
+html[data-theme="light"] .item-body .price {
+	color: var(--un-bronze);
+	font-family: "Cinzel", serif;
+	font-weight: 700;
+}
+
+html[data-theme="light"] .item-actions .link {
+	color: var(--wl-ink);
+	text-decoration: underline;
+	text-decoration-color: #b8a3f0;
+	text-decoration-thickness: 2px;
+	text-underline-offset: 0.3em;
+}
+
+html[data-theme="light"] .item-actions .link:hover {
+	color: var(--wl-accent);
+}
+
+/* Dialogs: parchment with a shimmering line on top. */
+html[data-theme="light"] dialog article {
+	--pico-card-background-color: var(--wl-surface);
+	position: relative;
+	overflow: hidden;
+}
+
+html[data-theme="light"] dialog article::before {
+	content: "";
+	position: absolute;
+	inset: 0 0 auto 0;
+	height: 5px;
+	background: var(--un-shimmer);
+}
+
+html[data-theme="light"] dialog article > header {
+	background: #f1e9d6;
+}
+
+/* Footer on the night sky. */
+html[data-theme="light"] .site-footer a {
+	color: rgba(246, 239, 210, 0.7);
+}
+
+html[data-theme="light"] .site-footer a:hover {
+	color: var(--un-moon);
+}
+
+@media (max-width: 576px) {
+	html[data-theme="light"] .item-body h3 {
+		font-size: 0.9rem;
+	}
+
+	html[data-theme="light"] :is(button, [role="button"]):not(.icon, .image-button, [rel="prev"]) {
+		padding-inline: 0.8rem;
+	}
 }
