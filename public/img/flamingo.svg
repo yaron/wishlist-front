@@ -70,78 +70,110 @@
 		<circle cx="22" cy="0" r="4" fill="#ffffff" opacity=".8" />
 	</g>
 
-	<!-- the doll -->
+	<!-- the doll, modelled on Rivka: honey-blonde curls, navy jacket with a colourful zigzag trim -->
+	<defs>
+		<pattern id="trim" width="12" height="14" patternUnits="userSpaceOnUse">
+			<rect width="12" height="14" fill="#1f1d2e" />
+			<path d="M1 1 L6 6 L11 1 Z" fill="#f0559b" />
+			<path d="M1 13 L6 8 L11 13 Z" fill="#3cc8d8" />
+			<circle cx="2" cy="7" r="1.4" fill="#ffd23f" />
+			<circle cx="10" cy="7" r="1.4" fill="#ffffff" />
+		</pattern>
+	</defs>
 	<g transform="translate(330 0)">
-		<!-- legs and shoes -->
-		<g stroke="#f6c9a8" stroke-width="14" stroke-linecap="round">
-			<path d="M-22 880 L-40 918" />
-			<path d="M22 880 L40 918" />
+		<!-- jeans and shoes -->
+		<g stroke="#7ea6d6" stroke-width="18" stroke-linecap="round">
+			<path d="M-22 866 L-36 908" />
+			<path d="M22 866 L36 908" />
 		</g>
-		<ellipse cx="-46" cy="922" rx="18" ry="11" fill="#e2648a" />
-		<ellipse cx="46" cy="922" rx="18" ry="11" fill="#e2648a" />
-		<!-- dress -->
-		<path d="M-30 760 C-45 800 -70 860 -78 890 C-30 905 30 905 78 890 C70 860 45 800 30 760 Z" fill="#7fd8be" />
-		<g fill="#ffffff" opacity=".85">
-			<circle cx="-30" cy="840" r="5" />
-			<circle cx="10" cy="815" r="5" />
-			<circle cx="40" cy="860" r="5" />
-			<circle cx="-50" cy="875" r="5" />
-			<circle cx="0" cy="870" r="5" />
+		<ellipse cx="-44" cy="920" rx="19" ry="11" fill="#e2648a" />
+		<ellipse cx="44" cy="920" rx="19" ry="11" fill="#e2648a" />
+		<!-- jacket -->
+		<path d="M-36 760 C-50 795 -56 845 -54 878 C-20 886 20 886 54 878 C56 845 50 795 36 760 Z" fill="#2c3658" />
+		<rect x="-8" y="768" width="16" height="114" fill="url(#trim)" />
+		<path d="M0 768 V882" stroke="#1f1d2e" stroke-width="2" />
+		<path d="M-40 850 Q-26 846 -16 852 M40 850 Q26 846 16 852" fill="none" stroke="#1f2847" stroke-width="3" stroke-linecap="round" />
+		<!-- knitted collar -->
+		<rect x="-22" y="748" width="44" height="22" rx="9" fill="#f3ead6" />
+		<path d="M-14 752 v14 M-6 752 v14 M2 752 v14 M10 752 v14" stroke="#ddd0b4" stroke-width="2" />
+		<!-- curls, falling over the shoulders -->
+		<g fill="#c99a5b">
+			<circle cx="-30" cy="650" r="22" />
+			<circle cx="0" cy="642" r="24" />
+			<circle cx="30" cy="650" r="22" />
+			<circle cx="-54" cy="666" r="22" />
+			<circle cx="54" cy="664" r="23" />
+			<circle cx="-64" cy="694" r="21" />
+			<circle cx="66" cy="696" r="22" />
+			<circle cx="-72" cy="724" r="20" />
+			<circle cx="70" cy="728" r="21" />
+			<circle cx="-68" cy="754" r="22" />
+			<circle cx="74" cy="758" r="19" />
+			<circle cx="-76" cy="782" r="17" />
+			<circle cx="64" cy="786" r="21" />
+			<circle cx="-56" cy="800" r="17" />
+			<circle cx="82" cy="800" r="14" />
+			<circle cx="-84" cy="806" r="12" />
+			<circle cx="46" cy="808" r="14" />
 		</g>
-		<path d="M-30 760 Q0 780 30 760" fill="none" stroke="#ffffff" stroke-width="6" stroke-linecap="round" />
-		<!-- arms -->
-		<g stroke="#f6c9a8" stroke-width="13" stroke-linecap="round" fill="none">
-			<path d="M-30 775 C-55 795 -62 820 -58 840" />
-			<path d="M34 778 C62 792 90 774 98 742" />
+		<g fill="none" stroke="#a8783f" stroke-width="3" stroke-linecap="round">
+			<path d="M-63 670 q5 -11 11 -3 q4 6 9 -2" />
+			<path d="M45 668 q5 -11 11 -3 q4 6 9 -2" />
+			<path d="M-73 698 q5 -11 11 -3 q4 6 9 -2" />
+			<path d="M57 700 q5 -11 11 -3 q4 6 9 -2" />
+			<path d="M-81 728 q5 -11 11 -3 q4 6 9 -2" />
+			<path d="M61 732 q5 -11 11 -3 q4 6 9 -2" />
+			<path d="M-77 758 q5 -11 11 -3 q4 6 9 -2" />
+			<path d="M65 762 q5 -11 11 -3 q4 6 9 -2" />
+			<path d="M-85 786 q5 -11 11 -3 q4 6 9 -2" />
+			<path d="M55 790 q5 -11 11 -3 q4 6 9 -2" />
+			<path d="M-65 804 q5 -11 11 -3 q4 6 9 -2" />
+			<path d="M73 804 q5 -11 11 -3 q4 6 9 -2" />
+			<path d="M37 812 q5 -11 11 -3 q4 6 9 -2" />
 		</g>
-		<!-- curly hair down to the shoulders -->
-		<g fill="#8a5235">
-			<circle cx="-30" cy="652" r="22" />
-			<circle cx="0" cy="644" r="24" />
-			<circle cx="30" cy="652" r="22" />
-			<circle cx="-50" cy="668" r="22" />
-			<circle cx="50" cy="668" r="22" />
-			<circle cx="-60" cy="698" r="22" />
-			<circle cx="60" cy="698" r="22" />
-			<circle cx="-64" cy="728" r="21" />
-			<circle cx="64" cy="728" r="21" />
-			<circle cx="-60" cy="756" r="20" />
-			<circle cx="60" cy="756" r="20" />
-			<circle cx="-46" cy="778" r="17" />
-			<circle cx="46" cy="778" r="17" />
+		<g fill="none" stroke="#ecc98e" stroke-width="3" stroke-linecap="round">
+			<path d="M-58 654 q6 -3 10 2" />
+			<path d="M-68 682 q6 -3 10 2" />
+			<path d="M-76 712 q6 -3 10 2" />
+			<path d="M-72 742 q6 -3 10 2" />
+			<path d="M-80 770 q6 -3 10 2" />
+			<path d="M-60 788 q6 -3 10 2" />
+			<path d="M-88 794 q6 -3 10 2" />
 		</g>
-		<g fill="none" stroke="#6e3f27" stroke-width="3" stroke-linecap="round">
-			<path d="M-58 670 q8 -10 14 0" />
-			<path d="M42 670 q8 -10 14 0" />
-			<path d="M-68 700 q8 -10 14 0" />
-			<path d="M52 700 q8 -10 14 0" />
-			<path d="M-72 730 q8 -10 14 0" />
-			<path d="M56 730 q8 -10 14 0" />
-			<path d="M-68 758 q8 -10 14 0" />
-			<path d="M52 758 q8 -10 14 0" />
-			<path d="M-54 780 q8 -10 14 0" />
-			<path d="M38 780 q8 -10 14 0" />
+		<!-- a few loose ringlets -->
+		<g fill="none" stroke="#c99a5b" stroke-width="6" stroke-linecap="round">
+			<path d="M-88 790 q-10 10 -2 20 q8 10 -2 20" />
+			<path d="M92 790 q10 10 2 20 q-8 10 2 18" />
 		</g>
+		<!-- arms: one hanging, one waving -->
+		<g stroke="#2c3658" stroke-width="17" stroke-linecap="round" fill="none">
+			<path d="M-40 778 C-62 800 -68 824 -64 842" />
+			<path d="M40 780 C64 794 88 776 96 748" />
+		</g>
+		<circle cx="-63" cy="852" r="9" fill="#f9dcc8" />
+		<circle cx="98" cy="736" r="9" fill="#f9dcc8" />
 		<!-- head -->
-		<circle cx="0" cy="710" r="50" fill="#f6c9a8" />
-		<!-- curly fringe and a hair clip -->
-		<g fill="#8a5235">
-			<circle cx="-38" cy="680" r="14" />
-			<circle cx="-18" cy="668" r="15" />
-			<circle cx="4" cy="664" r="15" />
-			<circle cx="26" cy="670" r="15" />
-			<circle cx="42" cy="684" r="13" />
+		<circle cx="0" cy="710" r="50" fill="#f9dcc8" />
+		<!-- curly fringe -->
+		<g fill="#c99a5b">
+			<circle cx="-36" cy="676" r="13" />
+			<circle cx="-14" cy="665" r="15" />
+			<circle cx="10" cy="663" r="14" />
+			<circle cx="32" cy="670" r="13" />
+			<circle cx="46" cy="686" r="11" />
 		</g>
-		<g fill="none" stroke="#6e3f27" stroke-width="3" stroke-linecap="round">
-			<path d="M-24 670 q7 -9 13 0" />
+		<g fill="none" stroke="#a8783f" stroke-width="3" stroke-linecap="round">
+			<path d="M-26 672 q7 -9 13 0" />
 			<path d="M-2 666 q7 -9 13 0" />
-			<path d="M20 672 q7 -9 13 0" />
+			<path d="M22 672 q7 -9 13 0" />
 		</g>
-		<circle cx="44" cy="674" r="8" fill="#ffc93c" />
+		<!-- face -->
 		<circle cx="-17" cy="716" r="6" fill="#3b2340" />
 		<circle cx="17" cy="716" r="6" fill="#3b2340" />
+		<circle cx="-15" cy="714" r="2" fill="#ffffff" />
+		<circle cx="19" cy="714" r="2" fill="#ffffff" />
 		<path d="M-12 736 Q0 746 12 736" fill="none" stroke="#3b2340" stroke-width="4" stroke-linecap="round" />
-		<circle cx="-30" cy="732" r="8" fill="#ff6f91" opacity=".45" />
-		<circle cx="30" cy="732" r="8" fill="#ff6f91" opacity=".45" />
+		<circle cx="-30" cy="732" r="9" fill="#ff7d95" opacity=".5" />
+		<circle cx="30" cy="732" r="9" fill="#ff7d95" opacity=".5" />
 	</g>
 </svg>
