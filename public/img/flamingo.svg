@@ -1,0 +1,169 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
+	<!-- Flamingo theme illustration: a flamingo off to school with her doll. -->
+	<defs>
+		<path id="star" d="M0 -22 L6 -7 L22 -7 L9 3 L14 19 L0 9 L-14 19 L-9 3 L-22 -7 L-6 -7 Z" />
+		<path id="heart" d="M0 8 C-14 -2 -20 -10 -14 -17 C-9 -22 -2 -19 0 -13 C2 -19 9 -22 14 -17 C20 -10 14 -2 0 8 Z" />
+	</defs>
+
+	<!-- ground -->
+	<ellipse cx="560" cy="935" rx="390" ry="38" fill="#bdebd9" />
+
+	<!-- confetti -->
+	<g>
+		<use href="#star" transform="translate(250 380) rotate(-12) scale(1.3)" fill="#ffc93c" />
+		<use href="#star" transform="translate(880 230) rotate(10)" fill="#b69cff" />
+		<use href="#heart" transform="translate(360 250) rotate(-10) scale(1.4)" fill="#f58aa8" />
+		<use href="#heart" transform="translate(900 600) rotate(12)" fill="#7fd8be" />
+		<circle cx="160" cy="560" r="9" fill="#7fd8be" />
+		<circle cx="760" cy="140" r="8" fill="#ffc93c" />
+		<circle cx="430" cy="430" r="6" fill="#b69cff" />
+	</g>
+
+	<!-- standing leg and bent leg -->
+	<g fill="none" stroke="#e2648a" stroke-width="12" stroke-linecap="round" stroke-linejoin="round">
+		<path d="M640 640 L640 925" />
+		<path d="M700 640 L725 760 L660 790" />
+	</g>
+	<circle cx="640" cy="790" r="10" fill="#e2648a" />
+	<path d="M612 932 C620 912 660 912 668 932 Z" fill="#e2648a" />
+
+	<!-- tail -->
+	<path d="M780 520 C840 500 880 520 905 560 C860 560 830 585 790 600 Z" fill="#e2648a" />
+
+	<!-- body -->
+	<ellipse cx="660" cy="560" rx="160" ry="110" transform="rotate(-8 660 560)" fill="#f58aa8" />
+
+	<!-- strap -->
+	<path d="M690 455 C650 465 600 490 560 510" fill="none" stroke="#ffb020" stroke-width="14" stroke-linecap="round" />
+
+	<!-- neck -->
+	<path d="M560 530 C480 480 470 400 525 355 C575 315 585 265 535 228" fill="none" stroke="#f58aa8" stroke-width="40" stroke-linecap="round" />
+
+	<!-- backpack -->
+	<g transform="rotate(12 730 470)">
+		<rect x="672" y="400" width="120" height="135" rx="34" fill="#ffc93c" />
+		<rect x="694" y="470" width="76" height="48" rx="16" fill="#ffb020" />
+		<rect x="694" y="470" width="76" height="14" rx="7" fill="#ff9f1c" />
+		<circle cx="732" cy="440" r="11" fill="#fff6dc" />
+		<path d="M710 400 C710 372 754 372 754 400" fill="none" stroke="#ff9f1c" stroke-width="9" stroke-linecap="round" />
+	</g>
+	<!-- wing -->
+	<path d="M600 545 C640 500 730 505 770 545 C760 560 745 565 735 560 C730 578 710 585 695 576 C688 596 660 600 645 586 C630 600 600 590 600 570 Z" fill="#ffb3c7" />
+
+	<!-- beak: light, with a dark bent tip -->
+	<clipPath id="beak-clip"><path id="beak" d="M486 196 C446 192 414 214 408 252 C404 272 410 288 422 296 C424 270 440 252 486 246 Z" /></clipPath>
+	<use href="#beak" fill="#fff3e8" />
+	<rect x="390" y="248" width="60" height="60" transform="rotate(-25 420 270)" fill="#3b2340" clip-path="url(#beak-clip)" />
+	<!-- head -->
+	<circle cx="522" cy="222" r="52" fill="#f58aa8" />
+	<!-- face -->
+	<circle cx="530" cy="208" r="9" fill="#3b2340" />
+	<circle cx="533" cy="205" r="3" fill="#ffffff" />
+	<path d="M512 193 Q528 182 544 190" fill="none" stroke="#3b2340" stroke-width="4" stroke-linecap="round" />
+	<circle cx="548" cy="236" r="11" fill="#ff6f91" opacity=".55" />
+	<!-- bow -->
+	<g transform="translate(548 172) rotate(20)">
+		<path d="M0 0 L-34 -20 C-42 -4 -42 8 -34 22 Z" fill="#b69cff" />
+		<path d="M0 0 L34 -20 C42 -4 42 8 34 22 Z" fill="#b69cff" />
+		<circle r="10" fill="#9b7bff" />
+		<circle cx="-22" cy="0" r="4" fill="#ffffff" opacity=".8" />
+		<circle cx="22" cy="0" r="4" fill="#ffffff" opacity=".8" />
+	</g>
+
+	<!-- the doll, modelled on Rivka: honey-blonde curls, navy jacket with a colourful zigzag trim -->
+	<defs>
+		<pattern id="trim" width="12" height="14" patternUnits="userSpaceOnUse">
+			<rect width="12" height="14" fill="#1f1d2e" />
+			<path d="M1 1 L6 6 L11 1 Z" fill="#f0559b" />
+			<path d="M1 13 L6 8 L11 13 Z" fill="#3cc8d8" />
+			<circle cx="2" cy="7" r="1.4" fill="#ffd23f" />
+			<circle cx="10" cy="7" r="1.4" fill="#ffffff" />
+		</pattern>
+	</defs>
+	<g transform="translate(330 0)">
+		<!-- jeans and shoes -->
+		<g stroke="#7ea6d6" stroke-width="18" stroke-linecap="round">
+			<path d="M-22 866 L-36 908" />
+			<path d="M22 866 L36 908" />
+		</g>
+		<ellipse cx="-44" cy="920" rx="19" ry="11" fill="#e2648a" />
+		<ellipse cx="44" cy="920" rx="19" ry="11" fill="#e2648a" />
+		<!-- jacket -->
+		<path d="M-36 760 C-50 795 -56 845 -54 878 C-20 886 20 886 54 878 C56 845 50 795 36 760 Z" fill="#2c3658" />
+		<rect x="-8" y="768" width="16" height="114" fill="url(#trim)" />
+		<path d="M0 768 V882" stroke="#1f1d2e" stroke-width="2" />
+		<path d="M-40 850 Q-26 846 -16 852 M40 850 Q26 846 16 852" fill="none" stroke="#1f2847" stroke-width="3" stroke-linecap="round" />
+		<!-- knitted collar -->
+		<rect x="-22" y="748" width="44" height="22" rx="9" fill="#f3ead6" />
+		<path d="M-14 752 v14 M-6 752 v14 M2 752 v14 M10 752 v14" stroke="#ddd0b4" stroke-width="2" />
+		<!-- curls, just reaching the shoulders -->
+		<g fill="#c99a5b">
+			<circle cx="-30" cy="650" r="22" />
+			<circle cx="0" cy="642" r="24" />
+			<circle cx="30" cy="650" r="22" />
+			<circle cx="-54" cy="666" r="22" />
+			<circle cx="54" cy="664" r="23" />
+			<circle cx="-64" cy="694" r="21" />
+			<circle cx="66" cy="696" r="22" />
+			<circle cx="-70" cy="724" r="20" />
+			<circle cx="70" cy="726" r="20" />
+			<circle cx="-64" cy="752" r="19" />
+			<circle cx="68" cy="754" r="18" />
+			<circle cx="-50" cy="770" r="15" />
+			<circle cx="52" cy="770" r="14" />
+		</g>
+		<g fill="none" stroke="#a8783f" stroke-width="3" stroke-linecap="round">
+			<path d="M-63 670 q5 -11 11 -3 q4 6 9 -2" />
+			<path d="M45 668 q5 -11 11 -3 q4 6 9 -2" />
+			<path d="M-73 698 q5 -11 11 -3 q4 6 9 -2" />
+			<path d="M57 700 q5 -11 11 -3 q4 6 9 -2" />
+			<path d="M-79 728 q5 -11 11 -3 q4 6 9 -2" />
+			<path d="M61 730 q5 -11 11 -3 q4 6 9 -2" />
+			<path d="M-73 756 q5 -11 11 -3 q4 6 9 -2" />
+			<path d="M59 758 q5 -11 11 -3 q4 6 9 -2" />
+			<path d="M-59 774 q5 -11 11 -3 q4 6 9 -2" />
+		</g>
+		<g fill="none" stroke="#ecc98e" stroke-width="3" stroke-linecap="round">
+			<path d="M-58 654 q6 -3 10 2" />
+			<path d="M-68 682 q6 -3 10 2" />
+			<path d="M-74 712 q6 -3 10 2" />
+			<path d="M-68 740 q6 -3 10 2" />
+			<path d="M-54 758 q6 -3 10 2" />
+		</g>
+		<!-- two loose ringlets -->
+		<g fill="none" stroke="#c99a5b" stroke-width="6" stroke-linecap="round">
+			<path d="M-82 748 q-9 8 -2 16 q7 8 -1 15" />
+			<path d="M84 746 q9 8 2 16 q-7 8 1 14" />
+		</g>
+		<!-- arms: one hanging, one waving -->
+		<g stroke="#2c3658" stroke-width="17" stroke-linecap="round" fill="none">
+			<path d="M-40 778 C-62 800 -68 824 -64 842" />
+			<path d="M40 780 C64 794 88 776 96 748" />
+		</g>
+		<circle cx="-63" cy="852" r="9" fill="#f9dcc8" />
+		<circle cx="98" cy="736" r="9" fill="#f9dcc8" />
+		<!-- head -->
+		<circle cx="0" cy="710" r="50" fill="#f9dcc8" />
+		<!-- curly fringe -->
+		<g fill="#c99a5b">
+			<circle cx="-36" cy="676" r="13" />
+			<circle cx="-14" cy="665" r="15" />
+			<circle cx="10" cy="663" r="14" />
+			<circle cx="32" cy="670" r="13" />
+			<circle cx="46" cy="686" r="11" />
+		</g>
+		<g fill="none" stroke="#a8783f" stroke-width="3" stroke-linecap="round">
+			<path d="M-26 672 q7 -9 13 0" />
+			<path d="M-2 666 q7 -9 13 0" />
+			<path d="M22 672 q7 -9 13 0" />
+		</g>
+		<!-- face -->
+		<circle cx="-17" cy="716" r="6" fill="#3b2340" />
+		<circle cx="17" cy="716" r="6" fill="#3b2340" />
+		<circle cx="-15" cy="714" r="2" fill="#ffffff" />
+		<circle cx="19" cy="714" r="2" fill="#ffffff" />
+		<path d="M-12 736 Q0 746 12 736" fill="none" stroke="#3b2340" stroke-width="4" stroke-linecap="round" />
+		<circle cx="-30" cy="732" r="9" fill="#ff7d95" opacity=".5" />
+		<circle cx="30" cy="732" r="9" fill="#ff7d95" opacity=".5" />
+	</g>
+</svg>

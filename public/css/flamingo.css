@@ -1,12 +1,213 @@
-/* flamingo theme: only sets the variables used by base.css. */
+/*
+ * flamingo theme: playful for a girl who just started school, without being babyish.
+ * - Colours: raspberry pink with sunny yellow, mint and lilac accents on a soft blush background.
+ * - Confetti on the page, bunting under the title, cards in alternating colours with a
+ *   stitched edge (like doll clothes), chunky buttons and a sticker-style "claimed" badge.
+ * - Fredoka (headings) and Nunito (text), served from our own domain (OFL, see /fonts).
+ * The theme stylesheet is loaded before base.css, so rules here use selectors that are
+ * more specific than the ones in base.css.
+ */
+
+@font-face {
+	font-family: "Fredoka";
+	font-style: normal;
+	font-display: swap;
+	font-weight: 300 700;
+	src: url("../fonts/fredoka.woff2") format("woff2");
+}
+
+@font-face {
+	font-family: "Nunito";
+	font-style: normal;
+	font-display: swap;
+	font-weight: 200 1000;
+	src: url("../fonts/nunito.woff2") format("woff2");
+}
+
 :root[data-theme="light"] {
-	--wl-bg: #ffe8ec;
-	--wl-ink: #7a2e2e;
-	--wl-accent: #be3145;
-	--wl-accent-hover: #9f2436;
-	--wl-accent-soft: rgba(190, 49, 69, 0.18);
-	--wl-surface: rgba(255, 255, 255, 0.82);
+	--wl-bg: #fff3f5;
+	--wl-ink: #4a2552;
+	--wl-accent: #d1386f;
+	--wl-accent-hover: #b12a5b;
+	--wl-accent-soft: rgba(209, 56, 111, 0.2);
+	--wl-surface: rgba(255, 255, 255, 0.92);
 	--wl-image-bg: #ffffff;
-	--wl-illustration: url("../img/flamingo.png");
-	--wl-illustration-width: min(42vw, 36rem);
+	--wl-illustration: url("../img/flamingo.svg");
+	--wl-illustration-width: min(40vw, 34rem);
+
+	--fl-pink: #f58aa8;
+	--fl-yellow: #ffc93c;
+	--fl-mint: #7fd8be;
+	--fl-lilac: #b69cff;
+	/* Bunting: a string with pink, yellow, mint and lilac flags. */
+	--fl-bunting: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='144' height='36'%3E%3Cpath d='M0 5 Q36 13 72 5 T144 5' fill='none' stroke='%234a2552' stroke-opacity='.5' stroke-width='2'/%3E%3Cpath d='M8 7 L32 10 L20 32 Z' fill='%23f58aa8'/%3E%3Cpath d='M44 10 L68 6 L56 30 Z' fill='%23ffc93c'/%3E%3Cpath d='M80 6 L104 10 L92 32 Z' fill='%237fd8be'/%3E%3Cpath d='M116 10 L140 6 L128 30 Z' fill='%23b69cff'/%3E%3C/svg%3E");
+	/* Confetti: dots, a tiny star and a tiny heart. */
+	--fl-confetti: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cg opacity='.25'%3E%3Ccircle cx='18' cy='22' r='4' fill='%23f58aa8'/%3E%3Ccircle cx='96' cy='40' r='3' fill='%23ffc93c'/%3E%3Ccircle cx='60' cy='112' r='4' fill='%237fd8be'/%3E%3Ccircle cx='124' cy='104' r='3' fill='%23b69cff'/%3E%3Cpath d='M70 60 l3 7 7 0 -6 5 2 7 -6 -4 -6 4 2 -7 -6 -5 7 0z' fill='%23ffc93c'/%3E%3Cpath d='M28 82 c-5 -4 -7 -7 -5 -10 c2 -2 4 -1 5 1 c1 -2 3 -3 5 -1 c2 3 0 6 -5 10z' fill='%23f58aa8'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+html[data-theme="light"]:root {
+	--pico-font-family-sans-serif: "Nunito", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+	--pico-font-family: var(--pico-font-family-sans-serif);
+	--pico-border-radius: 1.25rem;
+	--pico-modal-overlay-background-color: rgba(74, 37, 82, 0.45);
+}
+
+html[data-theme="light"] body {
+	background:
+		radial-gradient(48rem 32rem at 0% 0%, rgba(255, 201, 60, 0.18), transparent 60%),
+		radial-gradient(48rem 32rem at 100% 100%, rgba(127, 216, 190, 0.22), transparent 60%),
+		var(--fl-confetti),
+		var(--wl-bg);
+	background-attachment: fixed;
+}
+
+html[data-theme="light"] :is(h1, h2, h3) {
+	font-family: "Fredoka", "Nunito", system-ui, sans-serif;
+}
+
+/* Header: big friendly title with bunting underneath. */
+html[data-theme="light"] .site-header h1 {
+	font-weight: 600;
+	font-size: clamp(2rem, 5.5vw, 3.25rem);
+	letter-spacing: -0.01em;
+	line-height: 1.1;
+}
+
+html[data-theme="light"] .site-header::after {
+	content: "";
+	flex-basis: 100%;
+	height: 36px;
+	background: var(--fl-bunting) left top / auto 36px repeat-x;
+}
+
+/* Buttons: chunky pills that press down. */
+html[data-theme="light"] :is(button, [role="button"], input[type="submit"]):not(.icon, .image-button, [rel="prev"]) {
+	border-radius: 999px;
+	padding-inline: 1.25rem;
+	font-weight: 800;
+	box-shadow: 0 4px 0 color-mix(in srgb, var(--pico-primary-background) 70%, black);
+	transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+
+html[data-theme="light"] :is(button, [role="button"]).outline:not(.icon, [rel="prev"]),
+html[data-theme="light"] :is(button, [role="button"]).secondary.outline {
+	box-shadow: 0 4px 0 rgba(74, 37, 82, 0.25);
+}
+
+html[data-theme="light"] :is(button, [role="button"]):not(.icon, .image-button, [rel="prev"]):active {
+	transform: translateY(3px);
+	box-shadow: 0 1px 0 color-mix(in srgb, var(--pico-primary-background) 70%, black);
+}
+
+html[data-theme="light"] button.icon {
+	border-radius: 50%;
+}
+
+/* Cards in four colours, with a stitched edge around the picture. */
+html[data-theme="light"] .items > article.item {
+	--fl-c: var(--fl-pink);
+	border: 3px solid #ffffff;
+	box-shadow: 0 10px 24px -14px rgba(74, 37, 82, 0.45);
+}
+
+html[data-theme="light"] .items > article.item:nth-child(4n + 2) { --fl-c: var(--fl-yellow); }
+html[data-theme="light"] .items > article.item:nth-child(4n + 3) { --fl-c: var(--fl-mint); }
+html[data-theme="light"] .items > article.item:nth-child(4n + 4) { --fl-c: var(--fl-lilac); }
+
+html[data-theme="light"] .items > article.item:hover {
+	transform: translateY(-3px) rotate(-0.6deg);
+	box-shadow: 0 16px 30px -14px rgba(74, 37, 82, 0.5);
+}
+
+html[data-theme="light"] .item-image {
+	border-bottom: 0;
+	background: color-mix(in srgb, var(--fl-c, var(--fl-pink)) 22%, white);
+}
+
+html[data-theme="light"] .item-image::after {
+	content: "";
+	position: absolute;
+	inset: 0.4rem;
+	border: 2px dashed color-mix(in srgb, var(--fl-c, var(--fl-pink)) 85%, black);
+	border-radius: calc(var(--pico-border-radius) - 0.4rem);
+	opacity: 0.55;
+	pointer-events: none;
+}
+
+html[data-theme="light"] .item-image .placeholder {
+	stroke: color-mix(in srgb, var(--fl-c, var(--fl-pink)) 70%, black);
+	opacity: 0.6;
+}
+
+html[data-theme="light"] .item-image .badge {
+	top: 0.9rem;
+	left: 0.9rem;
+	padding: 0.25rem 0.75rem;
+	background: var(--fl-yellow);
+	color: var(--wl-ink);
+	font-family: "Fredoka", sans-serif;
+	font-size: 0.85rem;
+	transform: rotate(-5deg);
+	box-shadow: 0 2px 0 rgba(74, 37, 82, 0.25);
+}
+
+html[data-theme="light"] .item-body h3 {
+	font-weight: 600;
+}
+
+html[data-theme="light"] .item-body .price {
+	font-family: "Fredoka", sans-serif;
+	font-weight: 600;
+	font-size: 1.25rem;
+}
+
+html[data-theme="light"] .item-actions .link {
+	color: var(--wl-ink);
+	text-decoration: underline wavy var(--fl-c, var(--fl-pink));
+	text-decoration-thickness: 2px;
+	text-underline-offset: 0.3em;
+}
+
+html[data-theme="light"] .item-actions .link:hover {
+	color: var(--wl-accent);
+}
+
+/* Dialogs */
+html[data-theme="light"] dialog article {
+	border: 3px solid #ffffff;
+	outline: 2px dashed color-mix(in srgb, var(--fl-pink) 80%, black);
+	outline-offset: -10px;
+}
+
+html[data-theme="light"] dialog article > header {
+	background: color-mix(in srgb, var(--fl-pink) 18%, white);
+}
+
+html[data-theme="light"] .site-footer a:hover {
+	color: var(--wl-accent);
+}
+
+@media (max-width: 576px) {
+	html[data-theme="light"] .site-header::after {
+		height: 28px;
+		background-size: auto 28px;
+	}
+
+	html[data-theme="light"] .item-body .price {
+		font-size: 1.1rem;
+	}
+
+	html[data-theme="light"] :is(button, [role="button"]):not(.icon, .image-button, [rel="prev"]) {
+		padding-inline: 0.9rem;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	html[data-theme="light"] .items > article.item:hover {
+		transform: none;
+	}
+
+	html[data-theme="light"] :is(button, [role="button"]) {
+		transition: none;
+	}
 }
