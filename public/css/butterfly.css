@@ -156,7 +156,8 @@ html[data-theme="light"] .item-actions .link:hover {
 html[data-theme="light"] dialog article {
 	--pico-card-background-color: #fffaf4;
 	position: relative;
-	overflow: hidden;
+	/* Clip the decoration to the rounded corners, but let a tall dialog scroll. */
+	overflow: hidden auto;
 	padding-top: calc(var(--pico-block-spacing-vertical) + 8px);
 }
 

@@ -318,6 +318,19 @@ button.danger:is(:hover, :focus) {
 }
 
 /* Dialogs */
+/* Scrolling stays inside an open dialog: the page behind it does not move. */
+html {
+	scrollbar-gutter: stable;
+}
+
+html:has(dialog[open]) {
+	overflow: hidden;
+}
+
+dialog article {
+	overscroll-behavior: contain;
+}
+
 dialog article {
 	--pico-card-background-color: #ffffff;
 	box-shadow: 0 24px 48px -12px rgba(0, 0, 0, 0.35);
