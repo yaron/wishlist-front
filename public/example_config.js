@@ -1,6 +1,6 @@
 var config = {
     language: "en",
     api: "http://localhost:8080",
-    theme: "summer",
+    theme: "moto",
     title: "Wishlist",
 }
