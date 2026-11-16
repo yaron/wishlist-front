@@ -96,7 +96,7 @@
 		<!-- knitted collar -->
 		<rect x="-22" y="748" width="44" height="22" rx="9" fill="#f3ead6" />
 		<path d="M-14 752 v14 M-6 752 v14 M2 752 v14 M10 752 v14" stroke="#ddd0b4" stroke-width="2" />
-		<!-- curls, falling over the shoulders -->
+		<!-- curls, just reaching the shoulders -->
 		<g fill="#c99a5b">
 			<circle cx="-30" cy="650" r="22" />
 			<circle cx="0" cy="642" r="24" />
@@ -105,45 +105,35 @@
 			<circle cx="54" cy="664" r="23" />
 			<circle cx="-64" cy="694" r="21" />
 			<circle cx="66" cy="696" r="22" />
-			<circle cx="-72" cy="724" r="20" />
-			<circle cx="70" cy="728" r="21" />
-			<circle cx="-68" cy="754" r="22" />
-			<circle cx="74" cy="758" r="19" />
-			<circle cx="-76" cy="782" r="17" />
-			<circle cx="64" cy="786" r="21" />
-			<circle cx="-56" cy="800" r="17" />
-			<circle cx="82" cy="800" r="14" />
-			<circle cx="-84" cy="806" r="12" />
-			<circle cx="46" cy="808" r="14" />
+			<circle cx="-70" cy="724" r="20" />
+			<circle cx="70" cy="726" r="20" />
+			<circle cx="-64" cy="752" r="19" />
+			<circle cx="68" cy="754" r="18" />
+			<circle cx="-50" cy="770" r="15" />
+			<circle cx="52" cy="770" r="14" />
 		</g>
 		<g fill="none" stroke="#a8783f" stroke-width="3" stroke-linecap="round">
 			<path d="M-63 670 q5 -11 11 -3 q4 6 9 -2" />
 			<path d="M45 668 q5 -11 11 -3 q4 6 9 -2" />
 			<path d="M-73 698 q5 -11 11 -3 q4 6 9 -2" />
 			<path d="M57 700 q5 -11 11 -3 q4 6 9 -2" />
-			<path d="M-81 728 q5 -11 11 -3 q4 6 9 -2" />
-			<path d="M61 732 q5 -11 11 -3 q4 6 9 -2" />
-			<path d="M-77 758 q5 -11 11 -3 q4 6 9 -2" />
-			<path d="M65 762 q5 -11 11 -3 q4 6 9 -2" />
-			<path d="M-85 786 q5 -11 11 -3 q4 6 9 -2" />
-			<path d="M55 790 q5 -11 11 -3 q4 6 9 -2" />
-			<path d="M-65 804 q5 -11 11 -3 q4 6 9 -2" />
-			<path d="M73 804 q5 -11 11 -3 q4 6 9 -2" />
-			<path d="M37 812 q5 -11 11 -3 q4 6 9 -2" />
+			<path d="M-79 728 q5 -11 11 -3 q4 6 9 -2" />
+			<path d="M61 730 q5 -11 11 -3 q4 6 9 -2" />
+			<path d="M-73 756 q5 -11 11 -3 q4 6 9 -2" />
+			<path d="M59 758 q5 -11 11 -3 q4 6 9 -2" />
+			<path d="M-59 774 q5 -11 11 -3 q4 6 9 -2" />
 		</g>
 		<g fill="none" stroke="#ecc98e" stroke-width="3" stroke-linecap="round">
 			<path d="M-58 654 q6 -3 10 2" />
 			<path d="M-68 682 q6 -3 10 2" />
-			<path d="M-76 712 q6 -3 10 2" />
-			<path d="M-72 742 q6 -3 10 2" />
-			<path d="M-80 770 q6 -3 10 2" />
-			<path d="M-60 788 q6 -3 10 2" />
-			<path d="M-88 794 q6 -3 10 2" />
+			<path d="M-74 712 q6 -3 10 2" />
+			<path d="M-68 740 q6 -3 10 2" />
+			<path d="M-54 758 q6 -3 10 2" />
 		</g>
-		<!-- a few loose ringlets -->
+		<!-- two loose ringlets -->
 		<g fill="none" stroke="#c99a5b" stroke-width="6" stroke-linecap="round">
-			<path d="M-88 790 q-10 10 -2 20 q8 10 -2 20" />
-			<path d="M92 790 q10 10 2 20 q-8 10 2 18" />
+			<path d="M-82 748 q-9 8 -2 16 q7 8 -1 15" />
+			<path d="M84 746 q9 8 2 16 q-7 8 1 14" />
 		</g>
 		<!-- arms: one hanging, one waving -->
 		<g stroke="#2c3658" stroke-width="17" stroke-linecap="round" fill="none">
