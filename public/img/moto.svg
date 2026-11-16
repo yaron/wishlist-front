@@ -1,0 +1,108 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
+	<!-- Moto theme illustration: a blue fully faired 90s sport bike, with circuit traces and a shield. -->
+	<defs>
+		<linearGradient id="speed" gradientUnits="userSpaceOnUse" x1="20" y1="0" x2="270" y2="0">
+			<stop offset="0" stop-color="#1d4ed8" stop-opacity="0" />
+			<stop offset="1" stop-color="#1d4ed8" stop-opacity=".6" />
+		</linearGradient>
+		<linearGradient id="paint" x1="0" y1="0" x2="0" y2="1">
+			<stop offset="0" stop-color="#3b6ff0" />
+			<stop offset="1" stop-color="#1a3fae" />
+		</linearGradient>
+		<linearGradient id="chrome" x1="0" y1="0" x2="0" y2="1">
+			<stop offset="0" stop-color="#eef1f6" />
+			<stop offset=".5" stop-color="#b8c0cc" />
+			<stop offset="1" stop-color="#8a94a3" />
+		</linearGradient>
+		<g id="wheel">
+			<circle r="100" fill="#1f2733" />
+			<circle r="80" fill="#e9edf3" />
+			<circle r="72" fill="#ffffff" stroke="#c9d1dc" stroke-width="3" />
+			<circle r="46" fill="none" stroke="#9aa5b4" stroke-width="7" />
+			<g stroke="#5b6678" stroke-width="7" stroke-linecap="round">
+				<path d="M0 -14 L0 -72 M12 7 L62 36 M-12 7 L-62 36" />
+			</g>
+			<circle r="14" fill="#5b6678" />
+		</g>
+	</defs>
+
+	<!-- circuit traces -->
+	<g fill="none" stroke="#c7d3e6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+		<path d="M1000 300 H880 L840 340 V400 L800 440 H700" />
+		<path d="M1000 360 H900 L870 390 V450" />
+		<path d="M560 140 V220 L600 260 H700 L740 300" />
+		<path d="M420 250 H500 L540 290 V360" />
+	</g>
+	<g fill="#ffffff" stroke="#a9bad3" stroke-width="3">
+		<circle cx="700" cy="440" r="7" />
+		<circle cx="870" cy="450" r="7" />
+		<circle cx="740" cy="300" r="7" />
+		<circle cx="540" cy="360" r="7" />
+		<circle cx="420" cy="250" r="7" />
+	</g>
+	<circle cx="560" cy="140" r="7" fill="#1d4ed8" />
+
+	<!-- shield with a keyhole -->
+	<g transform="translate(860 170)">
+		<path d="M0 -70 L58 -48 V2 C58 42 30 66 0 80 C-30 66 -58 42 -58 2 V-48 Z" fill="#ffffff" stroke="#1d4ed8" stroke-width="5" stroke-linejoin="round" />
+		<circle cy="-4" r="13" fill="#1d4ed8" />
+		<path d="M-6 4 L-10 34 H10 L6 4 Z" fill="#1d4ed8" />
+	</g>
+
+	<!-- speed lines -->
+	<g stroke="url(#speed)" stroke-width="4" stroke-linecap="round">
+		<path d="M50 560 H240" />
+		<path d="M110 610 H260" />
+		<path d="M20 660 H210" />
+	</g>
+
+	<!-- shadow -->
+	<ellipse cx="520" cy="826" rx="330" ry="12" fill="#0f1b2d" opacity=".08" />
+
+	<g stroke-linejoin="round" stroke-linecap="round">
+		<!-- rear wheel, swingarm and exhaust -->
+		<use href="#wheel" x="310" y="720" />
+		<path d="M310 720 L505 668" stroke="#4a5568" stroke-width="16" />
+		<g transform="translate(14 42) rotate(-4 360 640)">
+		<path d="M300 610 L428 642 C440 646 444 660 436 668 L292 650 C280 646 280 614 300 610 Z" fill="url(#chrome)" stroke="#8a94a3" stroke-width="2" />
+		<ellipse cx="294" cy="630" rx="8" ry="20" fill="#5b6678" />
+		</g>
+		<path d="M446 700 C480 702 520 700 560 692" fill="none" stroke="#9aa5b4" stroke-width="10" />
+
+		<!-- front wheel, fork and fender -->
+		<use href="#wheel" x="730" y="720" />
+		<path d="M690 560 L730 720" stroke="#b8c0cc" stroke-width="14" />
+		<path d="M660 640 C700 612 770 614 800 650" fill="none" stroke="url(#paint)" stroke-width="12" />
+
+		<!-- tail and seat -->
+		<path d="M565 540 L450 548 C405 546 360 525 318 482 L338 470 C378 492 420 502 462 506 L565 516 Z" fill="url(#paint)" />
+		<path d="M560 518 L462 508 C430 504 400 496 372 484 C398 506 430 520 458 524 L560 532 Z" fill="#1f2733" />
+		<path d="M330 486 L360 498" stroke="#ffffff" stroke-width="3" opacity=".7" />
+		<rect x="316" y="474" width="16" height="9" rx="3" transform="rotate(30 324 478)" fill="#ef4444" />
+
+		<!-- side panel under the seat -->
+		<path d="M565 532 L452 546 C458 584 478 620 508 652 L560 606 Z" fill="#1a3fae" />
+		<path d="M470 566 L540 556" stroke="#ffffff" stroke-width="3" opacity=".5" />
+		<!-- tank -->
+		<path d="M555 528 C568 488 625 462 690 466 L668 520 C628 534 592 538 555 538 Z" fill="url(#paint)" />
+		<path d="M585 505 C615 488 650 480 680 480" fill="none" stroke="#ffffff" stroke-width="3" opacity=".6" />
+
+		<!-- full fairing -->
+		<path d="M688 456 C736 458 784 496 806 556 C814 586 798 608 768 614 L704 636 C692 676 646 700 572 708 L478 704 C456 696 452 666 480 646 L556 604 C600 568 640 520 660 470 Z" fill="url(#paint)" />
+		<path d="M478 704 C520 712 600 712 660 690 L640 712 C590 726 520 724 470 716 Z" fill="#1a3fae" />
+		<!-- fairing stripes -->
+		<path d="M560 646 C620 620 700 600 790 590" fill="none" stroke="#ffffff" stroke-width="8" />
+		<path d="M548 668 C612 640 700 622 796 610" fill="none" stroke="#9cc0ff" stroke-width="4" />
+		<!-- vent -->
+		<path d="M612 560 L668 540 L660 562 L606 580 Z" fill="#1a3fae" />
+		<!-- windscreen -->
+		<path d="M690 458 C674 438 652 426 628 422 C646 440 656 458 658 474 Z" fill="#a9c1e8" opacity=".85" />
+		<!-- headlight -->
+		<path d="M774 524 L804 556 L798 570 L764 540 Z" fill="#fff6d6" stroke="#163a9e" stroke-width="3" />
+		<!-- mirror -->
+		<path d="M700 472 L716 452" stroke="#1f2733" stroke-width="4" />
+		<rect x="708" y="440" width="26" height="14" rx="6" fill="#1f2733" />
+		<!-- footpeg -->
+		<circle cx="520" cy="640" r="6" fill="#4a5568" />
+	</g>
+</svg>

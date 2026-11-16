@@ -3,7 +3,7 @@
         "name": "lijst",
         "domain": "lijst.ytal.nl",
         "title": "Verlanglijst Yaron",
-        "theme": "summer",
+        "theme": "moto",
         "language": "nl",
         "database": "wishlists",
         "container": "items-yarontal",
