@@ -1,71 +1,62 @@
 <script>
 	import Item from './Item.svelte';
 	import AddItem from './AddItem.svelte';
-	import Login from './Login.svelte'
+	import Login from './Login.svelte';
 	import Claim from './Claim.svelte';
 	import UnClaim from './UnClaim.svelte';
-	import queryString from "query-string";
-	import { setContext } from 'svelte';
-	import { item_store, texts_store, user_store} from './stores.js';
+	import { item_store, is_admin, texts } from './stores.js';
 	import { getClaimKey } from './claimKeys.js';
 
-	let list = ''
-	item_store.subscribe(val => {
-		list = val
-	});
+	// The undo link from the mail or the claim dialog: ?id=<item>&key=<claim key>
+	const params = new URLSearchParams(window.location.search);
+	const linkId = params.get('id');
+	const linkKey = params.get('key');
 
-    let texts = {}
-	texts_store.subscribe(val => {
-		texts = val
-    });
-
-	let user = {UserId: null}
-	user_store.subscribe(val => {
-		user = val
-    });
-
-	let queryParams;
-	queryParams = queryString.parse(window.location.search);
-	let hideClaim = false;
-	// If we have context=hideClaim in the url or if the user is logged in, hide wether items have been claimed.
-	if (queryParams.context == "hideClaim" || (user.userId != null && queryParams.context != "showClaim")) {
-		hideClaim = true;
+	function undoKey(item) {
+		if (linkKey && linkId === item.id) return { key: linkKey, fromLink: true };
+		const stored = getClaimKey(item.id);
+		return stored ? { key: stored, fromLink: false } : null;
 	}
-	setContext("hideClaim", hideClaim)
 </script>
 
 <header class="container site-header">
 	<h1>{config.title}</h1>
-	<nav>
-		<AddItem />
-	</nav>
+	{#if $is_admin}
+		<nav>
+			<AddItem />
+		</nav>
+	{/if}
 </header>
 
 <main class="container">
-	{#await list}
-		<p aria-busy="true">{texts.waiting}</p>
-	{:then items}
+	{#if $item_store.error}
+		<p class="error" role="alert">{texts.loadError}</p>
+	{/if}
+	{#if !$item_store.loaded}
+		{#if !$item_store.error}
+			<p aria-busy="true">{texts.waiting}</p>
+		{/if}
+	{:else if $item_store.items.length === 0}
+		<p class="empty">{texts.empty}</p>
+	{:else}
 		<div class="items">
-			{#each items as item (item.id)}
-				<Item item={item}>
-					{#if user.userId != null }
-						<AddItem item={item} />
+			{#each $item_store.items as item (item.id)}
+				{@const undo = item.claimed ? undoKey(item) : null}
+				<Item {item} highlight={undo?.fromLink === true}>
+					{#if $is_admin}
+						<AddItem {item} />
 					{/if}
-					{#if !hideClaim && item.claimable}
+					{#if item.claimable}
 						{#if !item.claimed}
-							<Claim item_id={item.id} item_name={item.name} />
-						{:else if queryParams.id == item.id && queryParams.key}
-							<UnClaim item_id={item.id} key={queryParams.key} />
-						{:else if getClaimKey(item.id)}
-							<UnClaim item_id={item.id} key={getClaimKey(item.id)} />
+							<Claim {item} />
+						{:else if undo}
+							<UnClaim {item} key={undo.key} fromLink={undo.fromLink} />
 						{/if}
 					{/if}
 				</Item>
 			{/each}
 		</div>
-	{:catch error}
-		<p class="error" role="alert">{texts.loadError}</p>
-	{/await}
+	{/if}
 </main>
 
 <footer class="container site-footer">

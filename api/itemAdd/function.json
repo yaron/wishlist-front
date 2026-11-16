@@ -19,7 +19,7 @@
       "type": "cosmosDB",
       "databaseName": "wishlists",
       "collectionName": "items-yarontal",
-      "createIfNotExists": true,
+      "createIfNotExists": false,
       "connectionStringSetting": "CosmosDbConnectionString",
       "direction": "out"
     }

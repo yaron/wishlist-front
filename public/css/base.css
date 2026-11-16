@@ -252,9 +252,35 @@ article.item:hover {
 	order: 3;
 }
 
-/* Claimed items step back. */
-article.item.claimed :is(.item-image img, .item-image .placeholder, .item-body, .item-actions .link) {
+/* A bigger tap target for the small text links, without changing how they look. */
+.item-actions .link,
+.site-footer a {
+	position: relative;
+}
+
+:is(.item-actions .link, .site-footer a)::before {
+	content: "";
+	position: absolute;
+	inset: -0.75rem -0.5rem;
+}
+
+/* The item that an undo link points at. */
+article.item.highlight {
+	outline: 3px solid var(--wl-accent);
+	outline-offset: 3px;
+}
+
+.empty {
+	color: var(--pico-muted-color);
+}
+
+/* Claimed items step back; the text stays dark enough to read. */
+article.item.claimed :is(.item-image img, .item-image .placeholder) {
 	opacity: 0.55;
+}
+
+article.item.claimed :is(.item-body, .item-actions .link) {
+	opacity: 0.75;
 }
 
 article.item.claimed .item-image img {
@@ -363,6 +389,18 @@ dialog img.big {
 	.illustration {
 		width: 70vw;
 		opacity: 0.35;
+	}
+}
+
+/* Blurred cards and a fixed page background make scrolling stutter on phones. */
+@media (hover: none) and (pointer: coarse) {
+	body {
+		background-attachment: scroll !important;
+	}
+
+	article.item {
+		-webkit-backdrop-filter: none !important;
+		backdrop-filter: none !important;
 	}
 }
 

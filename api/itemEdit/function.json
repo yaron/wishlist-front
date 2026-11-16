@@ -17,22 +17,13 @@
     },
     {
       "type": "cosmosDB",
-      "name": "EditItemIn",
+      "name": "existing",
       "databaseName": "wishlists",
       "collectionName": "items-yarontal",
       "connectionStringSetting": "CosmosDbConnectionString",
       "direction": "in",
       "Id": "{id}",
       "PartitionKey": "{id}"
-    },
-    {
-      "name": "EditItemOut",
-      "type": "cosmosDB",
-      "databaseName": "wishlists",
-      "collectionName": "items-yarontal",
-      "createIfNotExists": false,
-      "connectionStringSetting": "CosmosDbConnectionString",
-      "direction": "out"
     }
   ]
 }

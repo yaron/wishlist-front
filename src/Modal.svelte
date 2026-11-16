@@ -1,15 +1,10 @@
 <script>
 	import { onMount } from 'svelte';
-	import { texts_store } from './stores';
-	let texts = {}
-	texts_store.subscribe(val => {
-		texts = val
-	});
+	import { texts } from './stores.js';
 
-	export let onclose = () => {};
-	const close = () => onclose();
+	let { title, onclose = () => {}, children, footer } = $props();
 
-	let dialog;
+	let dialog = $state();
 
 	// A native modal dialog traps focus, makes the page behind it inert
 	// and gives focus back to the previous element when it closes.
@@ -23,26 +18,26 @@
 	// Escape: let the parent decide, so it can reset its own state.
 	function handleCancel(e) {
 		e.preventDefault();
-		close();
+		onclose();
 	}
 
 	// Clicks on the dialog itself (outside the article) are clicks on the backdrop.
 	function handleClick(e) {
-		if (e.target === dialog) close();
+		if (e.target === dialog) onclose();
 	}
 </script>
 
 <!-- svelte-ignore a11y_click_events_have_key_events, a11y_no_noninteractive_element_interactions -->
-<dialog bind:this={dialog} on:cancel={handleCancel} on:click={handleClick}>
+<dialog bind:this={dialog} oncancel={handleCancel} onclick={handleClick}>
 	<article>
 		<header>
-			<button rel="prev" aria-label={texts.close} on:click={close}></button>
-			<slot name="header"></slot>
+			<button type="button" rel="prev" aria-label={texts.close} onclick={() => onclose()}></button>
+			<h2>{title}</h2>
 		</header>
-		<slot></slot>
-		{#if $$slots.footer}
+		{@render children?.()}
+		{#if footer}
 			<footer>
-				<slot name="footer"></slot>
+				{@render footer()}
 			</footer>
 		{/if}
 	</article>
@@ -53,7 +48,7 @@
 		width: min(36rem, 100%);
 	}
 
-	header :global(h2) {
+	header h2 {
 		margin: 0;
 		font-size: 1.25rem;
 	}

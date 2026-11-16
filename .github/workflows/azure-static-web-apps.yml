@@ -52,12 +52,15 @@ jobs:
       cancel-in-progress: false
     env:
       DEPLOY_TOKEN: ${{ secrets[matrix.instance.tokenSecret] }}
+      INSTANCE_NAME: ${{ matrix.instance.name }}
+      INSTANCE_DOMAIN: ${{ matrix.instance.domain }}
+      TOKEN_SECRET: ${{ matrix.instance.tokenSecret }}
     steps:
       - name: Check deployment token
         id: token
         run: |
           if [ -z "$DEPLOY_TOKEN" ]; then
-            echo "::warning::Skipping ${{ matrix.instance.domain }}: secret ${{ matrix.instance.tokenSecret }} is not set."
+            echo "::warning::Skipping $INSTANCE_DOMAIN: secret $TOKEN_SECRET is not set."
             echo "available=false" >> "$GITHUB_OUTPUT"
           else
             echo "available=true" >> "$GITHUB_OUTPUT"
@@ -68,7 +71,7 @@ jobs:
           submodules: true
       - name: Configure ${{ matrix.instance.name }}
         if: steps.token.outputs.available == 'true'
-        run: node scripts/configure-instance.mjs "${{ matrix.instance.name }}"
+        run: node scripts/configure-instance.mjs "$INSTANCE_NAME"
       - name: Build And Deploy
         if: steps.token.outputs.available == 'true'
         uses: Azure/static-web-apps-deploy@v1

@@ -7,14 +7,23 @@ function compareItems(a, b) {
     return String(a.name || '').localeCompare(String(b.name || ''), 'nl', { sensitivity: 'base' });
 }
 
-module.exports = function(context, req) {
-    // Never expose the hash of the claim key to the client.
-    const items = (context.bindings.items || [])
-        .map(({ claimKeyHash, ...item }) => item)
-        .sort(compareItems);
-
-    context.res = {
-        body: items
+// Only these fields go to the browser; the hash of the claim key and the database's own
+// bookkeeping stay on the server.
+function publicItem(item) {
+    return {
+        id: item.id,
+        name: item.name,
+        price: item.price,
+        claimable: item.claimable === true,
+        claimed: item.claimed === true,
+        url: item.url || '',
+        image: item.image || '',
     };
-    context.done();
-  };
+}
+
+module.exports = async function (context) {
+    context.res = {
+        headers: { 'content-type': 'application/json' },
+        body: (context.bindings.items || []).map(publicItem).sort(compareItems),
+    };
+};

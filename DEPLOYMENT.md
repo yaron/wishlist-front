@@ -7,7 +7,7 @@ The sites are listed in [`instances.json`](instances.json):
 | --- | --- |
 | `name` | Short name, used by the workflow and `scripts/configure-instance.mjs` |
 | `domain` | Public domain, also used for the undo link in the claim mail |
-| `title`, `theme`, `language` | Written to `public/config.js` (themes: `unicorn`, `butterfly`, `flamingo`, `violin`, `moto`) |
+| `title`, `theme`, `language` | Written to `public/index.html` and `public/config.js` (themes: `unicorn`, `butterfly`, `flamingo`, `violin`, `moto`) |
 | `database`, `container` | Cosmos DB database and container with the items of this site |
 | `tokenSecret` | Name of the GitHub secret with the deployment token of the Static Web App |
 
@@ -43,7 +43,8 @@ To build one site locally: `node scripts/configure-instance.mjs <name> && npm ru
 4. **Deployment token**: in the new Static Web App, *Overview → Manage deployment token*. Add it as a
    repository secret (*Settings → Secrets and variables → Actions*) named after `tokenSecret`.
 5. **Application settings** (*Settings → Environment variables*) of the new Static Web App:
-   - `CosmosDbConnectionString`, `CosmosDbEndpoint`, `CosmosDbKey`: same values as the `lijst` site
+   - `CosmosDbConnectionString`: same value as the `lijst` site. `CosmosDbEndpoint` and `CosmosDbKey`
+     are no longer needed; when both are set they are still used for writes.
    - `WISH_MAILGUN_DOMAIN`, `WISH_MAILGUN_KEY`, `WISH_MAILGUN_EU`, `WISH_MAIL_FROM`, and optionally
      `WISH_MAIL_SUBJECT` / `WISH_MAIL_BODY`
    - `WISH_SITE_URL` is not needed; the link is built from `domain`.

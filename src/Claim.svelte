@@ -1,95 +1,97 @@
 <script>
     import Modal from './Modal.svelte';
-    import { item_store, texts_store } from './stores.js';
+    import { post, ApiError } from './api.js';
+    import { item_store, texts } from './stores.js';
     import { saveClaimKey, unclaimUrl } from './claimKeys.js';
-        
-    let texts = {}
-	texts_store.subscribe(val => {
-		texts = val
-    });
 
-    let showClaim = false
-    export let item_id
-    export let item_name
-    let mail = ''
-    let busy = false
-    let undoLink = ''
-    let mailSent = false
-    let mailFailed = false
+    let { item } = $props();
+    const formId = $props.id();
 
+    let showClaim = $state(false);
+    let mail = $state('');
+    let busy = $state(false);
+    let error = $state('');
+    let undoLink = $state('');
+    let mailSent = $state(false);
+    let mailFailed = $state(false);
+    let copied = $state(false);
+
+    function open() {
+        error = '';
+        showClaim = true;
+    }
+
+    // The list is refreshed when the modal closes, since a claimed item no longer
+    // shows this component (and with it, this modal).
     function close() {
-        showClaim = false
-        undoLink = ''
-        mailSent = false
-        mailFailed = false
-        item_store.updateList()
+        showClaim = false;
+        item_store.updateList();
     }
 
-    async function claimItem() {
-        busy = true
-        const params = {
-            headers: {
-                "content-type": "application/json; charset=UTF-8"
-            },
-            body: JSON.stringify({
-                id: item_id,
-                mail: mail,
-            }),
-            method: "POST"
-        }
-        let url = config.api+'/claim/'+item_id
-        const res = await fetch(url, params);
-        busy = false
-        if (res.ok) {
-            const result = await res.json();
-            if (result.key) {
-                // Keep the modal open to show the undo link; the list is
-                // refreshed when it closes, since that removes this component.
-                saveClaimKey(item_id, result.key)
-                mailSent = result.mailSent === true
-                mailFailed = mail.trim().length > 0 && !mailSent
-                undoLink = unclaimUrl(item_id, result.key)
-            } else {
-                close()
-            }
-        } else {
-            throw new Error(await res.text());
+    async function claimItem(e) {
+        e.preventDefault();
+        busy = true;
+        error = '';
+        try {
+            const result = await post(`/claim/${item.id}`, { mail });
+            saveClaimKey(item.id, result.key);
+            mailSent = result.mailSent === true;
+            mailFailed = mail.trim().length > 0 && !mailSent;
+            undoLink = unclaimUrl(item.id, result.key);
+        } catch (err) {
+            error = err instanceof ApiError && err.status === 409 ? texts.claimTaken : texts.actionError;
+        } finally {
+            busy = false;
         }
     }
 
+    async function copyLink() {
+        try {
+            await navigator.clipboard.writeText(undoLink);
+            copied = true;
+        } catch (err) {
+            // No clipboard access; the link can still be selected and copied by hand.
+        }
+    }
 </script>
 
 {#if showClaim}
-	<Modal onclose={close}>
-		<h2 slot="header">{texts.claim}: {item_name}</h2>
-		{#if undoLink}
-			{#if mailSent}
-				<p>{texts.claimedMailSent}</p>
-			{:else if mailFailed}
-				<p class="error" role="alert">{texts.claimedMailFailed}</p>
-			{/if}
-			<label>
-				{texts.claimedUndoInfo}
-				<input readonly value={undoLink} on:focus={(e) => e.target.select()}>
-			</label>
-		{:else}
-			<label>
-				{texts.yourMail}
-				<input type="email" autocomplete="email" bind:value={mail} aria-describedby="mail-disclaimer-{item_id}">
-				<small id="mail-disclaimer-{item_id}">{texts.mailDisclaimer}</small>
-			</label>
-		{/if}
-		<svelte:fragment slot="footer">
-			{#if undoLink}
-				<button on:click={close}>{texts.close}</button>
-			{:else}
-				<button class="secondary outline" on:click={close}>{texts.cancel}</button>
-				<button disabled={busy} aria-busy={busy} on:click={claimItem}>{texts.claim}</button>
-			{/if}
-		</svelte:fragment>
-	</Modal>
+    <Modal title="{texts.claim}: {item.name}" onclose={close}>
+        {#if undoLink}
+            {#if mailSent}
+                <p>{texts.claimedMailSent}</p>
+            {:else if mailFailed}
+                <p class="error" role="alert">{texts.claimedMailFailed}</p>
+            {/if}
+            <label>
+                {texts.claimedUndoInfo}
+                <input readonly value={undoLink} onfocus={(e) => e.target.select()}>
+            </label>
+        {:else}
+            <form id={formId} onsubmit={claimItem}>
+                <label>
+                    {texts.yourMail}
+                    <!-- svelte-ignore a11y_autofocus -->
+                    <input type="email" name="mail" autocomplete="email" bind:value={mail} autofocus aria-describedby="{formId}-disclaimer">
+                    <small id="{formId}-disclaimer">{texts.mailDisclaimer}</small>
+                </label>
+            </form>
+            {#if error}
+                <p class="error" role="alert">{error}</p>
+            {/if}
+        {/if}
+        {#snippet footer()}
+            {#if undoLink}
+                <button type="button" class="secondary outline" onclick={copyLink}>{copied ? texts.copied : texts.copy}</button>
+                <button type="button" onclick={close}>{texts.close}</button>
+            {:else}
+                <button type="button" class="secondary outline" onclick={close}>{texts.cancel}</button>
+                <button type="submit" form={formId} disabled={busy} aria-busy={busy}>{texts.claim}</button>
+            {/if}
+        {/snippet}
+    </Modal>
 {/if}
 
-<button class="claim" on:click={() => showClaim = true}>
-	{texts.claim}
+<button class="claim" onclick={open}>
+    {texts.claim}
 </button>
