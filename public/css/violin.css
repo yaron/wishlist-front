@@ -1,0 +1,220 @@
+/*
+ * violin theme: stylish for a girl in group 6 who loves make-up, clothes and playing the violin.
+ * - Colours: berry and lilac with peach and gold on a soft lavender background.
+ * - A music staff with notes under the title, faint notes and sparkles on the page,
+ *   price hang-tags like in a clothes shop, gradient buttons and a sparkle badge.
+ * - Playfair Display (headings, the title in italics) and Quicksand (text), served from
+ *   our own domain (OFL, see /fonts).
+ * The theme stylesheet is loaded before base.css, so rules here use selectors that are
+ * more specific than the ones in base.css.
+ */
+
+@font-face {
+	font-family: "Playfair Display";
+	font-style: normal;
+	font-display: swap;
+	font-weight: 400 900;
+	src: url("../fonts/playfair-display.woff2") format("woff2");
+}
+
+@font-face {
+	font-family: "Playfair Display";
+	font-style: italic;
+	font-display: swap;
+	font-weight: 400 900;
+	src: url("../fonts/playfair-display-italic.woff2") format("woff2");
+}
+
+@font-face {
+	font-family: "Quicksand";
+	font-style: normal;
+	font-display: swap;
+	font-weight: 300 700;
+	src: url("../fonts/quicksand.woff2") format("woff2");
+}
+
+:root[data-theme="light"] {
+	--wl-bg: #f8f2fc;
+	--wl-ink: #2d2347;
+	--wl-accent: #9c2f93;
+	--wl-accent-hover: #7d2373;
+	--wl-accent-soft: rgba(156, 47, 147, 0.18);
+	--wl-surface: rgba(255, 255, 255, 0.9);
+	--wl-image-bg: #ffffff;
+	--wl-illustration: url("../img/violin.svg");
+	--wl-illustration-width: min(40vw, 34rem);
+
+	--vl-lilac: #b48ce0;
+	--vl-peach: #ffc9b5;
+	--vl-gold: #e8b04b;
+	--vl-gradient: linear-gradient(135deg, #b0368f, #7b3fc4);
+	/* A music staff with notes and a sparkle. */
+	--vl-staff: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='44'%3E%3Cg stroke='%232d2347' stroke-opacity='.35' stroke-width='1.2'%3E%3Cpath d='M0 10h240M0 17h240M0 24h240M0 31h240M0 38h240'/%3E%3C/g%3E%3Cg fill='%239c2f93'%3E%3Cellipse cx='40' cy='31' rx='5' ry='3.6' transform='rotate(-20 40 31)'/%3E%3Crect x='44' y='9' width='1.8' height='22'/%3E%3Cellipse cx='80' cy='24' rx='5' ry='3.6' transform='rotate(-20 80 24)'/%3E%3Cellipse cx='104' cy='17' rx='5' ry='3.6' transform='rotate(-20 104 17)'/%3E%3Crect x='84' y='3' width='1.8' height='21'/%3E%3Crect x='108' y='-3' width='1.8' height='20'/%3E%3Cpath d='M84 3 L110 -3 L110 2 L84 8 Z'/%3E%3Cellipse cx='176' cy='35' rx='5' ry='3.6' transform='rotate(-20 176 35)'/%3E%3Crect x='180' y='13' width='1.8' height='22'/%3E%3Cpath d='M181 13 c8 4 10 8 7 14 c1 -5 -2 -8 -7 -9z'/%3E%3C/g%3E%3Cpath d='M140 10 c1 6 3 8 9 9 c-6 1 -8 3 -9 9 c-1 -6 -3 -8 -9 -9 c6 -1 8 -3 9 -9z' fill='%23e8b04b'/%3E%3C/svg%3E");
+	/* Faint notes and sparkles on the page. */
+	--vl-pattern: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cg fill='%23b48ce0' fill-opacity='.16'%3E%3Cellipse cx='30' cy='50' rx='6' ry='4.5' transform='rotate(-20 30 50)'/%3E%3Crect x='35' y='24' width='2' height='26'/%3E%3Cpath d='M36 24 c9 4 12 9 8 16 c1 -6 -2 -9 -8 -10z'/%3E%3Cellipse cx='112' cy='128' rx='6' ry='4.5' transform='rotate(-20 112 128)'/%3E%3Crect x='117' y='102' width='2' height='26'/%3E%3C/g%3E%3Cg fill='%23e8b04b' fill-opacity='.35'%3E%3Cpath d='M120 30 c1 6 3 8 9 9 c-6 1 -8 3 -9 9 c-1 -6 -3 -8 -9 -9 c6 -1 8 -3 9 -9z'/%3E%3Cpath d='M50 110 c.7 4 2 5.3 6 6 c-4 .7 -5.3 2 -6 6 c-.7 -4 -2 -5.3 -6 -6 c4 -.7 5.3 -2 6 -6z'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+html[data-theme="light"]:root {
+	--pico-font-family-sans-serif: "Quicksand", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+	--pico-font-family: var(--pico-font-family-sans-serif);
+	--pico-font-weight: 500;
+	--pico-border-radius: 1.1rem;
+	--pico-modal-overlay-background-color: rgba(45, 35, 71, 0.5);
+}
+
+html[data-theme="light"] body {
+	background:
+		radial-gradient(50rem 34rem at 0% 0%, rgba(255, 201, 181, 0.45), transparent 60%),
+		radial-gradient(50rem 34rem at 100% 100%, rgba(180, 140, 224, 0.3), transparent 60%),
+		var(--vl-pattern),
+		var(--wl-bg);
+	background-attachment: fixed;
+}
+
+html[data-theme="light"] :is(h1, h2, h3) {
+	font-family: "Playfair Display", Georgia, serif;
+}
+
+/* Header: italic title on a music staff. */
+html[data-theme="light"] .site-header h1 {
+	font-style: italic;
+	font-weight: 700;
+	font-size: clamp(2.1rem, 5.5vw, 3.4rem);
+	letter-spacing: -0.01em;
+	line-height: 1.1;
+	background: var(--vl-gradient);
+	-webkit-background-clip: text;
+	background-clip: text;
+	color: transparent;
+	padding-right: 0.15em;
+}
+
+html[data-theme="light"] .site-header::after {
+	content: "";
+	flex-basis: 100%;
+	height: 44px;
+	background: var(--vl-staff) left center / auto 44px repeat-x;
+}
+
+/* Buttons: pills, the main ones with a berry-to-violet gradient. */
+html[data-theme="light"] :is(button, [role="button"], input[type="submit"]):not(.icon, .image-button, [rel="prev"]) {
+	border-radius: 999px;
+	padding-inline: 1.3rem;
+	font-weight: 700;
+	letter-spacing: 0.01em;
+}
+
+html[data-theme="light"] :is(button, [role="button"], input[type="submit"]):not(.outline, .secondary, .danger, .icon, .image-button, [rel="prev"]) {
+	background-image: var(--vl-gradient);
+	border-color: transparent;
+	box-shadow: 0 6px 16px -8px rgba(123, 63, 196, 0.7);
+}
+
+html[data-theme="light"] :is(button, [role="button"], input[type="submit"]):not(.outline, .secondary, .danger, .icon, .image-button, [rel="prev"]):hover {
+	background-image: linear-gradient(135deg, #95287a, #6630a8);
+}
+
+html[data-theme="light"] button.icon {
+	border-radius: 50%;
+}
+
+/* Cards */
+html[data-theme="light"] article.item {
+	border: 1px solid rgba(180, 140, 224, 0.35);
+	box-shadow: 0 10px 26px -16px rgba(45, 35, 71, 0.45);
+}
+
+html[data-theme="light"] article.item:hover {
+	box-shadow: 0 16px 34px -14px rgba(123, 63, 196, 0.45);
+}
+
+html[data-theme="light"] .item-image {
+	border-bottom: 1px solid rgba(180, 140, 224, 0.3);
+	background: linear-gradient(160deg, #fdf7ff, #fff1ea);
+}
+
+html[data-theme="light"] .item-image .placeholder {
+	stroke: var(--vl-lilac);
+	opacity: 0.8;
+}
+
+html[data-theme="light"] .item-image .badge {
+	padding: 0.25rem 0.75rem;
+	background: var(--wl-ink);
+	font-size: 0.75rem;
+	letter-spacing: 0.04em;
+}
+
+html[data-theme="light"] .item-image .badge::before {
+	content: "✦ ";
+	color: var(--vl-gold);
+}
+
+html[data-theme="light"] .item-body h3 {
+	font-weight: 600;
+}
+
+/* Price on a hang-tag, like in a clothes shop. */
+html[data-theme="light"] .item-body .price {
+	display: inline-block;
+	margin-top: 0.25rem;
+	padding: 0.1rem 0.8rem 0.1rem 1.35rem;
+	background:
+		radial-gradient(circle at 0.75rem 50%, #ffffff 0 3px, transparent 3.5px),
+		var(--vl-peach);
+	clip-path: polygon(0.55rem 0, 100% 0, 100% 100%, 0.55rem 100%, 0 50%);
+	border-radius: 0 0.4rem 0.4rem 0;
+	color: var(--wl-accent-hover);
+	font-family: "Quicksand", sans-serif;
+	font-weight: 700;
+	font-size: 1.05rem;
+}
+
+html[data-theme="light"] .item-actions .link {
+	color: var(--wl-ink);
+	text-decoration: underline;
+	text-decoration-color: var(--vl-lilac);
+	text-decoration-thickness: 2px;
+	text-underline-offset: 0.3em;
+}
+
+html[data-theme="light"] .item-actions .link:hover {
+	color: var(--wl-accent);
+}
+
+/* Dialogs: a gradient line on top. */
+html[data-theme="light"] dialog article {
+	position: relative;
+	overflow: hidden;
+}
+
+html[data-theme="light"] dialog article::before {
+	content: "";
+	position: absolute;
+	inset: 0 0 auto 0;
+	height: 5px;
+	background: linear-gradient(90deg, #b0368f, var(--vl-lilac), var(--vl-peach));
+}
+
+html[data-theme="light"] dialog article > header {
+	background: #faf5ff;
+}
+
+html[data-theme="light"] .site-footer a:hover {
+	color: var(--wl-accent);
+}
+
+@media (max-width: 576px) {
+	html[data-theme="light"] .site-header::after {
+		height: 36px;
+		background-size: auto 36px;
+	}
+
+	html[data-theme="light"] .item-body .price {
+		font-size: 0.95rem;
+	}
+
+	html[data-theme="light"] :is(button, [role="button"]):not(.icon, .image-button, [rel="prev"]) {
+		padding-inline: 0.9rem;
+	}
+}

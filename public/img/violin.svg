@@ -1,0 +1,122 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
+	<!-- Violin theme illustration: a violin with its bow, make-up, music notes and sparkles. -->
+	<defs>
+		<linearGradient id="wood" x1="0" y1="0" x2="1" y2="1">
+			<stop offset="0" stop-color="#d9823a" />
+			<stop offset=".55" stop-color="#b45a22" />
+			<stop offset="1" stop-color="#7c3713" />
+		</linearGradient>
+		<linearGradient id="gold" x1="0" y1="0" x2="1" y2="0">
+			<stop offset="0" stop-color="#c98d3a" />
+			<stop offset=".5" stop-color="#f3cf7a" />
+			<stop offset="1" stop-color="#c98d3a" />
+		</linearGradient>
+		<linearGradient id="rosegold" x1="0" y1="0" x2="1" y2="1">
+			<stop offset="0" stop-color="#f6d0c4" />
+			<stop offset="1" stop-color="#d79b8f" />
+		</linearGradient>
+		<path id="violin-body" d="M0 -150 C40 -150 90 -142 95 -98 C98 -62 70 -48 62 -26 C55 -6 60 14 72 30 C106 46 120 82 113 117 C104 152 52 162 0 162 C-52 162 -104 152 -113 117 C-120 82 -106 46 -72 30 C-60 14 -55 -6 -62 -26 C-70 -48 -98 -62 -95 -98 C-90 -142 -40 -150 0 -150 Z" />
+		<path id="sparkle" d="M0 -20 C2 -6 6 -2 20 0 C6 2 2 6 0 20 C-2 6 -6 2 -20 0 C-6 -2 -2 -6 0 -20 Z" />
+		<g id="note">
+			<ellipse cx="0" cy="0" rx="13" ry="10" transform="rotate(-20)" />
+			<rect x="10" y="-62" width="4" height="62" />
+			<path d="M14 -62 C30 -54 38 -44 30 -26 C34 -40 26 -46 14 -48 Z" />
+		</g>
+	</defs>
+
+	<!-- soft backdrop circle -->
+	<circle cx="700" cy="690" r="270" fill="#efe3fb" />
+
+	<!-- music notes and sparkles -->
+	<g fill="#b48ce0">
+		<use href="#note" transform="translate(300 420) rotate(-8)" />
+		<use href="#note" transform="translate(420 300) rotate(10) scale(.8)" />
+		<use href="#note" transform="translate(880 330) rotate(6) scale(.7)" />
+	</g>
+	<use href="#sparkle" transform="translate(560 240) scale(1.3)" fill="#e8b04b" />
+	<use href="#sparkle" transform="translate(220 600)" fill="#ff9fb5" />
+	<use href="#sparkle" transform="translate(930 520) scale(.8)" fill="#e8b04b" />
+	<use href="#sparkle" transform="translate(470 880) scale(.7)" fill="#b48ce0" />
+
+	<!-- bow -->
+	<g transform="translate(660 640) rotate(52)">
+		<path d="M-330 -14 L330 -14" stroke="#4a2a18" stroke-width="7" stroke-linecap="round" />
+		<path d="M-322 0 L300 0" stroke="#f4ecdf" stroke-width="5" />
+		<path d="M-330 -14 L-322 0" stroke="#4a2a18" stroke-width="5" />
+		<rect x="286" y="-20" width="34" height="24" rx="4" fill="#1f1a24" />
+		<circle cx="303" cy="-8" r="5" fill="url(#gold)" />
+		<rect x="320" y="-18" width="16" height="8" rx="3" fill="url(#gold)" />
+	</g>
+
+	<!-- violin -->
+	<g transform="translate(700 650) rotate(-28) scale(1.05)">
+		<!-- neck and scroll -->
+		<rect x="-14" y="-370" width="28" height="240" rx="6" fill="#8a4419" />
+		<path d="M-18 -360 C-28 -400 -6 -430 14 -420 C34 -410 28 -384 10 -384 C-2 -384 -2 -398 8 -400" fill="#8a4419" stroke="#6b3211" stroke-width="5" stroke-linecap="round" />
+		<g fill="#1f1a24">
+			<rect x="-34" y="-352" width="22" height="9" rx="4" />
+			<rect x="-34" y="-322" width="22" height="9" rx="4" />
+			<rect x="12" y="-338" width="22" height="9" rx="4" />
+			<rect x="12" y="-308" width="22" height="9" rx="4" />
+		</g>
+		<!-- body -->
+		<use href="#violin-body" fill="url(#wood)" />
+		<use href="#violin-body" transform="scale(.93)" fill="none" stroke="#6b3211" stroke-width="3" />
+		<path d="M-50 -110 C-30 -128 20 -128 40 -112" fill="none" stroke="#f0a35c" stroke-width="6" stroke-linecap="round" opacity=".5" />
+		<!-- f-holes -->
+		<g fill="none" stroke="#3a1a0a" stroke-width="5" stroke-linecap="round">
+			<path d="M-40 -18 C-52 10 -28 38 -40 66" />
+			<path d="M40 -18 C52 10 28 38 40 66" />
+		</g>
+		<g fill="#3a1a0a">
+			<circle cx="-40" cy="-20" r="5" />
+			<circle cx="-40" cy="68" r="5" />
+			<circle cx="40" cy="-20" r="5" />
+			<circle cx="40" cy="68" r="5" />
+		</g>
+		<!-- fingerboard -->
+		<path d="M-12 -340 L12 -340 L18 -10 L-18 -10 Z" fill="#1f1a24" />
+		<!-- tailpiece, chinrest and bridge -->
+		<path d="M-18 80 L18 80 L12 150 Q0 158 -12 150 Z" fill="#1f1a24" />
+		<ellipse cx="-58" cy="138" rx="34" ry="16" transform="rotate(-12 -58 138)" fill="#2a2230" />
+		<path d="M-32 40 L32 40 L26 54 L-26 54 Z" fill="#f1d39a" />
+		<!-- strings -->
+		<g stroke="#f7f1e6" stroke-width="1.6">
+			<path d="M-8 -340 L-9 84" />
+			<path d="M-3 -340 L-3 84" />
+			<path d="M3 -340 L3 84" />
+			<path d="M8 -340 L9 84" />
+		</g>
+	</g>
+
+	<!-- lipstick -->
+	<g transform="translate(330 790) rotate(-14)">
+		<path d="M-20 -110 L20 -92 L20 -40 L-20 -40 Z" fill="#c2185b" />
+		<rect x="-24" y="-44" width="48" height="26" rx="3" fill="url(#gold)" />
+		<rect x="-30" y="-20" width="60" height="110" rx="8" fill="#2d2347" />
+		<rect x="-30" y="10" width="60" height="6" fill="url(#gold)" />
+	</g>
+
+	<!-- nail polish -->
+	<g transform="translate(470 840) rotate(8)">
+		<rect x="-14" y="-120" width="28" height="70" rx="6" fill="#2d2347" />
+		<rect x="-10" y="-56" width="20" height="12" fill="url(#gold)" />
+		<rect x="-44" y="-46" width="88" height="96" rx="26" fill="#ff8fab" />
+		<path d="M-30 -30 Q-34 0 -28 30" fill="none" stroke="#ffffff" stroke-width="7" stroke-linecap="round" opacity=".6" />
+	</g>
+
+	<!-- compact mirror -->
+	<g transform="translate(160 860)">
+		<circle r="62" fill="url(#rosegold)" />
+		<circle r="48" fill="#fbf4ff" />
+		<path d="M-26 -18 L-6 -38 M-24 4 L14 -34" stroke="#d9c4ef" stroke-width="7" stroke-linecap="round" />
+	</g>
+
+	<!-- make-up brush -->
+	<g transform="translate(120 690) rotate(-35)">
+		<rect x="-8" y="0" width="16" height="110" rx="8" fill="#b48ce0" />
+		<rect x="-11" y="-28" width="22" height="34" rx="3" fill="url(#gold)" />
+		<path d="M-11 -28 C-26 -60 -16 -96 0 -104 C16 -96 26 -60 11 -28 Z" fill="#f5c9b8" />
+		<path d="M-6 -72 C-2 -88 4 -90 8 -82" stroke="#ff9fb5" stroke-width="10" stroke-linecap="round" fill="none" />
+	</g>
+</svg>
