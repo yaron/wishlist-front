@@ -1,15 +1,17 @@
-const cosmos = require('@azure/cosmos');
-const endpoint = process.env.CosmosDbEndpoint;
-const key = process.env.CosmosDbKey;
-const { CosmosClient } = cosmos;
-
-const instance = require('../shared/instance');
-
-const client = new CosmosClient({ endpoint, key });
-const container = client.database(instance.database).container(instance.container);
+const { denyUnlessAdmin, json } = require('../shared/auth');
+const db = require('../shared/db');
 
 module.exports = async function (context, req) {
-    resp = await container.item(req.params.id, req.params.id).delete()
-      
-    context.done();
+    const denied = denyUnlessAdmin(req);
+    if (denied) {
+        context.res = denied;
+        return;
+    }
+
+    if (!await db.deleteItem(req.params.id)) {
+        context.res = json(404, { error: 'Unable to find item' });
+        return;
+    }
+
+    context.res = json(200, { status: 'Item deleted' });
 };

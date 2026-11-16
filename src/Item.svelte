@@ -1,34 +1,29 @@
 <script>
-	import { getContext } from "svelte";
 	import Modal from './Modal.svelte';
-	import { texts_store } from './stores.js';
+	import { texts } from './stores.js';
 
-	export let item = {}
+	let { item, highlight = false, children } = $props();
 
-	let texts = {}
-	texts_store.subscribe(val => {
-		texts = val
-	});
+	let showImage = $state(false);
+	// Images are hotlinked from shops, so they can disappear; fall back to the placeholder.
+	let brokenImage = $state(null);
+	let hasImage = $derived(Boolean(item.image) && brokenImage !== item.image);
 
-	let showImage = false
-	let hideClaim = getContext("hideClaim")
-	$: claimed = item.claimed && !hideClaim
-
-	const priceFormat = new Intl.NumberFormat(config.language, { style: 'currency', currency: 'EUR' })
+	const priceFormat = new Intl.NumberFormat(config.language, { style: 'currency', currency: 'EUR' });
 </script>
 
-<article class="item" class:claimed>
+<article class="item" class:claimed={item.claimed} class:highlight id="item-{item.id}">
 	<div class="item-image">
-		{#if item.image}
-			<button class="image-button" on:click={() => showImage = true} aria-label={item.name}>
-				<img src={item.image} alt="" loading="lazy" />
+		{#if hasImage}
+			<button class="image-button" onclick={() => showImage = true} aria-label="{texts.enlarge}: {item.name}">
+				<img src={item.image} alt="" loading="lazy" onerror={() => brokenImage = item.image} />
 			</button>
 		{:else}
 			<svg class="placeholder" viewBox="0 0 24 24" aria-hidden="true">
 				<path d="M20 12v9H4v-9M2 7h20v5H2zM12 21V7M12 7H7.5a2.5 2.5 0 1 1 0-5C11 2 12 7 12 7zM12 7h4.5a2.5 2.5 0 1 0 0-5C13 2 12 7 12 7z" />
 			</svg>
 		{/if}
-		{#if claimed}
+		{#if item.claimed}
 			<span class="badge">{texts.claimed}</span>
 		{/if}
 	</div>
@@ -44,13 +39,12 @@
 		{#if item.url}
 			<a class="link" href={item.url} target="_blank" rel="noopener noreferrer">{texts.url} ↗</a>
 		{/if}
-		<slot></slot>
+		{@render children?.()}
 	</footer>
 </article>
 
 {#if showImage}
-	<Modal onclose={() => showImage = false}>
-		<h2 slot="header">{item.name}</h2>
+	<Modal title={item.name} onclose={() => showImage = false}>
 		<img class="big" src={item.image} alt={item.name} />
 	</Modal>
 {/if}

@@ -1,32 +1,26 @@
 const { claimKeyMatches } = require('../shared/claimKey');
+const { json } = require('../shared/auth');
+const db = require('../shared/db');
 
-module.exports = function (context, req, unclaimItemIn) {
-    if (unclaimItemIn == undefined) {
-        context.res = {
-            status: 404,
-            body: "Unable to find item"
-        };
-        context.done();
-        return
+module.exports = async function (context, req, item) {
+    if (item == undefined) {
+        context.res = json(404, { error: 'Unable to find item' });
+        return;
     }
 
-    const key = req.body && req.body.key
-    if (unclaimItemIn.claimed != true || !claimKeyMatches(key, unclaimItemIn.claimKeyHash)) {
-        context.res = {
-            status: 403,
-            body: "Unable to unclaim item"
-        };
-        context.done();
-        return
+    const key = req.body && req.body.key;
+    if (item.claimed != true || !claimKeyMatches(key, item.claimKeyHash)) {
+        context.res = json(403, { error: 'Unable to unclaim item' });
+        return;
     }
 
-    context.bindings.unclaimItemOut = unclaimItemIn
-    context.bindings.unclaimItemOut.claimed = false
-    delete context.bindings.unclaimItemOut.claimKeyHash
+    item.claimed = false;
+    delete item.claimKeyHash;
 
-    context.res = {
-        headers: { "content-type": "application/json" },
-        body: { status: "Item unclaimed" }
-    };
-    context.done();
-}
+    if (!await db.replaceItem(item)) {
+        context.res = json(409, { error: 'Item was changed, try again' });
+        return;
+    }
+
+    context.res = json(200, { status: 'Item unclaimed' });
+};

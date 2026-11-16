@@ -18,6 +18,15 @@ function isValidMail(mail) {
     return typeof mail === 'string' && mail.length <= MAX_MAIL_LENGTH && MAIL_PATTERN.test(mail);
 }
 
+// At most one mail per item per hour. Without this, claiming and unclaiming in a loop
+// would send an unlimited number of mails to any address.
+const MAIL_COOLDOWN_MS = 60 * 60 * 1000;
+
+function mayMailAgain(lastMailAt, now = Date.now()) {
+    const last = Date.parse(lastMailAt);
+    return Number.isNaN(last) || now - last >= MAIL_COOLDOWN_MS;
+}
+
 function unclaimUrl(itemId, key) {
     const site = process.env.WISH_SITE_URL || instance.siteUrl;
     if (!site) {
@@ -70,4 +79,4 @@ async function sendClaimMail(mail, item, key) {
     }
 }
 
-module.exports = { isConfigured, isValidMail, sendClaimMail, render };
+module.exports = { isConfigured, isValidMail, mayMailAgain, sendClaimMail, render };

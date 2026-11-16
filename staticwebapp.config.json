@@ -4,22 +4,61 @@
     },
     "routes": [
         {
-            "route": "/api/itemAdd",
+            "route": "/api/itemAdd*",
             "allowedRoles": [
                 "administrator"
             ]
         },
         {
-            "route": "/api/itemEdit/*",
+            "route": "/api/itemEdit*",
             "allowedRoles": [
                 "administrator"
             ]
         },
         {
-            "route": "/api/itemDelete/*",
+            "route": "/api/itemDelete*",
             "allowedRoles": [
                 "administrator"
             ]
+        },
+        {
+            "route": "/.auth/login/github",
+            "statusCode": 404
+        },
+        {
+            "route": "/.auth/login/twitter",
+            "statusCode": 404
+        },
+        {
+            "route": "/build/*",
+            "headers": {
+                "Cache-Control": "public, max-age=31536000, immutable"
+            }
+        },
+        {
+            "route": "/css/*",
+            "headers": {
+                "Cache-Control": "public, max-age=31536000, immutable"
+            }
+        },
+        {
+            "route": "/fonts/*",
+            "headers": {
+                "Cache-Control": "public, max-age=31536000, immutable"
+            }
+        },
+        {
+            "route": "/img/*",
+            "headers": {
+                "Cache-Control": "public, max-age=86400"
+            }
         }
-    ]
+    ],
+    "globalHeaders": {
+        "Content-Security-Policy": "default-src 'self'; img-src 'self' https: data:; style-src 'self'; script-src 'self'; connect-src 'self'; font-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'",
+        "X-Content-Type-Options": "nosniff",
+        "X-Frame-Options": "DENY",
+        "Referrer-Policy": "strict-origin-when-cross-origin",
+        "Permissions-Policy": "camera=(), microphone=(), geolocation=()"
+    }
 }

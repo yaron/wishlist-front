@@ -1,5 +1,6 @@
 /node_modules/
 /public/build/
 /public/config.js
+/public/index.html
 .DS_Store
 /api/shared/instance.json
