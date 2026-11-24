@@ -22,6 +22,11 @@
             ]
         },
         {
+            "route": "/.auth/complete",
+            "redirect": "/.auth/login/aad?post_login_redirect_uri=/",
+            "statusCode": 302
+        },
+        {
             "route": "/.auth/login/github",
             "statusCode": 404
         },
